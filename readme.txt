@@ -1,15 +1,15 @@
 === Woocommerce Compare Products ===
 Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
-Requires at least: 4.1
-Tested up to: 4.7.4
-Stable tag: 2.5.4
+Requires at least: 4.5
+Tested up to: 4.8.0
+Stable tag: 2.6.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Add a World Class Compare Products Feature to your WooCommerce store today with the WooCommerce Compare Products plugin.
 
-== Description ==
+== DESCRIPTION ==
 
 The Compare Products extension for WooCommerce gives a product comparison feature that you'd only expect to find on the big corporate e-commerce sites.
 
@@ -17,7 +17,8 @@ WooCommerce Compare Products allows users to firstly add products to a compare w
 
 Chosen products are compared side-by-side, feature by feature, price-by-price. Discard products from the table at the click of a mouse as you hone in on the product that is the one for you. Save the comparison as a PDF or print it.
 
-= Key Features =
+= KEY FEATURES =
+
 * First launched in March 2012 and continually upgraded, tweaked and improved See [Changelog](https://wordpress.org/plugins/woocommerce-compare-products/changelog/)
 * The compare products feature is proven to increase store sales
 * Fully configurable - add any feature or specification you want to be compared for your products
@@ -33,17 +34,17 @@ Chosen products are compared side-by-side, feature by feature, price-by-price. D
 * Lightweight plugin - scripts only load on pages where the Compare feature is active
 
 
-= Localization =
-* English (default) - always include.
-* Turkish - added thanks to ManusH
-* .pot file (woocommerce-compare-products.pot) in languages folder for translations.
-* Your translation? Please [send it to us](http://www.a3rev.com/contact-us-page/) We'll acknowledge your work and link to your site.
+= PREMIUM VERSION =
 
-= Plugin Resources =
+If you require more features than the Free version has please checkout the Premium version
 
-[PREMIUM Version](http://a3rev.com/shop/woocommerce-compare-products/) |
-[Documentation](http://docs.a3rev.com/user-guides/woocommerce/compare-products/) |
-[FREE Version Support](http://wordpress.org/support/plugin/woocommerce-compare-products/)
+* [WooCommerce Compare Products Premium](http://a3rev.com/shop/woocommerce-compare-products/)
+
+= CONTRIBUTE =
+
+When you download WooCommerce Compare Products, you join our the a3rev Software community. Regardless of if you are a WordPress beginner or experienced developer if you are interested in contributing to the future development of this plugin head over to the WooCommerce Compare Products[GitHub Repository](https://github.com/a3rev/woocommerce-compare-products-lite) to find out how you can contribute.
+
+Want to add a new language to WooCommerce Compare Products! You can contribute via [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/woocommerce-compare-products)
 
 
 == Screenshots ==
@@ -58,9 +59,25 @@ Chosen products are compared side-by-side, feature by feature, price-by-price. D
 
 == Installation ==
 
-1. Upload the folder woocommerce-compare-products to the /wp-content/plugins/ directory
+= Minimum Requirements =
 
-2. Activate the plugin through the Plugins menu in WordPress
+* WordPress 4.5
+* WooCommerce v2.6 and later.
+* PHP version 5.5 or greater
+* MySQL version 5.5 or greater
+
+= Automatic installation =
+
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't even need to leave your web browser. To do an automatic install of WooCommerce Compare Products, log in to your WordPress admin panel, navigate to the Plugins menu and click Add New. Search WooCommerce Compare Products and click install. Or download the plugin from wordpress.org and click the upload sub nav item and use the WordPress plugins uploader to upload the plugin from your computer and unpack it and install it for you.
+
+= Manual installation =
+
+The manual installation method involves downloading our plugin and uploading it to your web server via your favourite FTP application.
+
+1. Download the plugin file to your computer and unzip it
+2. Using an FTP program, or your hosting control panel, upload the unzipped plugin folder to your WordPress installations wp-content/plugins/ directory.
+3. Activate the plugin from the Plugins menu within the WordPress admin.
+
 
 == Usage ==
 
@@ -84,6 +101,13 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.6.0 - 2017/06/07 =
+* Feature - Launched WooCommerce Compare Products public Github Repository
+* Tweak - Tested for compatibility with WordPress major version 4.8.0
+* Tweak - Tested for compatibility with WooCommerce version 3.0.7
+* Tweak - Include bootstrap modal script into plugin framework
+* Tweak - Update a3rev plugin framework to latest version
 
 = 2.5.4 - 2017/04/27 =
 * Tweak - Tested for full compatibility with WooCommerce version 3.0.4
@@ -473,6 +497,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.6.0 =
+Feature Update. 2 code tweaks for compatibility with WordPress major version 4.8.0 and WooCommerce version 3.0.7 plus launch of public Github repo for source code
 
 = 2.5.4 =
 Major Maintenance Update. 6 major code tweaks and 2 bug fixes for compatibility with WooCommerce 3.0.4 and backwards to v2.6.0 and WordPress 4.7.4

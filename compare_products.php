@@ -2,7 +2,7 @@
 /*
 Plugin Name: WooCommerce Compare Products LITE
 Description: Compare Products uses your existing WooCommerce Product Categories and Product Attributes to create Compare Product Features for all your products. A sidebar Compare basket is created that users add products to and view the Comparison in a Compare this pop-up screen.
-Version: 2.5.4
+Version: 2.6.0
 Author: a3rev Software
 Author URI: https://a3rev.com/
 Text Domain: woocommerce-compare-products
@@ -30,7 +30,7 @@ define('WOOCP_CSS_URL', WOOCP_URL . '/assets/css');
 define('WOOCP_IMAGES_URL', WOOCP_URL . '/assets/images');
 if (!defined("WOOCP_AUTHOR_URI")) define("WOOCP_AUTHOR_URI", "http://a3rev.com/shop/woocommerce-compare-products/");
 
-define( 'WOOCP_VERSION',  '2.5.4' );
+define( 'WOOCP_VERSION',  '2.6.0' );
 
 /**
  * Load Localisation files.

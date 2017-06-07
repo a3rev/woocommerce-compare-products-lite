@@ -59,6 +59,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 		
 		if ( is_admin() && isset( $_REQUEST['page'] ) && in_array( $_REQUEST['page'], $admin_pages ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_script_load' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'register_modal_scripts' ), 0 );
 			do_action( $this->plugin_name . '_init_scripts' );
 
 			add_action( 'admin_print_scripts', array( $this, 'admin_localize_printed_scripts' ), 5 );
@@ -82,6 +83,13 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 	public function register_fontawesome_style() {
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 		wp_register_style( 'font-awesome-styles', $this->admin_plugin_url() . '/assets/css/font-awesome' . $suffix . '.css', array(), '4.5.0', 'all' );
+	}
+
+	public function register_modal_scripts() {
+		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+		wp_register_style( 'bootstrap-modal', $this->admin_plugin_url() . '/assets/css/modal' . $suffix . '.css', array(), '4.0.0', 'all' );
+		wp_register_script( 'bootstrap-util', $this->admin_plugin_url() . '/assets/js/bootstrap/util' . $suffix . '.js', array( 'jquery' ), '4.0.0', false );
+		wp_register_script( 'bootstrap-modal', $this->admin_plugin_url() . '/assets/js/bootstrap/modal' . $suffix . '.js', array( 'jquery', 'bootstrap-util' ), '4.0.0', false );
 	}
 	
 	/*-----------------------------------------------------------------------------------*/
@@ -1477,6 +1485,11 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 					$name_attribute	= esc_attr( $option_name ) . '[' . esc_attr( $value['id'] ) . ']';
 				}
 				$id_attribute		= esc_attr( $option_name ) . '_' . $id_attribute;
+			}
+
+			// Update id attribute if current element is child of array
+			if ( $child_key != false ) {
+				$id_attribute .= '_' . $child_key;
 			}
 
 			// Switch based on type

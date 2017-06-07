@@ -13,7 +13,7 @@ function woocp_install() {
 	}
 
 	update_option('a3rev_woocp_pro_version', '2.4.5');
-	update_option('a3rev_woocp_lite_version', '2.5.4');
+	update_option('a3rev_woocp_lite_version', '2.6.0');
 	$product_compare_id = WC_Compare_Functions::create_page( esc_sql( 'product-comparison' ), '', __('Product Comparison', 'woocommerce-compare-products' ), '[product_comparison_page]' );
 	update_option('product_compare_id', $product_compare_id);
 
@@ -290,7 +290,7 @@ function woo_cp_lite_upgrade_plugin () {
 	}
 
 	update_option('a3rev_woocp_pro_version', '2.4.5');
-	update_option('a3rev_woocp_lite_version', '2.5.4');
+	update_option('a3rev_woocp_lite_version', '2.6.0');
 
 }
 
