@@ -1,0 +1,1542 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Compare Products Pro\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-30 18:10+0700\n"
+"PO-Revision-Date: 2016-09-30 18:10+0700\n"
+"Last-Translator: Nguyen Cong Tuan <mr.nguyencongtuan@gmail.com>\n"
+"Language-Team: a3rev\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/admin-interface.php:178
+msgid "Great! You have the latest version installed."
+msgstr "l"
+
+#: admin/admin-interface.php:243
+msgid "Settings successfully saved."
+msgstr ""
+
+#: admin/admin-interface.php:251
+msgid "Error: Settings can not save."
+msgstr ""
+
+#: admin/admin-interface.php:259
+msgid "Settings successfully reseted."
+msgstr ""
+
+#: admin/admin-interface.php:280
+msgid "Thin"
+msgstr ""
+
+#: admin/admin-interface.php:281
+msgid "Thin/Italic"
+msgstr ""
+
+#: admin/admin-interface.php:282
+msgid "Normal"
+msgstr ""
+
+#: admin/admin-interface.php:283
+msgid "Italic"
+msgstr ""
+
+#: admin/admin-interface.php:284
+msgid "Bold"
+msgstr ""
+
+#: admin/admin-interface.php:285
+msgid "Bold/Italic"
+msgstr ""
+
+#: admin/admin-interface.php:295
+msgid "Solid"
+msgstr ""
+
+#: admin/admin-interface.php:296
+msgid "Double"
+msgstr ""
+
+#: admin/admin-interface.php:297
+msgid "Dashed"
+msgstr ""
+
+#: admin/admin-interface.php:298
+msgid "Dotted"
+msgstr ""
+
+#: admin/admin-interface.php:299
+msgid "Groove"
+msgstr ""
+
+#: admin/admin-interface.php:300
+msgid "Ridge"
+msgstr ""
+
+#: admin/admin-interface.php:301
+msgid "Inset"
+msgstr ""
+
+#: admin/admin-interface.php:302
+msgid "Outset"
+msgstr ""
+
+#: admin/admin-interface.php:1572 admin/admin-interface.php:1658
+#: admin/admin-interface.php:1758 admin/admin-interface.php:1927
+#: admin/admin-interface.php:2017 admin/admin-interface.php:2046
+#: admin/admin-interface.php:2689
+#: admin/settings/comparison-page/global-settings.php:197
+#: admin/settings/comparison-page/global-settings.php:203
+#: admin/settings/global-settings.php:230
+#: admin/settings/gridview-style/global-settings.php:196
+#: admin/settings/product-page/compare-tab-settings.php:51
+#: admin/settings/product-page/compare-tab-settings.php:71
+#: admin/settings/product-page/compare-tab-settings.php:77
+#: admin/settings/product-page/compare-tab-settings.php:83
+#: admin/settings/product-page/compare-tab-settings.php:89
+#: admin/settings/product-page/global-settings.php:195
+#: admin/settings/product-page/global-settings.php:261
+#: admin/settings/product-page/view-compare-settings.php:53
+msgid "ON"
+msgstr ""
+
+#: admin/admin-interface.php:1573 admin/admin-interface.php:1659
+#: admin/admin-interface.php:1759 admin/admin-interface.php:1928
+#: admin/admin-interface.php:2018 admin/admin-interface.php:2047
+#: admin/admin-interface.php:2690
+#: admin/settings/comparison-page/global-settings.php:198
+#: admin/settings/comparison-page/global-settings.php:204
+#: admin/settings/global-settings.php:231
+#: admin/settings/gridview-style/global-settings.php:197
+#: admin/settings/product-page/compare-tab-settings.php:52
+#: admin/settings/product-page/compare-tab-settings.php:72
+#: admin/settings/product-page/compare-tab-settings.php:78
+#: admin/settings/product-page/compare-tab-settings.php:84
+#: admin/settings/product-page/compare-tab-settings.php:90
+#: admin/settings/product-page/global-settings.php:196
+#: admin/settings/product-page/global-settings.php:262
+#: admin/settings/product-page/view-compare-settings.php:54
+msgid "OFF"
+msgstr ""
+
+#: admin/admin-interface.php:1578
+msgid "Google Fonts API"
+msgstr ""
+
+#: admin/admin-interface.php:1590
+msgid ""
+"ON to connect to Google Fonts API and have auto font updates direct from "
+"Google."
+msgstr ""
+
+#: admin/admin-interface.php:1594
+#, php-format
+msgid ""
+"Enter your existing Google Fonts API Key below. Don't have a key? Visit <a "
+"href='%s' target='_blank'>Google Developer API</a> to create a key"
+msgstr ""
+
+#: admin/admin-interface.php:1611
+msgid "Google Fonts API Key"
+msgstr ""
+
+#: admin/admin-interface.php:1614
+msgid "Your Google API Key is valid and automatic font updates are enabled."
+msgstr ""
+
+#: admin/admin-interface.php:1615
+msgid "Please enter a valid Google API Key."
+msgstr ""
+
+#: admin/admin-interface.php:1634
+msgid "Check New Version"
+msgstr ""
+
+#: admin/admin-interface.php:1645
+msgid "Check Now"
+msgstr ""
+
+#: admin/admin-interface.php:1664
+msgid "Open Box Display"
+msgstr ""
+
+#: admin/admin-interface.php:1677
+msgid ""
+"ON and each admin panel setting box OPEN | CLOSED position are saved each "
+"time changes are SAVED."
+msgstr ""
+
+#: admin/admin-interface.php:2082
+msgid "Width"
+msgstr ""
+
+#: admin/admin-interface.php:2084
+msgid "Height"
+msgstr ""
+
+#: admin/admin-interface.php:2086
+msgid "Hard Crop"
+msgstr ""
+
+#: admin/admin-interface.php:2179
+msgid "-- Default Fonts --"
+msgstr ""
+
+#: admin/admin-interface.php:2190
+msgid "-- Google Fonts --"
+msgstr ""
+
+#: admin/admin-interface.php:2231
+msgid "Preview your customized typography settings"
+msgstr ""
+
+#: admin/admin-interface.php:2340 admin/admin-interface.php:2574
+msgid "Preview your customized border settings"
+msgstr ""
+
+#: admin/admin-interface.php:2341 admin/admin-interface.php:2508
+msgid "0px = No Border"
+msgstr ""
+
+#: admin/admin-interface.php:2349 admin/admin-interface.php:2565
+msgid "Rounded"
+msgstr ""
+
+#: admin/admin-interface.php:2350 admin/admin-interface.php:2566
+msgid "Square"
+msgstr ""
+
+#: admin/admin-interface.php:2360 admin/admin-interface.php:2579
+msgid "Top Left Corner"
+msgstr ""
+
+#: admin/admin-interface.php:2380 admin/admin-interface.php:2599
+msgid "Top Right Corner"
+msgstr ""
+
+#: admin/admin-interface.php:2400 admin/admin-interface.php:2619
+msgid "Bottom Right Corner"
+msgstr ""
+
+#: admin/admin-interface.php:2420 admin/admin-interface.php:2639
+msgid "Bottom Left Corner"
+msgstr ""
+
+#: admin/admin-interface.php:2507
+msgid "Preview your customized border styles settings"
+msgstr ""
+
+#: admin/admin-interface.php:2705
+msgid "Horizontal Shadow"
+msgstr ""
+
+#: admin/admin-interface.php:2723
+msgid "Vertical Shadow"
+msgstr ""
+
+#: admin/admin-interface.php:2741
+msgid "Blur Distance"
+msgstr ""
+
+#: admin/admin-interface.php:2759
+msgid "Spread Size"
+msgstr ""
+
+#: admin/admin-interface.php:2777
+msgid "INNER"
+msgstr ""
+
+#: admin/admin-interface.php:2778
+msgid "OUTER"
+msgstr ""
+
+#: admin/admin-interface.php:2796
+msgid "Preview your customized box shadow settings"
+msgstr ""
+
+#: admin/admin-interface.php:3064
+msgid "Save changes"
+msgstr ""
+
+#: admin/admin-interface.php:3065
+msgid "Reset Settings"
+msgstr ""
+
+#: admin/admin-pages/admin-product-comparison-page.php:63
+msgid "Compare Settings & Style"
+msgstr ""
+
+#: admin/admin-pages/admin-product-comparison-page.php:64
+msgid "Settings & Style"
+msgstr ""
+
+#: admin/admin-ui.php:109 admin/admin-ui.php:112
+msgid "Premium Version Enhanced Features"
+msgstr ""
+
+#: admin/admin-ui.php:113
+msgid "WooCommerce Dynamic Gallery Premium"
+msgstr ""
+
+#: admin/admin-ui.php:114
+msgid ""
+"Quick Video showing the main (not all) enhanced features that are built into "
+"the WooCommerce Dynamic Gallery Premium version"
+msgstr ""
+
+#: admin/admin-ui.php:115
+msgid "Developer Support and Premium Features"
+msgstr ""
+
+#: admin/admin-ui.php:116
+msgid ""
+"Limited Time Offer. Purchase the Premium Version Lifetime License. That is a "
+"Lifetime of maintenance updates, feature upgrades and developer support for "
+"a once only fee. Offer ending soon."
+msgstr ""
+
+#: admin/admin-ui.php:117
+msgid "Get Premium Features and Support"
+msgstr ""
+
+#: admin/admin-ui.php:265
+#, php-format
+msgid ""
+"Advanced Settings - Upgrade to the <a href=\"%s\" target=\"_blank\">%s "
+"License</a> to activate these settings."
+msgstr ""
+
+#: admin/admin-ui.php:268
+msgid "Pro Version"
+msgstr ""
+
+#: admin/admin-ui.php:318 admin/admin-ui.php:337
+msgid "You should check now to see if have any new version is available"
+msgstr ""
+
+#: admin/admin-ui.php:320
+#, php-format
+msgid ""
+"Connection Failure! Please try again. If this issue persists please create a "
+"support request on the plugin <a href=\"%s\" target=\"_blank\">a3rev support "
+"forum</a>."
+msgstr ""
+
+#: admin/admin-ui.php:328
+#, php-format
+msgid ""
+"There is a new version <span class=\"a3rev-ui-new-plugin-version\">%s</span> "
+"available, <a href=\"%s\" target=\"_blank\">update now</a> or download "
+"direct from <a href=\"%s\" target=\"_blank\">My Account</a> on a3rev.com"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:26
+msgid "Compare Category Successfully edited"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:28
+msgid ""
+"Nothing edited! You already have a Compare Category with that name. Use "
+"unique names to edit each Compare Category."
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:35
+msgid "Compare Category Successfully created"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:37
+msgid "Compare Category Error created"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:40
+msgid ""
+"Nothing created! You already have a Compare Category with that name. Use "
+"unique names to create each Compare Category."
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:49
+msgid "Compare Category deleted"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:58
+msgid "Edit Compare Product Categories"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:58
+msgid "Add Compare Product Categories"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:59
+msgid ""
+"Create Categories based on groups of products that share the same compare "
+"feature list."
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:73
+msgid "Edit Category Name"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:73
+msgid "Category Name"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:79
+#: admin/classes/class-wc-compare-fields.php:192
+msgid "Save"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:79
+#: admin/classes/class-wc-compare-fields.php:192
+msgid "Create"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:79
+#: admin/classes/class-wc-compare-fields.php:193
+msgid "Cancel"
+msgstr ""
+
+#: admin/classes/class-wc-compare-categories.php:95
+msgid "You just save the order for compare categories."
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:48
+msgid "Compare Feature Successfully edited"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:50
+msgid ""
+"Nothing edited! You already have a Compare Feature with that name. Use the "
+"Features Search function to find it. Use unique names to edit each Compare "
+"Feature."
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:63
+msgid "Compare Feature Successfully created"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:65
+msgid "Compare Feature Error created"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:69
+msgid ""
+"Nothing created! You already have a Compare Feature with that name. Use the "
+"Features Search function to find it. Use unique names to create each Compare "
+"Feature."
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:79
+#: admin/classes/class-wc-compare-fields.php:93
+msgid "Compare Feature successfully deleted"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:81
+msgid "Please select item(s) to delete"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:89
+msgid "Compare Feature successfully removed"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:103
+msgid "Edit Compare Product Features"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:103
+msgid "Add Compare Product Features"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:119
+msgid "Edit Compare Features"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:119
+msgid "Create New Compare Features"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:126
+msgid ""
+"This is the Feature Name that users see in the Compare Fly-Out Window, for "
+"example-  System Height"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:126
+#: admin/classes/class-wc-compare-fields.php:233
+#: admin/classes/class-wc-compare-fields.php:429
+msgid "Feature Name"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:130
+msgid ""
+"e.g kgs, mm, lbs, cm, inches - the unit of measurement shows after the "
+"Feature name in (brackets). If you leave this blank you will just see the "
+"Feature name."
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:130
+msgid "Feature Unit of Measurement"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:134
+msgid ""
+"Users don't see this. Use to set the data input field type that you will use "
+"on to enter the Products data for this feature."
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:134
+msgid "Feature Input Type"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:155
+msgid ""
+"You have selected one of the Check Box, Radio Button, Drop Down, Mutli "
+"Select Input Types. Type your Options here, one line for each option."
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:155
+msgid "Enter Input Type options"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:159
+msgid ""
+"Assign features to one or more Categories. Features such as Colour, Size, "
+"Weight can be applicable to many Product categories. Create the Feature once "
+"and assign it to one or multiple categories."
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:159
+msgid "Assign Feature to Categories"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:166
+#: classes/class-wc-compare-features.php:108
+#: classes/class-wc-compare-features.php:173
+msgid "Select Compare Categories"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:203
+msgid "This Type just is enabled on PRO version."
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:226
+msgid "Un-Assigned Features (Assign to a Category to activate)"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:232
+msgid "No"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:234
+#: admin/classes/class-wc-compare-fields.php:430
+msgid "Type"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:248
+#: admin/classes/class-wc-compare-fields.php:278
+#: admin/classes/class-wc-compare-fields.php:292
+#: admin/classes/class-wc-compare-fields.php:441
+msgid "Edit"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:248
+#: admin/classes/class-wc-compare-fields.php:278
+#: admin/classes/class-wc-compare-fields.php:441
+msgid "Are you sure you want to delete"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:248
+#: admin/classes/class-wc-compare-fields.php:253
+#: admin/classes/class-wc-compare-fields.php:278
+#: admin/classes/class-wc-compare-fields.php:441
+msgid "Delete"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:253
+msgid "Are you sure about deleting this?"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:261
+msgid "Manage Compare Categories and Features"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:262
+msgid ""
+"Use drag and drop to change Category order and Feature order within "
+"Categories."
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:292
+msgid "Are you sure you want to remove"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:292
+msgid "from"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:292
+msgid "Remove"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:297
+msgid "You have not assigned any Features to this category yet. No Hurry!"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:370
+msgid "You just save the order for Compare Features."
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:378
+msgid "Categories & Features"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:378
+msgid "Add New"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:391
+msgid "Search Features"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:422
+msgid "Found"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:422
+msgid "feature(s)"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:449
+msgid "Show"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:460
+msgid "Go"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:461
+msgid "Displaying"
+msgstr ""
+
+#: admin/classes/class-wc-compare-fields.php:461
+msgid "of"
+msgstr ""
+
+#: admin/classes/class-wc-compare-products.php:23
+msgid "WooCommerce Compare Products Manager"
+msgstr ""
+
+#: admin/classes/class-wc-compare-products.php:30
+msgid "PRODUCT EDITING SUPER POWERS"
+msgstr ""
+
+#: admin/compare_init.php:17 classes/class-wc-compare-filter.php:45
+#: includes/updates/compare-update-2.0.6.php:4
+msgid "Product Comparison"
+msgstr ""
+
+#: admin/includes/uploader/class-uploader.php:101
+msgid "Upload"
+msgstr ""
+
+#: admin/includes/uploader/class-uploader.php:121
+msgid "View File"
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:82
+msgid "Comparison Page Settings successfully saved."
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:83
+msgid "Error: Comparison Page Settings can not save."
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:84
+msgid "Comparison Page Settings successfully reseted."
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:139
+#: admin/settings/widget-style/compare-widget-settings.php:139
+msgid "General Settings"
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:183
+msgid "Comparison Page Setup"
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:189
+msgid "Open Compare Table in"
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:196
+msgid "Pop-up Window"
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:202
+msgid "New Tab"
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:202
+msgid "(Use this if concerned about browser pop-up blockers)."
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:210
+msgid "Comparison Page Shortcode"
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:211
+msgid ""
+"A 'Product Comparison' page with the shortcode [product_comparison_page] "
+"inserted should have been auto created on install. If not you need to "
+"manually create a new page and add the shortcode. Then set that page below "
+"so the plugin knows where to find it."
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:216
+msgid "Product Comparison Page"
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:217
+msgid "Page contents"
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:222
+msgid "Select Page"
+msgstr ""
+
+#: admin/settings/comparison-page/global-settings.php:234
+#: admin/settings/gridview-style/global-settings.php:250
+msgid "DYNAMIC STYLE SUPER POWERS"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:39
+msgid "Comparison Page Header"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:46
+msgid "Header Image"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:47
+msgid "Upload an image with formats .jpg, .pgn, .jpeg. Any size."
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:53
+#: admin/settings/comparison-page/page-style-settings.php:72
+#: admin/settings/product-page/compare-button-settings.php:129
+#: admin/settings/product-page/view-compare-settings.php:140
+msgid "Background Colour"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:59
+msgid "Bottom Border"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:66
+msgid "Comparison Page Body"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:78
+msgid "Comparison Empty Window Message Text"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:79
+msgid "Default <code>'[default_value]'</code>"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:82
+msgid "You do not have any product to compare."
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:85
+msgid "Message Font"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:91
+msgid "Text Alignment"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:97
+#: admin/settings/gridview-style/global-settings.php:237
+#: admin/settings/product-page/global-settings.php:242
+msgid "Left"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:98
+msgid "Center"
+msgstr ""
+
+#: admin/settings/comparison-page/page-style-settings.php:99
+#: admin/settings/gridview-style/global-settings.php:243
+#: admin/settings/product-page/global-settings.php:248
+msgid "Right"
+msgstr ""
+
+#: admin/settings/global-settings.php:82
+msgid "Global Settings successfully saved."
+msgstr ""
+
+#: admin/settings/global-settings.php:83
+msgid "Error: Global Settings can not save."
+msgstr ""
+
+#: admin/settings/global-settings.php:84
+msgid "Global Settings successfully reseted."
+msgstr ""
+
+#: admin/settings/global-settings.php:151
+#: admin/settings/product-page/global-settings.php:139
+msgid "Product Page Settings"
+msgstr ""
+
+#: admin/settings/global-settings.php:194
+msgid "Plugin Framework Global Settings"
+msgstr ""
+
+#: admin/settings/global-settings.php:201
+msgid "Customize Admin Setting Box Display"
+msgstr ""
+
+#: admin/settings/global-settings.php:202
+msgid ""
+"By default each admin panel will open with all Setting Boxes in the CLOSED "
+"position."
+msgstr ""
+
+#: admin/settings/global-settings.php:209
+msgid "Google Fonts"
+msgstr ""
+
+#: admin/settings/global-settings.php:210
+msgid ""
+"By Default Google Fonts are pulled from a static JSON file in this plugin. "
+"This file is updated but does not have the latest font releases from Google."
+msgstr ""
+
+#: admin/settings/global-settings.php:217
+msgid "House Keeping"
+msgstr ""
+
+#: admin/settings/global-settings.php:221
+msgid "Clean up on Deletion"
+msgstr ""
+
+#: admin/settings/global-settings.php:222
+msgid ""
+"On deletion (not deactivate) the plugin will completely remove all tables "
+"and data it created, leaving no trace it was ever here."
+msgstr ""
+
+#: admin/settings/global-settings.php:235
+msgid "Getting Started"
+msgstr ""
+
+#: admin/settings/global-settings.php:241
+msgid "Quick Start"
+msgstr ""
+
+#: admin/settings/global-settings.php:242
+msgid "Here is a 9 step guide for a fast start"
+msgstr ""
+
+#: admin/settings/global-settings.php:244
+msgid ""
+"Go to WC Compare > Settings & Style menu and checked that Compare Feature is "
+"switched ON for Product Page and Product Card. Note the compare button / "
+"Hyperlink will not show on any product until the feature is activated on "
+"that product."
+msgstr ""
+
+#: admin/settings/global-settings.php:245
+msgid ""
+"Go to your widgets menu and add the Woo Compare Widget to the widget areas "
+"where you want it to show."
+msgstr ""
+
+#: admin/settings/global-settings.php:246
+msgid "Go to the WC Compare > Category and Feature menu."
+msgstr ""
+
+#: admin/settings/global-settings.php:247
+msgid ""
+"Edit the Features that you see in the Un-Assigned Features Box. If there is "
+"nothing in that box then either add some Product Attributes or click the "
+"[ Add New ] button that is to the right of the Categories & Features title "
+"at the top of the page."
+msgstr ""
+
+#: admin/settings/global-settings.php:248
+msgid ""
+"Once you have assigned at least 1 Compare Feature to a Compare category it "
+"is then available for adding the compare feature to products."
+msgstr ""
+
+#: admin/settings/global-settings.php:249
+msgid "Go to your products menu and select a product and edit it."
+msgstr ""
+
+#: admin/settings/global-settings.php:250
+msgid ""
+"Go the 'Compare Feature Fields' and Activate the compare Feature. If it is a "
+"Variable Product you also activate and set the compare feature for each "
+"variation."
+msgstr ""
+
+#: admin/settings/global-settings.php:251
+msgid ""
+"Update the product and view it in a browser - Congratulations you have just "
+"created your first product with the compare feature."
+msgstr ""
+
+#: admin/settings/global-settings.php:252
+msgid ""
+"Go to the Settings & Style Menu and use the dynamic settings boxes and their "
+"options to edit the way compare shows on the front end."
+msgstr ""
+
+#: admin/settings/global-settings.php:257
+msgid "How Comparison Works"
+msgstr ""
+
+#: admin/settings/global-settings.php:258
+msgid "Comparison Data Sets"
+msgstr ""
+
+#: admin/settings/global-settings.php:260
+msgid ""
+"To create meaningful features and specification data that can be compared on "
+"products by customers, that data must be created."
+msgstr ""
+
+#: admin/settings/global-settings.php:261
+msgid ""
+"That specific data once created is then assigned to specific products so "
+"users can view a table of data that applies to that product and thus creates "
+"a meaningful comparison of features and specs."
+msgstr ""
+
+#: admin/settings/global-settings.php:262
+msgid ""
+"A data set comprises a Compare Category with Compare features and that "
+"features data."
+msgstr ""
+
+#: admin/settings/global-settings.php:267
+msgid "Creating Comparison Data Sets"
+msgstr ""
+
+#: admin/settings/global-settings.php:268
+msgid "On first install of WooCommerce Compare Products Free version"
+msgstr ""
+
+#: admin/settings/global-settings.php:270
+msgid "All existing Product > Categories are created as Compare Categories."
+msgstr ""
+
+#: admin/settings/global-settings.php:271
+msgid "All existing Product > Attributes are created as Compare Features."
+msgstr ""
+
+#: admin/settings/global-settings.php:272
+msgid ""
+"All existing Product > Attributes > Terms are created as the Compare "
+"Features Input Data."
+msgstr ""
+
+#: admin/settings/global-settings.php:273
+msgid "Go to the WC Compare > Category & Feature Menu to view those."
+msgstr ""
+
+#: admin/settings/global-settings.php:278
+msgid "Things to know"
+msgstr ""
+
+#: admin/settings/global-settings.php:279
+msgid "Once installed WooCommerce Compare Products will"
+msgstr ""
+
+#: admin/settings/global-settings.php:281
+msgid ""
+"Each time a new Product Category is created it is auto created as a Compare "
+"Category."
+msgstr ""
+
+#: admin/settings/global-settings.php:282
+msgid ""
+"Each time a new Product Attribute is created it is auto created as a Compare "
+"Feature."
+msgstr ""
+
+#: admin/settings/global-settings.php:283
+msgid ""
+"Compare Categories and Compare Features can be created on the WC Category & "
+"Feature menu independent of your Product Categories and Product Attributes."
+msgstr ""
+
+#: admin/settings/global-settings.php:284
+msgid ""
+"Compare Categories and Compare Features created on the WC Category & Feature "
+"menu are NOT created as Product Categories or Product Attributes."
+msgstr ""
+
+#: admin/settings/global-settings.php:285
+msgid ""
+"Deleting a Product Category, Product Attribute DOES NOT delete the "
+"corresponding Compare Category / Compare Feature and vice versa."
+msgstr ""
+
+#: admin/settings/global-settings.php:286
+msgid ""
+"When a Product > Attribute is created, Terms are created for it after the "
+"Attribute is created. The Attribute is auto created as a Un-Assigned Compare "
+"Feature - BUT any terms created are NOT auto created as the Compare Feature "
+"input data. That must be done by editing the Compare Attribute on the WC "
+"Category and Feature Menu."
+msgstr ""
+
+#: admin/settings/global-settings.php:287
+msgid ""
+"Compare Products Premium works differently in that the compare feature is "
+"fully intergrated into Product Categories, Attributes and their Terms and "
+"does not have the 2 as separate data like the Free version has."
+msgstr ""
+
+#: admin/settings/global-settings.php:288
+msgid ""
+"When upgrading to the Premium version no data created on the Free version is "
+"lost."
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:82
+msgid "Product Card Settings successfully saved."
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:83
+msgid "Error: Product Card Settings can not save."
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:84
+msgid "Product Card Settings successfully reseted."
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:139
+msgid "Product Card Settings"
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:183
+msgid "Add to Compare from Product Cards"
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:189
+#: admin/settings/product-page/global-settings.php:188
+msgid "Compare Feature"
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:201
+msgid "Position on Product Cards"
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:202
+msgid ""
+"Position applies to all product cards on the Shop, Product Category and "
+"Product Tag pages."
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:209
+msgid "Vertical Position"
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:210
+msgid ""
+"Position relative to Add to Cart Button. Tip: Change position if Compare "
+"Button/Link does not show."
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:216
+#: admin/settings/product-page/global-settings.php:221
+msgid "Above"
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:217
+#: admin/settings/product-page/global-settings.php:222
+msgid "Below"
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:220
+#: admin/settings/product-page/global-settings.php:225
+msgid "Button Margin"
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:226
+#: admin/settings/product-page/global-settings.php:231
+msgid "Top"
+msgstr ""
+
+#: admin/settings/gridview-style/global-settings.php:231
+#: admin/settings/product-page/global-settings.php:236
+msgid "Bottom"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:39
+msgid "Compare Button / Hyperlink Style"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:46
+msgid "Compare Type"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:53
+#: admin/settings/product-page/view-compare-settings.php:72
+msgid "Button"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:54
+#: admin/settings/product-page/view-compare-settings.php:73
+msgid "Hyperlink"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:57
+msgid "Added to Compare Icon"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:58
+msgid "Upload a 16px x 16px image, support .jpg, .pgn, .jpeg, .gif formats."
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:72
+#: admin/settings/product-page/view-compare-settings.php:83
+msgid "Hyperlink Text"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:75
+#: admin/settings/product-page/compare-button-settings.php:101
+msgid "Compare This*"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:78
+#: admin/settings/product-page/view-compare-settings.php:89
+msgid "Hyperlink Font"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:85
+#: admin/settings/product-page/view-compare-settings.php:96
+msgid "Hyperlink Hover Colour"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:98
+#: admin/settings/product-page/view-compare-settings.php:109
+msgid "Button Text"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:104
+#: admin/settings/product-page/view-compare-settings.php:115
+msgid "Button Font"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:110
+#: admin/settings/product-page/view-compare-settings.php:121
+msgid "Button Padding"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:111
+#: admin/settings/product-page/view-compare-settings.php:122
+msgid "Padding from Button text to Button border"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:116
+#: admin/settings/product-page/view-compare-settings.php:127
+msgid "Top/Bottom"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:122
+#: admin/settings/product-page/view-compare-settings.php:133
+msgid "Left/Right"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:135
+#: admin/settings/product-page/view-compare-settings.php:146
+msgid "Colour Gradient From"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:142
+#: admin/settings/product-page/view-compare-settings.php:153
+msgid "Colour Gradient To"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:148
+#: admin/settings/product-page/view-compare-settings.php:159
+msgid "Button Border"
+msgstr ""
+
+#: admin/settings/product-page/compare-button-settings.php:154
+#: admin/settings/product-page/view-compare-settings.php:165
+msgid "Button Shadow"
+msgstr ""
+
+#: admin/settings/product-page/compare-tab-settings.php:38
+msgid "Product Page Compare Tab"
+msgstr ""
+
+#: admin/settings/product-page/compare-tab-settings.php:44
+#: admin/settings/product-page/compare-tab-settings.php:62
+msgid "Compare Features Tab"
+msgstr ""
+
+#: admin/settings/product-page/compare-tab-settings.php:56
+msgid "Compare Tab Position"
+msgstr ""
+
+#: admin/settings/product-page/compare-tab-settings.php:63
+msgid ""
+"Select the position of the Compare Features tab on the default WooCommerce "
+"product page Nav bar. Products Compare feature list shows under the tab."
+msgstr ""
+
+#: admin/settings/product-page/compare-tab-settings.php:70
+msgid "Before Description tab"
+msgstr ""
+
+#: admin/settings/product-page/compare-tab-settings.php:76
+msgid "Between  Description and Additional tabs"
+msgstr ""
+
+#: admin/settings/product-page/compare-tab-settings.php:82
+msgid "Between  Additional and Reviews tabs"
+msgstr ""
+
+#: admin/settings/product-page/compare-tab-settings.php:88
+msgid "After Reviews tab"
+msgstr ""
+
+#: admin/settings/product-page/compare-tab-settings.php:95
+msgid "Compare Tab Name"
+msgstr ""
+
+#: admin/settings/product-page/compare-tab-settings.php:98
+#: classes/class-wc-compare-filter.php:713
+#: classes/class-wc-compare-filter.php:745
+msgid "Technical Details"
+msgstr ""
+
+#: admin/settings/product-page/global-settings.php:82
+msgid "Product Page Settings successfully saved."
+msgstr ""
+
+#: admin/settings/product-page/global-settings.php:83
+msgid "Error: Product Page Settings can not save."
+msgstr ""
+
+#: admin/settings/product-page/global-settings.php:84
+msgid "Product Page Settings successfully reseted."
+msgstr ""
+
+#: admin/settings/product-page/global-settings.php:182
+msgid "Add to Compare from Product Page"
+msgstr ""
+
+#: admin/settings/product-page/global-settings.php:207
+msgid "Button / Hyperlink Position"
+msgstr ""
+
+#: admin/settings/product-page/global-settings.php:214
+msgid "Button/ Hyperlink Position"
+msgstr ""
+
+#: admin/settings/product-page/global-settings.php:215
+msgid "Position relative to Add to Cart button location"
+msgstr ""
+
+#: admin/settings/product-page/global-settings.php:254
+msgid "Custom Position"
+msgstr ""
+
+#: admin/settings/product-page/global-settings.php:255
+msgid ""
+"ON to deactivate default button position settings created by the plugin."
+msgstr ""
+
+#: admin/settings/product-page/global-settings.php:255
+msgid ""
+"Then use this function to manually postion the Compare button on product "
+"pages"
+msgstr ""
+
+#: admin/settings/product-page/view-compare-settings.php:39
+msgid "View Comparison Table"
+msgstr ""
+
+#: admin/settings/product-page/view-compare-settings.php:46
+msgid "View Compare Link"
+msgstr ""
+
+#: admin/settings/product-page/view-compare-settings.php:58
+msgid "View Compare Button / Hyperlink Style"
+msgstr ""
+
+#: admin/settings/product-page/view-compare-settings.php:65
+msgid "View Compare Type"
+msgstr ""
+
+#: admin/settings/product-page/view-compare-settings.php:86
+#: admin/settings/product-page/view-compare-settings.php:112
+msgid "View Compare &rarr;"
+msgstr ""
+
+#: admin/settings/widget-style/compare-widget-settings.php:82
+msgid "Compare Widget General Settings successfully saved."
+msgstr ""
+
+#: admin/settings/widget-style/compare-widget-settings.php:83
+msgid "Error: Compare Widget General Settings can not save."
+msgstr ""
+
+#: admin/settings/widget-style/compare-widget-settings.php:84
+msgid "Compare Widget General Settings successfully reseted."
+msgstr ""
+
+#: admin/settings/widget-style/compare-widget-settings.php:182
+msgid "COMPARE WIDGET STYLE SUPER POWERS"
+msgstr ""
+
+#: admin/tabs/comparison-page-tab.php:78
+msgid "Comparison Page"
+msgstr ""
+
+#: admin/tabs/global-tab.php:78
+msgid "Global Settings"
+msgstr ""
+
+#: admin/tabs/gridview-style-tab.php:78
+msgid "Product Cards"
+msgstr ""
+
+#: admin/tabs/product-page-tab.php:78
+msgid "Product Page"
+msgstr ""
+
+#: admin/tabs/widget-style-tab.php:78
+msgid "Compare Widget"
+msgstr ""
+
+#: classes/class-wc-compare-features.php:99
+#: classes/class-wc-compare-features.php:160
+msgid "Attribute Comparison Data"
+msgstr ""
+
+#: classes/class-wc-compare-features.php:102
+#: classes/class-wc-compare-features.php:167
+msgid "Select Categories"
+msgstr ""
+
+#: classes/class-wc-compare-features.php:103
+#: classes/class-wc-compare-features.php:166
+msgid ""
+"Attribute can be assigned to any Product Category that is activated for "
+"Product Comparisons. Attributes show on the comparison table as the "
+"Comparable Product Attributes."
+msgstr ""
+
+#: classes/class-wc-compare-features.php:121
+#: classes/class-wc-compare-features.php:189
+msgid "Attribute and Terms Compare data Input type"
+msgstr ""
+
+#: classes/class-wc-compare-features.php:122
+#: classes/class-wc-compare-features.php:188
+msgid ""
+"Use these fields to determine how this Attribute with display its compare "
+"data. Text input fields are for adding custom compare data and ignore the "
+"Attribute Terms or set to show the Attributes Terms as single or multi "
+"select Compare data options that are quick and easy to set for each product."
+msgstr ""
+
+#: classes/class-wc-compare-features.php:133
+#: classes/class-wc-compare-features.php:206
+msgid "Attribute Unit of Measurement"
+msgstr ""
+
+#: classes/class-wc-compare-features.php:134
+#: classes/class-wc-compare-features.php:205
+msgid ""
+"e.g kgs, mm, lbs, cm, inches - the unit of measurement shows after the "
+"Attribute name in (brackets). If you leave this blank you will just see the "
+"Attribute name."
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:45
+msgid "WC Compare"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:47
+msgid "Compare Category & Feature"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:47
+msgid "Category & Feature"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:49
+msgid "Compare Products Manager"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:49
+msgid "Product Manager"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:150
+#: classes/class-wc-compare-filter.php:174
+msgid "Compare This"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:480
+msgid "Product_Comparison"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:857
+msgid "Go to Support Forum"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:864
+msgid "Is this plugin is just what you needed? If so"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:865
+msgid "Submit Review for Plugin on WordPress"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:872
+msgid "WooCommerce Compare Product"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:879
+msgid "Free WooCommerce Plugins"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:886
+msgid "Free WordPress Plugins"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:893
+msgid "Connect with us via"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:894
+msgid "a3rev Facebook"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:895
+msgid "a3rev Twitter"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:911
+msgid "Documentation"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:912
+msgid "Support"
+msgstr ""
+
+#: classes/class-wc-compare-filter.php:917
+msgid "Settings"
+msgstr ""
+
+#: classes/class-wc-compare-functions.php:344
+msgid "Clear All"
+msgstr ""
+
+#: classes/class-wc-compare-functions.php:350
+msgid "Compare"
+msgstr ""
+
+#: classes/class-wc-compare-functions.php:365
+msgid "Nothing to Compare Text"
+msgstr ""
+
+#: classes/class-wc-compare-functions.php:383
+msgid "Add to cart"
+msgstr ""
+
+#: classes/class-wc-compare-functions.php:448
+msgid "Buy product"
+msgstr ""
+
+#: classes/class-wc-compare-functions.php:592
+#: classes/class-wc-compare-functions.php:595
+msgid "Back"
+msgstr ""
+
+#: classes/class-wc-compare-functions.php:609
+#: classes/class-wc-compare-functions.php:612
+msgid "Next"
+msgstr ""
+
+#: classes/class-wc-compare-metabox.php:25
+msgid "Compare Feature Fields"
+msgstr ""
+
+#: classes/class-wc-compare-metabox.php:72
+#: classes/class-wc-compare-metabox.php:226
+msgid "Activate Compare Feature for this Product"
+msgstr ""
+
+#: classes/class-wc-compare-metabox.php:74
+#: classes/class-wc-compare-metabox.php:228
+msgid "Select a  Compare Category for this Product"
+msgstr ""
+
+#: classes/class-wc-compare-metabox.php:76
+#: classes/class-wc-compare-metabox.php:230
+msgid "Select..."
+msgstr ""
+
+#: classes/class-wc-compare-metabox.php:166
+#: classes/class-wc-compare-metabox.php:316
+msgid "Select value"
+msgstr ""
+
+#: classes/class-wc-compare-metabox.php:210
+#: classes/class-wc-compare-metabox.php:360
+msgid "There are no Features created for this category, please add some."
+msgstr ""
+
+#: classes/class-wc-compare-metabox.php:210
+#: classes/class-wc-compare-metabox.php:360
+msgid "This page"
+msgstr ""
+
+#: templates/product-compare-old.php:23 templates/product-compare.php:22
+#: templates/product-compare.php:32
+msgid "View Cart &rarr;"
+msgstr ""
+
+#: templates/product-compare-old.php:51 templates/product-compare.php:64
+msgid "Print this page"
+msgstr ""
+
+#: templates/product-compare-old.php:55 templates/product-compare.php:68
+msgid "Close window"
+msgstr ""
+
+#: templates/product-compare-old.php:72 templates/product-compare-old.php:74
+#: templates/product-compare.php:84 templates/product-compare.php:86
+#: widgets/compare_widget.php:39
+msgid "Compare Products"
+msgstr ""
+
+#: templates/product-compare-old.php:80 templates/product-compare.php:92
+msgid "Refine selections to 3 products and print!"
+msgstr ""
+
+#: widgets/compare_widget.php:26
+msgid "WOO Compare Products"
+msgstr ""
+
+#: widgets/compare_widget.php:61
+msgid "Title"
+msgstr ""
