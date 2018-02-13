@@ -1,6 +1,6 @@
 <?php
 /**
- * A3 Responsive Slider Uninstall
+ * WC Compare Products Uninstall
  *
  * Uninstalling deletes options, tables, and pages.
  *
@@ -9,19 +9,20 @@ if( ! defined( 'WP_UNINSTALL_PLUGIN' ) )
 	exit();
 
 global $wpdb;
+$plugin_key = 'woo_compare';
 
 // Delete Google Font
-delete_option('wc_compare_product_google_api_key' . '_enable');
-delete_transient('wc_compare_product_google_api_key' . '_status');
-delete_option('wc_compare_product' . '_google_font_list');
+delete_option( $plugin_key . '_google_api_key' . '_enable' );
+delete_transient( $plugin_key . '_google_api_key' . '_status' );
+delete_option( $plugin_key . '_google_font_list' );
 
-if ( get_option('woo_compare_product_lite_clean_on_deletion') == 1 ) {
+if ( get_option( $plugin_key . '_clean_on_deletion' ) == 1 ) {
+	delete_option( $plugin_key . '_google_api_key' );
+	delete_option( $plugin_key . '_toggle_box_open' );
+	delete_option( $plugin_key . '-custom-boxes' );
 
-	delete_option('wc_compare_product_google_api_key');
-    delete_option('wc_compare_product_toggle_box_open');
-    delete_option('wc_compare_product' . '-custom-boxes');
+	delete_metadata( 'user', 0,  $plugin_key . '-' . 'plugin_framework_global_box' . '-' . 'opened', '', true );
 
-    delete_metadata( 'user', 0, 'wc_compare_product' . '-' . 'plugin_framework_global_box' . '-' . 'opened', '', true );
 
 	delete_option( 'woo_compare_product_page_settings' );
 	delete_option( 'woo_compare_product_page_button_style' );
@@ -51,7 +52,6 @@ if ( get_option('woo_compare_product_lite_clean_on_deletion') == 1 ) {
 	delete_option( 'woo_compare_product_success_icon' );
 	delete_option( 'woo_compare_basket_icon' );
 	
-	delete_option( 'woo_compare_product_lite_clean_on_deletion' );
 	delete_option( 'a3rev_woocp_lite_version' );
 	
 	delete_post_meta_by_key('_woo_deactivate_compare_feature');
@@ -66,5 +66,6 @@ if ( get_option('woo_compare_product_lite_clean_on_deletion') == 1 ) {
 	$wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'woo_compare_fields');
 	$wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'woo_compare_categories');
 	$wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'woo_compare_cat_fields');
-			
+	
+	delete_option( $plugin_key . '_clean_on_deletion' );
 }

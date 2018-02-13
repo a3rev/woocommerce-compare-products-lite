@@ -5,11 +5,11 @@ if (!defined('ABSPATH'))
 
 class WC_Compare_Less
 {
-	public $plugin_name = 'wc_compare_product';
-	public $css_file_name = 'wc_compare_product';
-	public $css_product_comparison_file_name = 'wc_product_comparison';
-	public $plugin_folder = WOOCP_FOLDER;
-	public $plugin_dir = WOOCP_DIR;
+    public $plugin_name                      = WOOCP_KEY;
+    public $css_file_name                    = 'wc_compare_product';
+    public $css_product_comparison_file_name = 'wc_product_comparison';
+    public $plugin_folder                    = WOOCP_FOLDER;
+    public $plugin_dir                       = WOOCP_DIR;
     
     /*-----------------------------------------------------------------------------------*/
     /* Constructor */

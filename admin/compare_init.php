@@ -13,7 +13,7 @@ function woocp_install() {
 	}
 
 	update_option('a3rev_woocp_pro_version', '2.4.6');
-	update_option('a3rev_woocp_lite_version', '2.6.1');
+	update_option('a3rev_woocp_lite_version', WOOCP_VERSION );
 	$product_compare_id = WC_Compare_Functions::create_page( esc_sql( 'product-comparison' ), '', __('Product Comparison', 'woocommerce-compare-products' ), '[product_comparison_page]' );
 	update_option('product_compare_id', $product_compare_id);
 
@@ -27,8 +27,6 @@ function woocp_install() {
 
 	update_option('a3rev_woocp_just_installed', true);
 }
-
-update_option('a3rev_woocp_plugin', 'woo_compare');
 
 if ( is_admin() ) {
 
@@ -60,8 +58,6 @@ function woocp_init() {
 		$wc_compare_less->plugin_build_sass();
 
 		update_option( 'a3rev_woocp_install_default_data_start', true );
-		wp_redirect( admin_url( 'admin.php?page=woo-compare-features', 'relative' ) );
-		exit;
 	}
 
 	if ( get_option( 'a3rev_woocp_install_default_data_start' ) ) {
@@ -290,7 +286,7 @@ function woo_cp_lite_upgrade_plugin () {
 	}
 
 	update_option('a3rev_woocp_pro_version', '2.4.6');
-	update_option('a3rev_woocp_lite_version', '2.6.1');
+	update_option('a3rev_woocp_lite_version', WOOCP_VERSION );
 
 }
 

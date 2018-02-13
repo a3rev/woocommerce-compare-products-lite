@@ -122,7 +122,7 @@ class WC_Compare_Admin_Init extends WC_Compare_Admin_UI
 
 					case 'menu':
 
-						$menu_page = add_menu_page( esc_html( $menu_item['page_title'] ), esc_html( $menu_item['menu_title'] ), $menu_item['capability'], $menu_item['menu_slug'] , $menu_item['function'], $menu_item['icon_url'], $menu_item['position'] );
+						$menu_page = add_menu_page( esc_html( $menu_item['page_title'] ), $menu_item['menu_title'], $menu_item['capability'], $menu_item['menu_slug'] , $menu_item['function'], $menu_item['icon_url'], $menu_item['position'] );
 
 						if ( isset( $menu_item['script_function'] ) && trim( $menu_item['script_function'] ) != ''  )
 							add_action( "admin_print_scripts-" . $menu_page, $menu_item['script_function'] );
@@ -131,7 +131,7 @@ class WC_Compare_Admin_Init extends WC_Compare_Admin_UI
 
 					case 'submenu':
 
-						$submenu_page = add_submenu_page( $menu_item['parent_slug'] , esc_html( $menu_item['page_title'] ), esc_html( $menu_item['menu_title'] ), $menu_item['capability'], $menu_item['menu_slug'] , $menu_item['function'] );
+						$submenu_page = add_submenu_page( $menu_item['parent_slug'] , esc_html( $menu_item['page_title'] ), $menu_item['menu_title'], $menu_item['capability'], $menu_item['menu_slug'] , $menu_item['function'] );
 
 						if ( isset( $menu_item['script_function'] ) && trim( $menu_item['script_function'] ) != ''  )
 							add_action( "admin_print_scripts-" . $submenu_page, $menu_item['script_function'] );
@@ -225,6 +225,7 @@ class WC_Compare_Admin_Init extends WC_Compare_Admin_UI
 							echo 'nav-tab-active';
 							$tab_data = $tab;
 						}
+						echo ' ' . esc_attr( sanitize_title( $tab['name'] ) );
 						echo '">' . $tab['label'] . '</a>';
 					}
 

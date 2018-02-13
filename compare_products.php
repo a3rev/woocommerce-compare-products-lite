@@ -2,15 +2,15 @@
 /*
 Plugin Name: WooCommerce Compare Products LITE
 Description: Compare Products uses your existing WooCommerce Product Categories and Product Attributes to create Compare Product Features for all your products. A sidebar Compare basket is created that users add products to and view the Comparison in a Compare this pop-up screen.
-Version: 2.6.1
+Version: 2.6.2
 Requires at least: 4.5
-Tested up to: 4.9.0
+Tested up to: 4.9.4
 Author: a3rev Software
 Author URI: https://a3rev.com/
 Text Domain: woocommerce-compare-products
 Domain Path: /languages
 WC requires at least: 2.0.0
-WC tested up to: 3.2.0
+WC tested up to: 3.3.1
 License: This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 
 	WooCommerce Compare Products PRO. Plugin for the WooCommerce plugin.
@@ -32,9 +32,10 @@ define('WOOCP_DIR', WP_PLUGIN_DIR . '/' . WOOCP_FOLDER);
 define('WOOCP_JS_URL', WOOCP_URL . '/assets/js');
 define('WOOCP_CSS_URL', WOOCP_URL . '/assets/css');
 define('WOOCP_IMAGES_URL', WOOCP_URL . '/assets/images');
-if (!defined("WOOCP_AUTHOR_URI")) define("WOOCP_AUTHOR_URI", "http://a3rev.com/shop/woocommerce-compare-products/");
+if (!defined("WOOCP_AUTHOR_URI")) define("WOOCP_AUTHOR_URI", "https://a3rev.com/shop/woocommerce-compare-products/");
 
-define( 'WOOCP_VERSION',  '2.6.1' );
+define( 'WOOCP_KEY', 'woo_compare' );
+define( 'WOOCP_VERSION',  '2.6.2' );
 
 /**
  * Load Localisation files.
@@ -99,3 +100,5 @@ function woo_show_compare_fields($product_id = '', $echo = false)
  * Call when the plugin is activated
  */
 register_activation_hook(__FILE__, 'woocp_install');
+
+?>

@@ -2,8 +2,8 @@
 Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 4.5
-Tested up to: 4.9.0
-Stable tag: 2.6.1
+Tested up to: 4.9.4
+Stable tag: 2.6.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,15 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.6.2 - 2018/02/13 =
+* Maintenance Update. Under the bonnet tweaks to keep your plugin running smoothly and is the foundation for new features to be developed this year 
+* Framework - Update a3rev Plugin Framework to version 2.0.2
+* Framework - Add Framework version for all style and script files
+* Tweak - Update for full compatibility with a3rev Dashboard plugin
+* Tweak - Change hook tag name from add_to_cart_fragments to woocommerce_add_to_cart_fragments for compatibility with WC 3.3.0. Backward compatibility with WC 3.2.6
+* Tweak - Test for compatibility with WordPress 4.9.4
+* Tweak - Test for compatibility with WooCommerce 3.3.1
 
 = 2.6.1 - 2017/10/13 =
 * Tweak - Tested for compatibility with WooCommerce 3.2.0
@@ -502,6 +511,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.6.2 =
+Maintenance Update. This version updates the Plugin Framework to v 2.0.2, adds full compatibility with a3rev Dashboard, WordPress v 4.9.4 and WooCommerce v 3.3.1
 
 = 2.6.1 =
 Maintenance Upgrade. Tweaks for compatibility with WooCommerce 3.2.0 and WordPress 4.8.2
