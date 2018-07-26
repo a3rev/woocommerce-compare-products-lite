@@ -2,8 +2,8 @@
 Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 4.5
-Tested up to: 4.9.6
-Stable tag: 2.6.3
+Tested up to: 4.9.7
+Stable tag: 2.6.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,12 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.6.4 - 2018/07/26 =
+* This maintenance update fixes a bug with image display in compare pop up plus compatibility with WooCommerce v 3.4.4 and WordPress v 4.9.7
+* Tweak - Test for compatibility with WooCommerce 3.4.4
+* Tweak - Test for compatibility with WordPress 4.9.7
+* Fix - Table style to resolve issue with some images distorting in the pop up comparison table.
 
 = 2.6.3 - 2018/05/26 =
 * This maintenance update is for compatibility with WordPress 4.9.6 and WooCommerce 3.4.0 and the new GDPR compliance requirements for users in the EU 
@@ -518,6 +524,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.6.4 =
+This maintenance update fixes a bug with image display in compare pop up plus compatibility with WooCommerce v 3.4.4 and WordPress v 4.9.7
 
 = 2.6.3 =
 Maintenance Update. Compatibility with WooCommerce 3.4.0, WordPress 4.9.6 and the new GDPR compliance requirements for users in the EU
