@@ -912,7 +912,6 @@ class WC_Compare_Hook_Filter
 		}
 
 		global $wc_compare_admin_init;
-		$links[] = '<a href="http://docs.a3rev.com/user-guides/woocommerce/compare-products/" target="_blank">'.__('Documentation', 'woocommerce-compare-products' ).'</a>';
 		$links[] = '<a href="'.$wc_compare_admin_init->support_url.'" target="_blank">'.__('Support', 'woocommerce-compare-products' ).'</a>';
 		return $links;
 	}

@@ -154,7 +154,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
         <?php do_action('woocp_comparison_page_footer'); ?>
         <script type="text/javascript">
 		/* !![CDATA[ */
-		var wc_add_to_cart_params = <?php echo json_encode( $add_to_cart_params, JSON_FORCE_OBJECT) ?>;
+		var wc_add_to_cart_params = <?php echo json_encode( apply_filters( 'woocommerce_get_script_data', $add_to_cart_params, 'wc-add-to-cart' ), JSON_FORCE_OBJECT) ?>;
 		/* ]]> */
 		</script>
         <script src="<?php echo WOOCP_JS_URL; ?>/fixedcolumntable/fixedcolumntable.js"></script>

@@ -68,7 +68,7 @@ class WC_Admin_Compare_Features {
 		?>
 		<script>
 		jQuery(document).ready(function($) {
-			$(document).find('input[name="save_attribute"]').parent('p.submit').before('<?php echo $html_append; ?>');
+			$(document).find('button[name="save_attribute"], input[name="save_attribute"]').parent('p.submit').before('<?php echo $html_append; ?>');
 		});
 		</script>
     	<?php
@@ -77,7 +77,7 @@ class WC_Admin_Compare_Features {
 		?>		
 		<script>
 		jQuery(document).ready(function($) {
-			$(document).find('input[name="add_new_attribute"]').parent('p.submit').before('<?php echo $html_append; ?>');
+			$(document).find('button[name="add_new_attribute"], input[name="add_new_attribute"]').parent('p.submit').before('<?php echo $html_append; ?>');
 		});
 		</script>
     	<?php
@@ -100,7 +100,7 @@ class WC_Admin_Compare_Features {
             <input type="hidden" name="have_compare_feature_field" value="yes"  />
             <div class="form-field">
                 <label for="field_type"><?php _e('Select Categories', 'woocommerce-compare-products' ); ?></label> 
-                <span class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-tip="<?php _e("Attribute can be assigned to any Product Category that is activated for Product Comparisons. Attributes show on the comparison table as the Comparable Product Attributes.", 'woocommerce-compare-products' ) ?>"></span> 
+                <span class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-trigger="hover" data-content="<?php _e("Attribute can be assigned to any Product Category that is activated for Product Comparisons. Attributes show on the comparison table as the Comparable Product Attributes.", 'woocommerce-compare-products' ) ?>"></span> 
                 <div></div>
                 <?php
 				$compare_cats = WC_Compare_Functions::get_all_compare_cats();
@@ -119,7 +119,7 @@ class WC_Admin_Compare_Features {
             </div>
             <div class="form-field">
                 <label for="field_type"><?php _e('Attribute and Terms Compare data Input type', 'woocommerce-compare-products' ); ?></label> 
-                <span class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-tip="<?php _e("Use these fields to determine how this Attribute with display its compare data. Text input fields are for adding custom compare data and ignore the Attribute Terms or set to show the Attributes Terms as single or multi select Compare data options that are quick and easy to set for each product.", 'woocommerce-compare-products' ) ?>"></span> 
+                <span class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-trigger="hover" data-content="<?php _e("Use these fields to determine how this Attribute with display its compare data. Text input fields are for adding custom compare data and ignore the Attribute Terms or set to show the Attributes Terms as single or multi select Compare data options that are quick and easy to set for each product.", 'woocommerce-compare-products' ) ?>"></span> 
                 <div></div>
                 <select name="field_type" id="field_type" class="chzn-select" style="width:95%;">
 				<?php
@@ -131,7 +131,7 @@ class WC_Admin_Compare_Features {
             </div>
             <div class="form-field">
                 <label for="field_unit"><?php _e('Attribute Unit of Measurement', 'woocommerce-compare-products' ); ?></label> 
-                <span class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-tip="<?php _e("e.g kgs, mm, lbs, cm, inches - the unit of measurement shows after the Attribute name in (brackets). If you leave this blank you will just see the Attribute name.", 'woocommerce-compare-products' ) ?>"></span> 
+                <span class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-trigger="hover" data-content="<?php _e("e.g kgs, mm, lbs, cm, inches - the unit of measurement shows after the Attribute name in (brackets). If you leave this blank you will just see the Attribute name.", 'woocommerce-compare-products' ) ?>"></span> 
                 <div></div>
                 <input type="text" name="field_unit" id="field_unit" value="" />
             </div>
@@ -163,7 +163,7 @@ class WC_Admin_Compare_Features {
                 <tbody>
                 	<tr class="form-field">
                         <th scope="row" valign="top">
-                        <div class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-tip="<?php _e("Attribute can be assigned to any Product Category that is activated for Product Comparisons. Attributes show on the comparison table as the Comparable Product Attributes.", 'woocommerce-compare-products' ) ?>"></div>
+                        <div class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-trigger="hover" data-content="<?php _e("Attribute can be assigned to any Product Category that is activated for Product Comparisons. Attributes show on the comparison table as the Comparable Product Attributes.", 'woocommerce-compare-products' ) ?>"></div>
                         <label for="field_type"><?php _e('Select Categories', 'woocommerce-compare-products' ); ?></label> 
                         </th>
                         <td>
@@ -185,7 +185,7 @@ class WC_Admin_Compare_Features {
                     </tr>
                     <tr class="form-field">
                         <th scope="row" valign="top">
-                        <div class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-tip="<?php _e("Use these fields to determine how this Attribute with display its compare data. Text input fields are for adding custom compare data and ignore the Attribute Terms or set to show the Attributes Terms as single or multi select Compare data options that are quick and easy to set for each product.", 'woocommerce-compare-products' ) ?>"></div>
+                        <div class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-trigger="hover" data-content="<?php _e("Use these fields to determine how this Attribute with display its compare data. Text input fields are for adding custom compare data and ignore the Attribute Terms or set to show the Attributes Terms as single or multi select Compare data options that are quick and easy to set for each product.", 'woocommerce-compare-products' ) ?>"></div>
                         <label for="field_type"><?php _e('Attribute and Terms Compare data Input type', 'woocommerce-compare-products' ); ?></label> 
                         </th>
                         <td>
@@ -202,7 +202,7 @@ class WC_Admin_Compare_Features {
                     </tr>
                     <tr class="form-field">
                         <th scope="row" valign="top">
-                        <div class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-tip="<?php _e("e.g kgs, mm, lbs, cm, inches - the unit of measurement shows after the Attribute name in (brackets). If you leave this blank you will just see the Attribute name.", 'woocommerce-compare-products' ) ?>"></div>
+                        <div class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-trigger="hover" data-content="<?php _e("e.g kgs, mm, lbs, cm, inches - the unit of measurement shows after the Attribute name in (brackets). If you leave this blank you will just see the Attribute name.", 'woocommerce-compare-products' ) ?>"></div>
                         <label for="field_unit"><?php _e('Attribute Unit of Measurement', 'woocommerce-compare-products' ); ?></label> 
                         </th>
                         <td>

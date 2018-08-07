@@ -378,7 +378,7 @@ class WC_Compare_Functions
 		$products_fields = array();
 		$products_prices = array();
 		$custom_class = '';
-		$add_to_cart_text = __('Add to cart', 'woocommerce-compare-products' );
+		$add_to_cart_text = apply_filters( 'add_to_cart_text', __('Add to cart', 'woocommerce-compare-products' ) );
 		$add_to_cart_button_class = 'add_to_cart_link_type';
 		
 		if (is_array($compare_list) && count($compare_list)>0) {
@@ -436,7 +436,7 @@ class WC_Compare_Functions
 				$html .= '<div class="compare_image_container">'.$image_src.'</div>';
 				$html .= '<div class="compare_product_name">'.$product_name.'</div>';
 				$html .= '<div class="compare_price">'.$products_prices[$product_id].'</div>';
-					if ($show_add_to_cart && $current_product->is_in_stock() && trim($products_prices[$product_id]) != '') {
+					if ( $show_add_to_cart && $current_product->is_in_stock() ) {
 						if ( ! $current_product->is_type( 'external' ) ) {
 							$cart_url = add_query_arg( array( 'post_type' => 'product', 'add-to-cart' => $product_id ), get_permalink( $product_id ) );
 						} else if ( $current_product->is_type( 'external' ) ) {

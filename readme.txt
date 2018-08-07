@@ -2,8 +2,8 @@
 Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 4.5
-Tested up to: 4.9.7
-Stable tag: 2.6.4
+Tested up to: 4.9.8
+Stable tag: 2.6.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,18 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.6.5 - 2018/08/07 =
+* This maintenance update comprises code tweaks and 2 bug fixes for compatibility with WooCommerce 3.4.4, WordPress 4.9.8 and WooCommerce Quotes and Orders 3.x
+* Tweak - Filters for Add to Cart button on the Comparison table that allow 3rd party plugins to filter those. 
+* Tweak - Filters for View Cart link on Comparison table that allow 3rd party plugins to filter those. 
+* Tweak - Test for compatibility with WordPress 4.9.8
+* Tweak - Test for compatibility with WooCommerce 3.4.4
+* Tweak – Test for compatibility with WooCommerce Quotes and Orders v 3.x
+* Tweak - Update place card links from admin menu to point at appropiate area on a3 Dashboard
+* Framework - Update a3rev Plugin Framework to version 2.0.7
+* Fix - Show the Add to Cart button on the Table Comparison.
+* Fix - Show Attribute Comparison Data when create or edit attribute
 
 = 2.6.4 - 2018/07/26 =
 * This maintenance update fixes a bug with image display in compare pop up plus compatibility with WooCommerce v 3.4.4 and WordPress v 4.9.7
@@ -524,6 +536,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.6.5 =
+This maintenance update comprises code tweaks and 2 bug fixes for compatibility with WooCommerce 3.4.4, WordPress 4.9.8 and WooCommerce Quotes and Orders 3.x
 
 = 2.6.4 =
 This maintenance update fixes a bug with image display in compare pop up plus compatibility with WooCommerce v 3.4.4 and WordPress v 4.9.7
