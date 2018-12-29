@@ -22,7 +22,11 @@ class WC_Compare_MetaBox
 	public static function compare_meta_boxes() {
 		global $post;
 		$pagename = 'product';
-		add_meta_box( 'woo_compare_feature_box', __('Compare Feature Fields', 'woocommerce-compare-products' ), array('WC_Compare_MetaBox', 'woo_compare_feature_box'), $pagename, 'normal', 'high' );
+		add_meta_box( 'woo_compare_feature_box', __('Compare Feature Fields', 'woocommerce-compare-products' ), array('WC_Compare_MetaBox', 'woo_compare_feature_box'), $pagename, 'side', 'high'
+			, array( 
+				'__block_editor_compatible_meta_box' => true,
+				'__back_compat_meta_box' => false,
+			) );
 	}
 
 	public static function woocp_product_get_fields() {

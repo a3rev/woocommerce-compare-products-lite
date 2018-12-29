@@ -3,7 +3,7 @@
 /**
  * Create WOO Compare Widget
  */
-add_action( 'widgets_init', create_function('', 'return register_widget("WC_Compare_Widget");') );
+add_action( 'widgets_init', function() { register_widget("WC_Compare_Widget"); } );
 
 /**
  * WooCommerce Compare Widget
