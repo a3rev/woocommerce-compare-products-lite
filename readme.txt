@@ -1,19 +1,19 @@
-=== Woocommerce Compare Products ===
+=== Compare Products for WooCommerce ===
 Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 4.5
-Tested up to: 5.1.1
-Stable tag: 2.6.7
+Tested up to: 5.2.2
+Stable tag: 2.6.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Add a World Class Compare Products Feature to your WooCommerce store today with the WooCommerce Compare Products plugin.
+Add a World Class Compare Products Feature to your WooCommerce store today with the Compare Products for WooCommerce plugin.
 
 == DESCRIPTION ==
 
 The Compare Products extension for WooCommerce gives a product comparison feature that you'd only expect to find on the big corporate e-commerce sites.
 
-WooCommerce Compare Products allows users to firstly add products to a compare widget basket, then at the click of a mouse the chosen products can be viewed in a state-of-the-art comparison table.
+Compare Products allows users to firstly add products to a compare widget basket, then at the click of a mouse the chosen products can be viewed in a state-of-the-art comparison table.
 
 Chosen products are compared side-by-side, feature by feature, price-by-price. Discard products from the table at the click of a mouse as you hone in on the product that is the one for you. Save the comparison as a PDF or print it.
 
@@ -38,13 +38,13 @@ Chosen products are compared side-by-side, feature by feature, price-by-price. D
 
 If you require more features than the Free version has please checkout the Premium version
 
-* [WooCommerce Compare Products Premium](http://a3rev.com/shop/woocommerce-compare-products/)
+* [Premium Compare Products for WooCommerce](http://a3rev.com/shop/woocommerce-compare-products/)
 
 = CONTRIBUTE =
 
-When you download WooCommerce Compare Products, you join our the a3rev Software community. Regardless of if you are a WordPress beginner or experienced developer if you are interested in contributing to the future development of this plugin head over to the WooCommerce Compare Products[GitHub Repository](https://github.com/a3rev/woocommerce-compare-products-lite) to find out how you can contribute.
+When you download Compare Products for WooCommerce, you join our the a3rev Software community. Regardless of if you are a WordPress beginner or experienced developer if you are interested in contributing to the future development of this plugin head over to the Compare Products[GitHub Repository](https://github.com/a3rev/woocommerce-compare-products-lite) to find out how you can contribute.
 
-Want to add a new language to WooCommerce Compare Products! You can contribute via [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/woocommerce-compare-products)
+Want to add a new language? You can contribute via [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/woocommerce-compare-products)
 
 
 == Screenshots ==
@@ -63,12 +63,12 @@ Want to add a new language to WooCommerce Compare Products! You can contribute v
 
 * WordPress 4.5
 * WooCommerce v2.6 and later.
-* PHP version 5.5 or greater
+* PHP version 5.6.20 or greater
 * MySQL version 5.5 or greater
 
 = Automatic installation =
 
-Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't even need to leave your web browser. To do an automatic install of WooCommerce Compare Products, log in to your WordPress admin panel, navigate to the Plugins menu and click Add New. Search WooCommerce Compare Products and click install. Or download the plugin from wordpress.org and click the upload sub nav item and use the WordPress plugins uploader to upload the plugin from your computer and unpack it and install it for you.
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't even need to leave your web browser. To do an automatic install of WooCommerce Compare Products, log in to your WordPress admin panel, navigate to the Plugins menu and click Add New. Search Compare Products for WooCommerce and click install. Or download the plugin from wordpress.org and click the upload sub nav item and use the WordPress plugins uploader to upload the plugin from your computer and unpack it and install it for you.
 
 = Manual installation =
 
@@ -102,6 +102,12 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.6.8 - 2019/06/29 =
+* This is a maintenance upgrade to fix a potentially fatal error conflict with sites running PHP 7.3 plus compatibility with WordPress v 5.2.2 and WooCommerce 3.6.4
+* Tweak - Test for compatibility with WooCommerce 3.6.4
+* Tweak - Test for compatibility with WordPress 5.2.2
+* Fix - PHP warning continue targeting switch is equivalent to break for compatibility on PHP 7.3
+
 = 2.6.7 - 2019/04/26 =
 * This maintenance update has tweaks for compatibility with WordPress 5.2.0 and WooCommerce 3.6.0 major new versions whilst maintaining backward compatibility
 * Tweak - Test for compatibility with WordPress 5.2.0
@@ -128,7 +134,7 @@ You can use this plugin when you have installed the WooCommerce plugin.
 * Tweak - Filters for View Cart link on Comparison table that allow 3rd party plugins to filter those. 
 * Tweak - Test for compatibility with WordPress 4.9.8
 * Tweak - Test for compatibility with WooCommerce 3.4.4
-* Tweak – Test for compatibility with WooCommerce Quotes and Orders v 3.x
+* Tweak - Test for compatibility with WooCommerce Quotes and Orders v 3.x
 * Tweak - Update place card links from admin menu to point at appropiate area on a3 Dashboard
 * Framework - Update a3rev Plugin Framework to version 2.0.7
 * Fix - Show the Add to Cart button on the Table Comparison.
@@ -556,6 +562,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.6.8 =
+This is a maintenance upgrade to fix a potentially fatal error conflict with sites running PHP 7.3 plus compatibility with WordPress v 5.2.2 and WooCommerce 3.6.4
 
 = 2.6.7 =
 This maintenance update has tweaks for compatibility with WordPress 5.2.0 and WooCommerce 3.6.0 major new versions whilst maintaining backward compatibility

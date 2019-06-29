@@ -880,7 +880,7 @@ class WC_Compare_Hook_Filter
 			'css' => 'border: none; padding: 0; background: none;'
 		);
 
-		$free_woocommerce_box = '<a href="https://profiles.wordpress.org/a3rev/#content-plugins" target="_blank" alt="'.__('Free WooCommerce Plugins', 'woocommerce-compare-products' ).'"><img src="'.WOOCP_IMAGES_URL.'/free-woocommerce-plugins.png" /></a>';
+		$free_woocommerce_box = '<a href="https://profiles.wordpress.org/a3rev/#content-plugins" target="_blank" alt="'.__('Free WooCommerce Plugins', 'woocommerce-compare-products' ).'"><img src="'.WOOCP_IMAGES_URL.'/free-woocommerce-plugins.jpg" /></a>';
 
 		$boxes[] = array(
 			'content' => $free_woocommerce_box,
