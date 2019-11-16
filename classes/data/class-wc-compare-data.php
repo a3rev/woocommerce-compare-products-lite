@@ -20,7 +20,10 @@
  * check_field_key()
  * check_field_key_for_update()
  */
-class WC_Compare_Data 
+
+namespace A3Rev\WCCompare;
+
+class Data 
 {
 	public static function install_database() {
 		global $wpdb;
@@ -96,10 +99,11 @@ class WC_Compare_Data
 		extract($args);
 		$table_name = $wpdb->prefix. "woo_compare_fields";
 		$field_name = strip_tags(addslashes($field_name));
+		$field_type = strip_tags(addslashes($field_type));
 		$default_value = strip_tags(addslashes($default_value));
 		$field_unit = strip_tags(addslashes($field_unit), '<sup>');
 		$field_description = '';
-		$field_order = WC_Compare_Data::get_maximum_order();
+		$field_order = self::get_maximum_order();
 		$field_order++;
 		$field_key = '';
 		if (trim($field_key) == '') {
@@ -107,13 +111,13 @@ class WC_Compare_Data
 			if ($query) {
 				$field_id = $wpdb->insert_id;
 				$field_key = 'field-'.$field_id;
-				WC_Compare_Data::update_field_key($field_id, $field_key);
+				self::update_field_key($field_id, $field_key);
 				return $field_id;
 			}else {
 				return false;
 			}
 		}else {
-			if (WC_Compare_Data::check_field_key($field_key)) {
+			if (self::check_field_key($field_key)) {
 				$query = $wpdb->query("INSERT INTO {$table_name}(field_name, field_key, field_type, default_value, field_unit, field_description, field_order) VALUES('$field_name', '$field_key', '$field_type', '$default_value', '$field_unit', '$field_description', '$field_order')");
 				if ($query) {
 					$field_id = $wpdb->insert_id;
@@ -132,10 +136,11 @@ class WC_Compare_Data
 		extract($args);
 		$table_name = $wpdb->prefix. "woo_compare_fields";
 		$field_name = strip_tags(addslashes($field_name));
+		$field_type = strip_tags(addslashes($field_type));
 		$default_value = strip_tags(addslashes($default_value));
 		$field_unit = strip_tags(addslashes($field_unit), '<sup>');
 		$field_description = '';
-		$query = $wpdb->query("UPDATE {$table_name} SET field_name='$field_name', field_type='$field_type', default_value='$default_value', field_unit='$field_unit', field_description='$field_description' WHERE id='$field_id'");
+		$query = $wpdb->query("UPDATE {$table_name} SET field_name='$field_name', field_type='$field_type', default_value='$default_value', field_unit='$field_unit', field_description='$field_description' WHERE id='" . absint( $field_id ). "'");
 		return $query;
 
 	}
@@ -150,7 +155,7 @@ class WC_Compare_Data
 	public static function update_items_order($item_orders=array()) {
 		if (is_array($item_orders) && count($item_orders) > 0) {
 			foreach ($item_orders as $field_id => $field_order) {
-				WC_Compare_Data::update_order($field_id, $field_order);
+				self::update_order($field_id, $field_order);
 			}
 		}
 	}
@@ -165,7 +170,7 @@ class WC_Compare_Data
 	public static function delete_rows($items=array()) {
 		if (is_array($items) && count($items) > 0) {
 			foreach ($items as $field_id) {
-				WC_Compare_Data::delete_row($field_id);
+				self::delete_row($field_id);
 			}
 		}
 	}
@@ -178,15 +183,14 @@ class WC_Compare_Data
 	}
 
 	public static function check_field_key($field_key) {
-		$count = WC_Compare_Data::get_count("field_key='$field_key'");
+		$count = self::get_count("field_key='$field_key'");
 		if ($count > 0) return false;
 		else return true;
 	}
 
 	public static function check_field_key_for_update($field_id, $field_key) {
-		$count = WC_Compare_Data::get_count("id!='$field_id' AND field_key='$field_key'");
+		$count = self::get_count("id!='$field_id' AND field_key='$field_key'");
 		if ($count > 0) return false;
 		else return true;
 	}
 }
-?>

@@ -17,7 +17,10 @@
  * delete_rows()
  * delete_row()
  */
-class WC_Compare_Categories_Data 
+
+namespace A3Rev\WCCompare\Data;
+
+class Categories
 {
 	public static function install_database() {
 		global $wpdb;
@@ -86,7 +89,7 @@ class WC_Compare_Categories_Data
 		extract($args);
 		$table_name = $wpdb->prefix. "woo_compare_categories";
 		$category_name = strip_tags(addslashes($category_name));
-		$category_order = WC_Compare_Categories_Data::get_maximum_order();
+		$category_order = self::get_maximum_order();
 		$category_order++;
 		$query = $wpdb->query("INSERT INTO {$table_name}(category_name, category_order) VALUES('$category_name', '$category_order')");
 		if ($query) {
@@ -103,7 +106,7 @@ class WC_Compare_Categories_Data
 		$table_name = $wpdb->prefix. "woo_compare_categories";
 		$category_name = strip_tags(addslashes($category_name));
 
-		$query = $wpdb->query("UPDATE {$table_name} SET category_name='$category_name' WHERE id='$category_id'");
+		$query = $wpdb->query("UPDATE {$table_name} SET category_name='$category_name' WHERE id='" . absint( $category_id ) ."'");
 		return $query;
 
 	}
@@ -111,7 +114,7 @@ class WC_Compare_Categories_Data
 	public static function update_items_order($item_orders=array()) {
 		if (is_array($item_orders) && count($item_orders) > 0) {
 			foreach ($item_orders as $category_id => $category_order) {
-				WC_Compare_Categories_Data::update_order($category_id, $category_order);
+				self::update_order($category_id, $category_order);
 			}
 		}
 	}
@@ -126,7 +129,7 @@ class WC_Compare_Categories_Data
 	public static function delete_rows($items=array()) {
 		if (is_array($items) && count($items) > 0) {
 			foreach ($items as $category_id) {
-				WC_Compare_Categories_Data::delete_row($category_id);
+				self::delete_row($category_id);
 			}
 		}
 	}
@@ -138,4 +141,3 @@ class WC_Compare_Categories_Data
 		return $result;
 	}
 }
-?>

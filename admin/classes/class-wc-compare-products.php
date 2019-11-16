@@ -10,12 +10,15 @@
  * woocp_products_manager()
  * woocp_compare_products_script()
  */
-class WC_Compare_Products_Class 
+
+namespace A3Rev\WCCompare\Admin;
+
+class Products 
 {
 
 	public static function woocp_products_manager() {
 		global $wc_compare_admin_init;
-		add_action('admin_footer', array('WC_Compare_Products_Class', 'woocp_compare_products_script') );
+		add_action('admin_footer', array( __CLASS__, 'woocp_compare_products_script') );
 ?>
 <div id="htmlForm">
     <div style="clear:both"></div>
@@ -54,4 +57,3 @@ class WC_Compare_Products_Class
 		wp_enqueue_script( 'jquery-rwd-image-maps' );
 	}
 }
-?>

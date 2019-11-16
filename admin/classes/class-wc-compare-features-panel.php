@@ -7,7 +7,12 @@
  *
  * admin_screen()
  */
-class WC_Compare_Features_Panel 
+
+namespace A3Rev\WCCompare\Admin;
+
+use A3Rev\WCCompare;
+
+class Features_Panel 
 {
 	
 	public static function admin_screen () {
@@ -111,22 +116,22 @@ class WC_Compare_Features_Panel
 					<div id="a3_plugin_panel_fields">
 						<div class="a3rev_panel_container a3rev_manager_panel_container">
 							<?php 
-								echo WC_Compare_Fields_Class::init_features_actions();
-								echo WC_Compare_Categories_Class::init_categories_actions();
+								echo Fields::init_features_actions();
+								echo Categories::init_categories_actions();
 							?>
 							<?php
 							if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'add-new') {
-								WC_Compare_Categories_Class::woocp_categories_manager();
-								WC_Compare_Fields_Class::woocp_features_manager();
+								Categories::woocp_categories_manager();
+								Fields::woocp_features_manager();
 							} else if(isset($_REQUEST['act']) && $_REQUEST['act'] == 'cat-edit') {
-								WC_Compare_Categories_Class::woocp_categories_manager();
+								Categories::woocp_categories_manager();
 							} else if (isset($_REQUEST['act']) &&  $_REQUEST['act'] == 'field-edit') {
-								WC_Compare_Fields_Class::woocp_features_manager();
+								Fields::woocp_features_manager();
 							} else if (isset($_REQUEST['s_feature'])) {
-								WC_Compare_Fields_Class::features_search_area();
+								Fields::features_search_area();
 							} else {
-								WC_Compare_Fields_Class::features_search_area();
-								WC_Compare_Fields_Class::woocp_features_orders();
+								Fields::features_search_area();
+								Fields::woocp_features_orders();
 							}
 							?>
 						</div>
@@ -138,4 +143,3 @@ class WC_Compare_Features_Panel
 	}
 	
 }
-?>

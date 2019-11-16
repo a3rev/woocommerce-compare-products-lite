@@ -83,7 +83,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             	<div style="clear:both;"></div>
                 <div class="popup_woo_compare_widget_loader" style="display:none;"><img src="<?php echo WOOCP_IMAGES_URL; ?>/ajax-loader.gif" border=0 /></div>
                 <div class="compare_popup_wrap">
-                    <?php echo WC_Compare_Functions::get_compare_list_html_popup();?>
+                    <?php echo \A3Rev\WCCompare\Functions::get_compare_list_html_popup();?>
                 </div>
         <?php do_action('woocp_comparison_table_after'); ?>
         </div>

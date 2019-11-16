@@ -1,9 +1,5 @@
 <?php
 /* "Copyright 2012 A3 Revolution Web Design" This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 */
-/**
- * Create WOO Compare Widget
- */
-add_action( 'widgets_init', function() { register_widget("WC_Compare_Widget"); } );
 
 /**
  * WooCommerce Compare Widget
@@ -15,7 +11,10 @@ add_action( 'widgets_init', function() { register_widget("WC_Compare_Widget"); }
  * update()
  * form()
  */
-class WC_Compare_Widget extends WP_Widget
+
+namespace A3Rev\WCCompare;
+
+class Widget extends \WP_Widget
 {
 
 	function __construct() {
@@ -65,4 +64,3 @@ class WC_Compare_Widget extends WP_Widget
 		<?php
 	}
 }
-?>

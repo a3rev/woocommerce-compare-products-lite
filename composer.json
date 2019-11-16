@@ -1,0 +1,22 @@
+{
+    "name": "a3rev/wc-compare-product",
+    "description": "Compare Products uses your existing WooCommerce Product Categories and Product Attributes to create Compare Product Features for all your products. A sidebar Compare basket is created that users add products to and view the Comparison in a Compare this pop-up screen.",
+    "license": "GPLv2 or later",
+    "authors": [
+        {
+            "name": "a3rev Software",
+            "email": "admin@a3rev.com"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true
+    },
+    "require": {
+        "php": ">=5.6|>=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "A3Rev\\WCCompare\\": [ "includes/", "classes/", "widgets/", "admin/" ]
+        }
+    }
+}

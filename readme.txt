@@ -2,8 +2,8 @@
 Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 4.5
-Tested up to: 5.2.2
-Stable tag: 2.6.8
+Tested up to: 5.3
+Stable tag: 2.7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,16 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.7.0 - 2019/11/16 =
+* This feature release has a lot including compatibility with WooCommerce 3.8.0, WordPress 5.3 PHP upgrade to Composer PHP Dependency Manger, a full security review and update and a new compare table shortcode feature.
+* Feature - Plugin fully refactored to Composer for cleaner and faster PHP code
+* Feature - Support shortcode [woocommerce_compare_attributes_table product_id=‘’] with parameter product_id of Product you want to show, or leave it blank to use id of current product page
+* Tweak - Test for compatibility with WordPress 5.3.0
+* Tweak - Test for compatibility with WooCommerce 3.8.0
+* Tweak - Remove the hard coded PHP error_reporting display errors false from compile sass to css
+* Dev - Replace file_get_contents with HTTP API wp_remote_get
+* Dev - Ensure that all inputs are sanitized and all outputs are escaped
 
 = 2.6.8 - 2019/06/29 =
 * This is a maintenance upgrade to fix a potentially fatal error conflict with sites running PHP 7.3 plus compatibility with WordPress v 5.2.2 and WooCommerce 3.6.4
@@ -562,6 +572,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.7.0 =
+This feature release has a lot including compatibility with WooCommerce 3.8.0, WordPress 5.3 PHP upgrade to Composer PHP Dependency Manger, a full security review and update and a new compare table shortcode feature.
 
 = 2.6.8 =
 This is a maintenance upgrade to fix a potentially fatal error conflict with sites running PHP 7.3 plus compatibility with WordPress v 5.2.2 and WooCommerce 3.6.4

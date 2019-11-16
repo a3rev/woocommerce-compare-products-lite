@@ -18,7 +18,10 @@
  * insert_row()
  * delete_row()
  */
-class WC_Compare_Categories_Fields_Data
+
+namespace A3Rev\WCCompare\Data;
+
+class Categories_Fields
 {
 	public static function install_database() {
 		global $wpdb;
@@ -97,7 +100,7 @@ class WC_Compare_Categories_Fields_Data
 	public static function update_items_order($cat_id=0, $item_orders=array()) {
 		if (is_array($item_orders) && count($item_orders) > 0) {
 			foreach ($item_orders as $field_id => $field_order) {
-				WC_Compare_Categories_Fields_Data::update_order($cat_id, $field_id, $field_order);
+				self::update_order($cat_id, $field_id, $field_order);
 			}
 		}
 	}
@@ -140,7 +143,7 @@ class WC_Compare_Categories_Fields_Data
 	public static function insert_row($cat_id, $field_id) {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_cat_fields";
-		$field_order = WC_Compare_Categories_Fields_Data::get_maximum_order("cat_id='".$cat_id."'");
+		$field_order = self::get_maximum_order("cat_id='".$cat_id."'");
 		$field_order++;
 		$query = $wpdb->query("INSERT INTO {$table_name}(cat_id, field_id, field_order) VALUES('$cat_id', '$field_id', '$field_order')");
 		if ($query) {
@@ -157,4 +160,3 @@ class WC_Compare_Categories_Fields_Data
 		return $result;
 	}
 }
-?>

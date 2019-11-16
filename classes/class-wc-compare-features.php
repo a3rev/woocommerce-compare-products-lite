@@ -1,4 +1,7 @@
 <?php
+
+namespace A3Rev\WCCompare;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -7,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Handles compare categories in admin
  *
  */
-class WC_Admin_Compare_Features {
+class Features_Backend {
 	
 	public $default_types = array(
 		'input-text' => array('name' => 'Input Text', 'description' => 'Enter Attribute compare data in single line text box'),
@@ -64,7 +67,7 @@ class WC_Admin_Compare_Features {
 		</style>
         <?php
 		if ( isset( $_GET['edit'] ) && $_GET['edit'] > 0 ) {
-			$html_append = trim( $this->edit_feature_fields( $_GET['edit'] ) );
+			$html_append = trim( $this->edit_feature_fields( absint( $_GET['edit'] ) ) );
 		?>
 		<script>
 		jQuery(document).ready(function($) {
@@ -103,7 +106,7 @@ class WC_Admin_Compare_Features {
                 <span class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-trigger="hover" data-content="<?php _e("Attribute can be assigned to any Product Category that is activated for Product Comparisons. Attributes show on the comparison table as the Comparable Product Attributes.", 'woocommerce-compare-products' ) ?>"></span> 
                 <div></div>
                 <?php
-				$compare_cats = WC_Compare_Functions::get_all_compare_cats();
+				$compare_cats = Functions::get_all_compare_cats();
 				?>
 				<select multiple="multiple" name="field_cats[]" data-placeholder="<?php _e('Select Compare Categories', 'woocommerce-compare-products' ); ?>" style="width:95%;" class="chzn-select">
 				<?php
@@ -168,7 +171,7 @@ class WC_Admin_Compare_Features {
                         </th>
                         <td>
                             <?php
-							$compare_cats = WC_Compare_Functions::get_all_compare_cats();
+							$compare_cats = Functions::get_all_compare_cats();
 							?>
 							<select multiple="multiple" name="field_cats[]" data-placeholder="<?php _e('Select Compare Categories', 'woocommerce-compare-products' ); ?>" style="width:95%;" class="chzn-select">
 							<?php
@@ -220,7 +223,3 @@ class WC_Admin_Compare_Features {
 	}
 
 }
-
-global $wc_admin_compare_features;
-
-$wc_admin_compare_features = new WC_Admin_Compare_Features();

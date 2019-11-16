@@ -4,7 +4,10 @@
  * WooCommerce Compare Install Class
  *
  */
-class WC_Compare_Install
+
+namespace A3Rev\WCCompare;
+
+class Install
 {
 	/**
 	 * Init.
@@ -25,9 +28,9 @@ class WC_Compare_Install
 		$terms = get_terms("product_cat", array('hide_empty' => 0));
 		if ( count($terms) > 0 ) {
 			foreach ($terms as $category_product) {
-				$check_existed = WC_Compare_Categories_Data::get_count("category_name='".trim(addslashes($category_product->name))."'");
+				$check_existed = Data\Categories::get_count("category_name='".trim(addslashes($category_product->name))."'");
 				if ($check_existed < 1 ) {
-					WC_Compare_Categories_Data::insert_row(array('category_name' => trim(addslashes($category_product->name))));
+					Data\Categories::insert_row(array('category_name' => trim(addslashes($category_product->name))));
 				}
 			}
 		}
@@ -47,7 +50,7 @@ class WC_Compare_Install
 		}
 		if ( $top_variations ) {
 			foreach ($top_variations as $top_variation) {
-				$check_existed = WC_Compare_Data::get_count("field_name='".trim(addslashes($top_variation->attribute_label))."'");
+				$check_existed = Data::get_count("field_name='".trim(addslashes($top_variation->attribute_label))."'");
 				if ($check_existed < 1 ) {
 					$child_variations = get_terms( ( ( version_compare( $current_db_version, '2.1.0', '<' ) && null !== $current_db_version ) ? $woocommerce->attribute_taxonomy_name($top_variation->attribute_name) : wc_attribute_taxonomy_name($top_variation->attribute_name) ) , array('parent' => 0, 'hide_empty' => 0, 'hierarchical' => 0) );
 					$default_value = '';
@@ -60,9 +63,9 @@ class WC_Compare_Install
 						}
 					}
 					if ( trim($default_value) != '')
-						$feature_id = WC_Compare_Data::insert_row(array('field_name' => trim(addslashes($top_variation->attribute_label)), 'field_type' => 'checkbox', 'field_unit' => '', 'default_value' => $default_value) );
+						$feature_id = Data::insert_row(array('field_name' => trim(addslashes($top_variation->attribute_label)), 'field_type' => 'checkbox', 'field_unit' => '', 'default_value' => $default_value) );
 					else
-						$feature_id = WC_Compare_Data::insert_row(array('field_name' => trim(addslashes($top_variation->attribute_label)), 'field_type' => 'input-text', 'field_unit' => '', 'default_value' => '') );
+						$feature_id = Data::insert_row(array('field_name' => trim(addslashes($top_variation->attribute_label)), 'field_type' => 'input-text', 'field_unit' => '', 'default_value' => '') );
 				}
 			}
 		}
@@ -113,8 +116,10 @@ class WC_Compare_Install
 		if (is_array($have_compare_category_id_meta) && count($have_compare_category_id_meta) > 0) {
 			foreach ($have_compare_category_id_meta as $product) {
 				$compare_category = get_post_meta( $product->ID, '_woo_compare_category', true );
-				$category_data = WC_Compare_Categories_Data::get_row($compare_category);
-				@update_post_meta($product->ID, '_woo_compare_category_name', stripslashes($category_data->category_name));
+				$category_data = Data\Categories::get_row($compare_category);
+				if ( $category_data ) {
+					@update_post_meta($product->ID, '_woo_compare_category_name', stripslashes($category_data->category_name));
+				}
 			}
 		}
 
@@ -168,6 +173,3 @@ class WC_Compare_Install
 	}
 	
 }
-
-return new WC_Compare_Install();
-?>

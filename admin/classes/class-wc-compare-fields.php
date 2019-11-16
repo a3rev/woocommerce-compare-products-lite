@@ -11,7 +11,12 @@
  * woocp_update_orders()
  * features_search_area()
  */
-class WC_Compare_Fields_Class 
+
+namespace A3Rev\WCCompare\Admin;
+
+use A3Rev\WCCompare;
+
+class Fields 
 {
 	public static $default_types = array(
 		'input-text' => array('name' => 'Input Text', 'description' => 'Use when option is single Line of Text'),
@@ -30,34 +35,35 @@ class WC_Compare_Fields_Class
 		if (isset($_REQUEST['bt_save_field'])) {
 			$field_name = trim(strip_tags(addslashes($_REQUEST['field_name'])));
 			if (isset($_REQUEST['field_id']) && $_REQUEST['field_id'] > 0) {
-				$field_id = trim($_REQUEST['field_id']);
-				$count_field_name = WC_Compare_Data::get_count("field_name = '".$field_name."' AND id != '".$field_id."'");
+				$field_id = absint( $_REQUEST['field_id'] );
+				$count_field_name = WCCompare\Data::get_count("field_name = '".$field_name."' AND id != '".$field_id."'");
 				if ($field_name != '' && $count_field_name == 0) {
-					$result = WC_Compare_Data::update_row($_REQUEST);
+					$result = WCCompare\Data::update_row($_REQUEST);
 					if (isset($_REQUEST['field_cats']) && count((array)$_REQUEST['field_cats']) > 0) {
 						foreach ($_REQUEST['field_cats'] as $cat_id) {
-							$check_existed = WC_Compare_Categories_Fields_Data::get_count("cat_id='".$cat_id."' AND field_id='".$field_id."'");
+							$cat_id = absint( $cat_id );
+							$check_existed = WCCompare\Data\Categories_Fields::get_count("cat_id='".$cat_id."' AND field_id='".$field_id."'");
 							if ($check_existed == 0) {
-								WC_Compare_Categories_Fields_Data::insert_row($cat_id, $field_id);
+								WCCompare\Data\Categories_Fields::insert_row($cat_id, $field_id);
 							}
 						}
-						WC_Compare_Categories_Fields_Data::delete_row("field_id='".$field_id."' AND cat_id NOT IN(".implode(',', $_REQUEST['field_cats']).")");
+						WCCompare\Data\Categories_Fields::delete_row("field_id='".$field_id."' AND cat_id NOT IN(".implode(',', array_map( 'absint', $_REQUEST['field_cats'] ) ).")");
 					}else {
-						WC_Compare_Categories_Fields_Data::delete_row("field_id='".$field_id."'");
+						WCCompare\Data\Categories_Fields::delete_row("field_id='".$field_id."'");
 					}
 					$result_msg = '<div class="updated" id="result_msg"><p>'.__('Compare Feature Successfully edited', 'woocommerce-compare-products' ).'.</p></div>';
 				}else {
 					$result_msg = '<div class="error" id="result_msg"><p>'.__('Nothing edited! You already have a Compare Feature with that name. Use the Features Search function to find it. Use unique names to edit each Compare Feature.', 'woocommerce-compare-products' ).'</p></div>';
 				}
 			}else {
-				$count_field_name = WC_Compare_Data::get_count("field_name = '".$field_name."'");
+				$count_field_name = WCCompare\Data::get_count("field_name = '".$field_name."'");
 				if ($field_name != '' && $count_field_name == 0) {
-					$field_id = WC_Compare_Data::insert_row($_REQUEST);
+					$field_id = WCCompare\Data::insert_row($_REQUEST);
 					if ($field_id > 0) {
-						WC_Compare_Categories_Fields_Data::delete_row("field_id='".$field_id."'");
+						WCCompare\Data\Categories_Fields::delete_row("field_id='".$field_id."'");
 						if (isset($_REQUEST['field_cats']) && count((array)$_REQUEST['field_cats']) > 0) {
 							foreach ($_REQUEST['field_cats'] as $cat_id) {
-								WC_Compare_Categories_Fields_Data::insert_row($cat_id, $field_id);
+								WCCompare\Data\Categories_Fields::insert_row( absint( $cat_id ), $field_id);
 							}
 						}
 						$result_msg = '<div class="updated" id="result_msg"><p>'.__('Compare Feature Successfully created', 'woocommerce-compare-products' ).'.</p></div>';
@@ -73,8 +79,9 @@ class WC_Compare_Fields_Class
 			$list_fields_delete = $_REQUEST['un_fields'];
 			if (is_array($list_fields_delete) && count($list_fields_delete) > 0) {
 				foreach ($list_fields_delete as $field_id) {
-					WC_Compare_Data::delete_row($field_id);
-					WC_Compare_Categories_Fields_Data::delete_row("field_id='".$field_id."'");
+					$field_id = absint( $field_id );
+					WCCompare\Data::delete_row($field_id);
+					WCCompare\Data\Categories_Fields::delete_row("field_id='".$field_id."'");
 				}
 				$result_msg = '<div class="updated" id="result_msg"><p>'.__('Compare Feature successfully deleted', 'woocommerce-compare-products' ).'.</p></div>';
 			}else {
@@ -83,13 +90,13 @@ class WC_Compare_Fields_Class
 		}
 
 		if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'field-delete') {
-			$field_id = trim($_REQUEST['field_id']);
+			$field_id = absint( $_REQUEST['field_id'] );
 			if (isset($_REQUEST['cat_id']) && $_REQUEST['cat_id'] > 0) {
-				WC_Compare_Categories_Fields_Data::delete_row("field_id='".$field_id."' AND cat_id='".$_REQUEST['cat_id']."'");
+				WCCompare\Data\Categories_Fields::delete_row("field_id='".$field_id."' AND cat_id='". absint( $_REQUEST['cat_id'] ) ."'");
 				$result_msg = '<div class="updated" id="result_msg"><p>'.__('Compare Feature successfully removed', 'woocommerce-compare-products' ).'.</p></div>';
 			}else {
-				WC_Compare_Data::delete_row($field_id);
-				WC_Compare_Categories_Fields_Data::delete_row("field_id='".$field_id."'");
+				WCCompare\Data::delete_row($field_id);
+				WCCompare\Data\Categories_Fields::delete_row("field_id='".$field_id."'");
 				$result_msg = '<div class="updated" id="result_msg"><p>'.__('Compare Feature successfully deleted', 'woocommerce-compare-products' ).'.</p></div>';
 			}
 		}
@@ -104,8 +111,8 @@ class WC_Compare_Fields_Class
         <form action="admin.php?page=woo-compare-features" method="post" name="form_add_compare" id="form_add_compare">
         <?php
 		if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'field-edit') {
-			$field_id = $_REQUEST['field_id'];
-			$field = WC_Compare_Data::get_row($field_id);
+			$field_id = absint( $_REQUEST['field_id'] );
+			$field = WCCompare\Data::get_row($field_id);
 		?>
         	<input type="hidden" value="<?php echo $field_id; ?>" name="field_id" id="field_id" />
         <?php
@@ -135,7 +142,7 @@ class WC_Compare_Fields_Class
                                     <td>
                                     	<select style="width:300px;" name="field_type" id="field_type" class="chzn-select">
                             <?php
-		foreach (WC_Compare_Fields_Class::$default_types as $type => $type_name) {
+		foreach ( self::$default_types as $type => $type_name) {
 			if ( in_array( $type, array( 'wp-video', 'wp-audio' ) ) ) {
 				echo '<option value="'.$type.'" >'.$type_name['name'].' - '.$type_name['description'].'</option>';
 			} elseif (!empty($field) && $type == $field->field_type) {
@@ -159,8 +166,8 @@ class WC_Compare_Fields_Class
                                 	<th><div class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-tip="<?php _e("Assign features to one or more Categories. Features such as Colour, Size, Weight can be applicable to many Product categories. Create the Feature once and assign it to one or multiple categories.", 'woocommerce-compare-products' ) ?>"></div> <label for="field_type"><?php _e('Assign Feature to Categories', 'woocommerce-compare-products' ); ?></label></th>
                                     <td>
                                     <?php
-								$all_cat = WC_Compare_Categories_Data::get_results('', 'category_order ASC');
-								$cat_fields = WC_Compare_Categories_Fields_Data::get_catid_results($field_id);
+								$all_cat = WCCompare\Data\Categories::get_results('', 'category_order ASC');
+								$cat_fields = WCCompare\Data\Categories_Fields::get_catid_results($field_id);
 								if (is_array($all_cat) && count($all_cat) > 0) {
 								?>
 								<select multiple="multiple" name="field_cats[]" data-placeholder="<?php _e('Select Compare Categories', 'woocommerce-compare-products' ); ?>" style="width:300px; height:80px;" class="chzn-select">
@@ -218,7 +225,7 @@ class WC_Compare_Fields_Class
 	}
 
 	public static function woocp_features_orders() {
-		$unavaliable_fields = WC_Compare_Categories_Fields_Data::get_unavaliable_field_results('field_name ASC');
+		$unavaliable_fields = WCCompare\Data\Categories_Fields::get_unavaliable_field_results('field_name ASC');
 		if (is_array($unavaliable_fields) && count($unavaliable_fields) > 0) {
 			$un_i = 0;
 ?>
@@ -244,7 +251,7 @@ class WC_Compare_Fields_Class
                     	<td><input class="list_fields" type="checkbox" name="un_fields[]" value="<?php echo $field_data->id; ?>" /></td>
                         <td><?php echo $un_i; ?></td>
                         <td><?php echo stripslashes($field_data->field_name); ?></td>
-                        <td align="right"><?php echo WC_Compare_Fields_Class::$default_types[$field_data->field_type]['name']; ?></td>
+                        <td align="right"><?php echo self::$default_types[$field_data->field_type]['name']; ?></td>
                         <td align="right"><a href="admin.php?page=woo-compare-features&act=field-edit&field_id=<?php echo $field_data->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>" ><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="admin.php?page=woo-compare-features&act=field-delete&field_id=<?php echo $field_data->id; ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to delete', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($field_data->field_name); ?>');" title="<?php _e('Delete', 'woocommerce-compare-products' ) ?>" ><?php _e('Delete', 'woocommerce-compare-products' ) ?></a></td>
                 	</tr>
                  <?php } ?>
@@ -255,7 +262,7 @@ class WC_Compare_Fields_Class
         <?php
 		}
 		
-		$compare_cats = WC_Compare_Categories_Data::get_results('', 'category_order ASC');
+		$compare_cats = WCCompare\Data\Categories::get_results('', 'category_order ASC');
 		if (is_array($compare_cats) && count($compare_cats)>0) {
 ?>
         <h3><?php _e('Manage Compare Categories and Features', 'woocommerce-compare-products' ); ?></h3>
@@ -265,7 +272,7 @@ class WC_Compare_Fields_Class
         <ul style="margin:0; padding:0;" class="sorttable">
         <?php
 			foreach ($compare_cats as $cat) {
-				$compare_fields = WC_Compare_Categories_Fields_Data::get_results("cat_id='".$cat->id."'", 'cf.field_order ASC');
+				$compare_fields = WCCompare\Data\Categories_Fields::get_results("cat_id='".$cat->id."'", 'cf.field_order ASC');
 ?>
         <li id="recordsArray_<?php echo $cat->id; ?>">
           <input type="hidden" name="compare_orders_<?php echo $cat->id; ?>" class="compare_category_id" value="<?php echo $cat->id; ?>"  />
@@ -288,7 +295,7 @@ class WC_Compare_Fields_Class
                 <tr id="recordsArray_<?php echo $field_data->id; ?>" style="display:none">
                 	<td><span class="compare_sort"><?php echo $i; ?></span>.</td>
                     <td><div class="c_field_name"><?php echo stripslashes($field_data->field_name); ?></div></td>
-                    <td align="right"><?php echo WC_Compare_Fields_Class::$default_types[$field_data->field_type]['name']; ?></td>
+                    <td align="right"><?php echo self::$default_types[$field_data->field_type]['name']; ?></td>
                     <td align="right"><a href="admin.php?page=woo-compare-features&act=field-edit&field_id=<?php echo $field_data->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>" ><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="admin.php?page=woo-compare-features&act=field-delete&field_id=<?php echo $field_data->id; ?>&cat_id=<?php echo $cat->id; ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to remove', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($field_data->field_name); ?> <?php _e('from', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($cat->category_name); ?>');" title="<?php _e('Remove', 'woocommerce-compare-products' ) ?>" ><?php _e('Remove', 'woocommerce-compare-products' ) ?></a></td>
                 </tr>
                 <?php
@@ -360,10 +367,10 @@ class WC_Compare_Fields_Class
 	public static function woocp_update_orders() {
 		check_ajax_referer( 'woocp-update-order', 'security' );
 		$updateRecordsArray  = $_REQUEST['recordsArray'];
-		$cat_id = $_REQUEST['cat_id'];
+		$cat_id = absint( $_REQUEST['cat_id'] );
 		$listingCounter = 1;
 		foreach ($updateRecordsArray as $recordIDValue) {
-			WC_Compare_Categories_Fields_Data::update_order($cat_id, $recordIDValue, $listingCounter);
+			WCCompare\Data\Categories_Fields::update_order($cat_id, absint( $recordIDValue ), $listingCounter);
 			$listingCounter++;
 		}
 		
@@ -396,8 +403,8 @@ class WC_Compare_Fields_Class
 		if (isset($_REQUEST['s_feature'])) {
 			$p = 1;
 			$rows = 25;
-			if (isset($_REQUEST['pp'])) $p = $_REQUEST['pp'];
-			if (isset($_REQUEST['rows'])) $rows = $_REQUEST['rows'];
+			if (isset($_REQUEST['pp'])) $p = sanitize_text_field( $_REQUEST['pp'] );
+			if (isset($_REQUEST['rows'])) $rows = sanitize_text_field( $_REQUEST['rows'] );
 			$start = ($p - 1 ) * $rows;
 			$end = $start+$rows;
 			$div = 5;
@@ -410,13 +417,13 @@ class WC_Compare_Fields_Class
 			if ( $wpdb->has_cap( 'collation' ) ) 
 				if( ! empty($wpdb->charset ) ) $character = "$wpdb->charset";
 			
-			$where = "LOWER( CONVERT( field_name USING ".$character.") ) LIKE '%".strtolower(trim($_REQUEST['s_feature']))."%'";
+			$where = "LOWER( CONVERT( field_name USING ".$character.") ) LIKE '%".strtolower(trim( sanitize_text_field( $_REQUEST['s_feature'] ) ) )."%'";
 			
-			$total = WC_Compare_Data::get_count($where);
+			$total = WCCompare\Data::get_count($where);
 			if ($end > $total) $end = $total;
-			$items = WC_Compare_Data::get_results($where, 'field_name ASC', $start.','.$rows);
+			$items = WCCompare\Data::get_results($where, 'field_name ASC', $start.','.$rows);
 			
-			$innerPage = WC_Compare_Functions::printPage($link, $total, $p, $div, $rows, false);
+			$innerPage = WCCompare\Functions::printPage($link, $total, $p, $div, $rows, false);
 			
 			?>
             <h3><?php _e('Found', 'woocommerce-compare-products' ); ?> <?php echo $total; ?> <?php _e('feature(s)', 'woocommerce-compare-products' ); ?></h3>
@@ -437,7 +444,7 @@ class WC_Compare_Fields_Class
 ?>
                 	<tr>
                         <td><?php echo stripslashes($field_data->field_name); ?></td>
-                        <td align="right"><?php echo WC_Compare_Fields_Class::$default_types[$field_data->field_type]['name']; ?></td>
+                        <td align="right"><?php echo self::$default_types[$field_data->field_type]['name']; ?></td>
                         <td align="right"><a href="admin.php?page=woo-compare-features&act=field-edit&field_id=<?php echo $field_data->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>" ><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="admin.php?page=woo-compare-features&act=field-delete&field_id=<?php echo $field_data->id; ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to delete', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($field_data->field_name); ?>');" title="<?php _e('Delete', 'woocommerce-compare-products' ) ?>" ><?php _e('Delete', 'woocommerce-compare-products' ) ?></a></td>
                 	</tr>
                  <?php } ?>
@@ -473,4 +480,3 @@ class WC_Compare_Fields_Class
 	}
 
 }
-?>

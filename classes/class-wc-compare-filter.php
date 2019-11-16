@@ -38,15 +38,18 @@
  * admin_sidebar_menu_css()
  * plugin_extra_links()
  */
-class WC_Compare_Hook_Filter
+
+namespace A3Rev\WCCompare;
+
+class Hook_Filter
 {
 	public static function register_admin_screen () {
 		
-		$product_comparison = add_menu_page( __('Product Comparison', 'woocommerce-compare-products' ), __('WC Compare', 'woocommerce-compare-products' ), 'manage_options', 'woo-compare-features', array( 'WC_Compare_Features_Panel', 'admin_screen' ), null, '55.222');
+		$product_comparison = add_menu_page( __('Product Comparison', 'woocommerce-compare-products' ), __('WC Compare', 'woocommerce-compare-products' ), 'manage_options', 'woo-compare-features', array( '\A3Rev\WCCompare\Admin\Features_Panel', 'admin_screen' ), null, '55.222');
 		
-		$compare_features = add_submenu_page('woo-compare-features', __( 'Compare Category & Feature', 'woocommerce-compare-products' ), __( 'Category & Feature', 'woocommerce-compare-products' ), 'manage_options', 'woo-compare-features', array( 'WC_Compare_Features_Panel', 'admin_screen' ) );
+		$compare_features = add_submenu_page('woo-compare-features', __( 'Compare Category & Feature', 'woocommerce-compare-products' ), __( 'Category & Feature', 'woocommerce-compare-products' ), 'manage_options', 'woo-compare-features', array( '\A3Rev\WCCompare\Admin\Features_Panel', 'admin_screen' ) );
 		
-		$compare_products = add_submenu_page('woo-compare-features', __( 'Compare Products Manager', 'woocommerce-compare-products' ), __( 'Product Manager', 'woocommerce-compare-products' ), 'manage_options', 'woo-compare-products', array( 'WC_Compare_Products_Class', 'woocp_products_manager' ) );
+		$compare_products = add_submenu_page('woo-compare-features', __( 'Compare Products Manager', 'woocommerce-compare-products' ), __( 'Product Manager', 'woocommerce-compare-products' ), 'manage_options', 'woo-compare-products', array( '\A3Rev\WCCompare\Admin\Products', 'woocp_products_manager' ) );
 				
 	} // End register_admin_screen()
 	
@@ -145,7 +148,7 @@ class WC_Compare_Hook_Filter
 		extract($woo_compare_grid_view_settings);
 		if ($template_name == 'loop/add-to-cart.php') {
 			$product_id = $product->get_id();
-			if (($post->post_type == 'product' || $post->post_type == 'product_variation') && WC_Compare_Functions::check_product_activate_compare($product_id) && WC_Compare_Functions::check_product_have_cat($product_id)) {
+			if (($post->post_type == 'product' || $post->post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
 				$compare_grid_view_custom_class = '';
 				$compare_grid_view_text = __('Compare This', 'woocommerce-compare-products' );
 				$compare_grid_view_class = 'woo_bt_compare_this_button';
@@ -169,7 +172,7 @@ class WC_Compare_Hook_Filter
 
 		extract($woo_compare_grid_view_settings);
 			$product_id = $product->get_id();
-			if (($post->post_type == 'product' || $post->post_type == 'product_variation') && WC_Compare_Functions::check_product_activate_compare($product_id) && WC_Compare_Functions::check_product_have_cat($product_id)) {
+			if (($post->post_type == 'product' || $post->post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
 				$compare_grid_view_custom_class = '';
 				$compare_grid_view_text = __('Compare This', 'woocommerce-compare-products' );
 				$compare_grid_view_class = 'woo_bt_compare_this_button';
@@ -188,7 +191,7 @@ class WC_Compare_Hook_Filter
 		global $woo_compare_comparison_page_global_settings;
 		global $product_compare_id;
 		$product_id = $product->get_id();
-		if (($post->post_type == 'product' || $post->post_type == 'product_variation') && WC_Compare_Functions::check_product_activate_compare($product_id) && $woo_compare_product_page_settings['auto_add'] == 'yes' && WC_Compare_Functions::check_product_have_cat($product_id)) {
+		if (($post->post_type == 'product' || $post->post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && $woo_compare_product_page_settings['auto_add'] == 'yes' && Functions::check_product_have_cat($product_id)) {
 			
 			$widget_compare_popup_view_button = '';
 			if ( $woo_compare_comparison_page_global_settings['open_compare_type'] != 'new_page' ) $widget_compare_popup_view_button = 'woo_bt_view_compare_popup';
@@ -231,7 +234,7 @@ class WC_Compare_Hook_Filter
 		global $product_compare_id;
 		if (in_array($template_name, array('single-product/add-to-cart/simple.php', 'single-product/add-to-cart/grouped.php', 'single-product/add-to-cart/external.php', 'single-product/add-to-cart/variable.php'))) {
 			$product_id = $product->get_id();
-			if (($post->post_type == 'product' || $post->post_type == 'product_variation') && WC_Compare_Functions::check_product_activate_compare($product_id) && $woo_compare_product_page_settings['auto_add'] == 'yes' && WC_Compare_Functions::check_product_have_cat($product_id)) {
+			if (($post->post_type == 'product' || $post->post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && $woo_compare_product_page_settings['auto_add'] == 'yes' && Functions::check_product_have_cat($product_id)) {
 				
 				$widget_compare_popup_view_button = '';
 				if ( $woo_compare_comparison_page_global_settings['open_compare_type'] != 'new_page' ) $widget_compare_popup_view_button = 'woo_bt_view_compare_popup';
@@ -276,7 +279,7 @@ class WC_Compare_Hook_Filter
 		if (trim($product_id) == '') $product_id = $post->ID;
 		$post_type = get_post_type($product_id);
 		$html = '';
-		if (($post_type == 'product' || $post_type == 'product_variation') && WC_Compare_Functions::check_product_activate_compare($product_id) && WC_Compare_Functions::check_product_have_cat($product_id)) {
+		if (($post_type == 'product' || $post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
 			
 			$widget_compare_popup_view_button = '';
 			if ( $woo_compare_comparison_page_global_settings['open_compare_type'] != 'new_page' ) $widget_compare_popup_view_button = 'woo_bt_view_compare_popup';
@@ -317,14 +320,14 @@ class WC_Compare_Hook_Filter
 		global $post, $woo_compare_comparison_page_global_settings;
 		if (trim($product_id) == '') $product_id = $post->ID;
 		$html = '';
-		$variations_list = WC_Compare_Functions::get_variations($product_id);
+		$variations_list = Functions::get_variations($product_id);
 		if (is_array($variations_list) && count($variations_list) > 0) {
 			foreach ($variations_list as $variation_id) {
-				if (WC_Compare_Functions::check_product_activate_compare($variation_id) && WC_Compare_Functions::check_product_have_cat($variation_id)) {
+				if (Functions::check_product_activate_compare($variation_id) && Functions::check_product_have_cat($variation_id)) {
 					$compare_category = get_post_meta( $variation_id, '_woo_compare_category', true );
-					$compare_fields = WC_Compare_Categories_Fields_Data::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
+					$compare_fields = Data\Categories_Fields::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
 					if (is_array($compare_fields) && count($compare_fields)>0) {
-						$html .= '<div class="compare_product_variation"><h2>'.WC_Compare_Functions::get_variation_name($variation_id).'</h2></div>';
+						$html .= '<div class="compare_product_variation"><h2>'.Functions::get_variation_name($variation_id).'</h2></div>';
 						if ($use_wootheme_style) 
 							$html .= '<table class="compare_featured_fields shop_attributes">'; 
 						else 
@@ -351,9 +354,9 @@ class WC_Compare_Hook_Filter
 					}
 				}
 			}
-		}elseif (WC_Compare_Functions::check_product_activate_compare($product_id) && WC_Compare_Functions::check_product_have_cat($product_id)) {
+		}elseif (Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
 			$compare_category = get_post_meta( $product_id, '_woo_compare_category', true );
-			$compare_fields = WC_Compare_Categories_Fields_Data::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
+			$compare_fields = Data\Categories_Fields::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
 			if (is_array($compare_fields) && count($compare_fields)>0) {
 				if ($use_wootheme_style) 
 					$html .= '<table class="compare_featured_fields shop_attributes">'; 
@@ -386,14 +389,14 @@ class WC_Compare_Hook_Filter
 	public static function woocp_variable_ajax_add_to_cart() {
 
 		// Get product ID to add and quantity
-		$variation_id   = (int) $_REQUEST['product_id'];
+		$variation_id   = absint( $_REQUEST['product_id'] );
 		$mypost = get_post($variation_id);
 		$product_id   = (int) apply_filters('woocommerce_add_to_cart_product_id', $mypost->post_parent);
-		$quantity    = (isset($_REQUEST['quantity'])) ? (int) $_REQUEST['quantity'] : 1;
+		$quantity    = (isset($_REQUEST['quantity'])) ? absint( $_REQUEST['quantity'] ) : 1;
 		$attributes   = (array) maybe_unserialize(get_post_meta($product_id, '_product_attributes', true));
 		$variations   = array();
 
-		$my_variation = new WC_Product_Variation($variation_id, $product_id);
+		$my_variation = new \WC_Product_Variation($variation_id, $product_id);
 		$variation_data = $my_variation->get_variation_attributes();
 
 		// Add to cart validation
@@ -422,47 +425,47 @@ class WC_Compare_Hook_Filter
 
 	public static function woocp_add_to_compare() {
 
-		$product_id  = $_REQUEST['product_id'];
-		WC_Compare_Functions::add_product_to_compare_list($product_id);
+		$product_id  = absint( $_REQUEST['product_id'] );
+		Functions::add_product_to_compare_list($product_id);
 
 		die();
 	}
 
 	public static function woocp_remove_from_popup_compare() {
 
-		$product_id  = $_REQUEST['product_id'];
-		WC_Compare_Functions::delete_product_on_compare_list($product_id);
+		$product_id  = absint( $_REQUEST['product_id'] );
+		Functions::delete_product_on_compare_list($product_id);
 
 		die();
 	}
 	
 	public static function woocp_update_compare_popup() {
-		$result = WC_Compare_Functions::get_compare_list_html_popup();
+		$result = Functions::get_compare_list_html_popup();
 		$result .= '<script src="'. WOOCP_JS_URL.'/fixedcolumntable/fixedcolumntable.js"></script>';
 		echo json_encode( $result );
 		die();
 	}
 
 	public static function woocp_update_compare_widget() {
-		$result = WC_Compare_Functions::get_compare_list_html_widget();
+		$result = Functions::get_compare_list_html_widget();
 		echo json_encode( $result );
 		die();
 	}
 
 	public static function woocp_update_total_compare() {
-		$result = WC_Compare_Functions::get_total_compare_list();
+		$result = Functions::get_total_compare_list();
 		echo json_encode( $result );
 		die();
 	}
 
 	public static function woocp_remove_from_compare() {
-		$product_id  = $_REQUEST['product_id'];
-		WC_Compare_Functions::delete_product_on_compare_list($product_id);
+		$product_id  = absint( $_REQUEST['product_id'] );
+		Functions::delete_product_on_compare_list($product_id);
 		die();
 	}
 
 	public static function woocp_clear_compare() {
-		WC_Compare_Functions::clear_compare_list();
+		Functions::clear_compare_list();
 		die();
 	}
 
@@ -718,21 +721,21 @@ class WC_Compare_Hook_Filter
 
 		$show_compare_featured_tab = false;
 		$product_id = $post->ID;
-		$variations_list = WC_Compare_Functions::get_variations($product_id);
+		$variations_list = Functions::get_variations($product_id);
 		if (is_array($variations_list) && count($variations_list) > 0) {
 			foreach ($variations_list as $variation_id) {
-				if (WC_Compare_Functions::check_product_activate_compare($variation_id) && WC_Compare_Functions::check_product_have_cat($variation_id)) {
+				if (Functions::check_product_activate_compare($variation_id) && Functions::check_product_have_cat($variation_id)) {
 					$compare_category = get_post_meta( $variation_id, '_woo_compare_category', true );
-					$compare_fields = WC_Compare_Categories_Fields_Data::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
+					$compare_fields = Data\Categories_Fields::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
 					if (is_array($compare_fields) && count($compare_fields)>0) {
 						$show_compare_featured_tab = true;
 						break;
 					}
 				}
 			}
-		}elseif (WC_Compare_Functions::check_product_activate_compare($product_id) && WC_Compare_Functions::check_product_have_cat($product_id)) {
+		}elseif (Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
 			$compare_category = get_post_meta( $product_id, '_woo_compare_category', true );
-			$compare_fields = WC_Compare_Categories_Fields_Data::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
+			$compare_fields = Data\Categories_Fields::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
 			if (is_array($compare_fields) && count($compare_fields)>0) {
 				$show_compare_featured_tab = true;
 			}
@@ -750,21 +753,21 @@ class WC_Compare_Hook_Filter
 
 		$show_compare_featured_tab = false;
 		$product_id = $post->ID;
-		$variations_list = WC_Compare_Functions::get_variations($product_id);
+		$variations_list = Functions::get_variations($product_id);
 		if (is_array($variations_list) && count($variations_list) > 0) {
 			foreach ($variations_list as $variation_id) {
-				if (WC_Compare_Functions::check_product_activate_compare($variation_id) && WC_Compare_Functions::check_product_have_cat($variation_id)) {
+				if (Functions::check_product_activate_compare($variation_id) && Functions::check_product_have_cat($variation_id)) {
 					$compare_category = get_post_meta( $variation_id, '_woo_compare_category', true );
-					$compare_fields = WC_Compare_Categories_Fields_Data::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
+					$compare_fields = Data\Categories_Fields::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
 					if (is_array($compare_fields) && count($compare_fields)>0) {
 						$show_compare_featured_tab = true;
 						break;
 					}
 				}
 			}
-		}elseif (WC_Compare_Functions::check_product_activate_compare($product_id) && WC_Compare_Functions::check_product_have_cat($product_id)) {
+		}elseif (Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
 			$compare_category = get_post_meta( $product_id, '_woo_compare_category', true );
-			$compare_fields = WC_Compare_Categories_Fields_Data::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
+			$compare_fields = Data\Categories_Fields::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
 			if (is_array($compare_fields) && count($compare_fields)>0) {
 				$show_compare_featured_tab = true;
 			}
@@ -775,7 +778,7 @@ class WC_Compare_Hook_Filter
 			$tabs['compare-featured'] = array(
 				'title'    => esc_attr( stripslashes( $compare_featured_tab ) ),
 				'priority' => $woo_compare_product_page_settings['auto_compare_featured_tab'],
-				'callback' => array('WC_Compare_Hook_Filter', 'woocp_product_featured_panel_woo_2_0')
+				'callback' => array( __CLASS__, 'woocp_product_featured_panel_woo_2_0')
 			);
 		}
 		
@@ -786,23 +789,23 @@ class WC_Compare_Hook_Filter
 		global $post;
 ?>
 		<div class="panel entry-content" id="tab-compare-featured">
-			<?php echo WC_Compare_Hook_Filter::show_compare_fields($post->ID); ?>
+			<?php echo self::show_compare_fields($post->ID); ?>
 		</div>
         <?php
 	}
 	
 	public static function woocp_product_featured_panel_woo_2_0() {
 		global $post;
-		echo WC_Compare_Hook_Filter::show_compare_fields($post->ID);
+		echo self::show_compare_fields($post->ID);
 	}
 	
 	public static function woocp_set_selected_attributes($default_attributes) {
 		if (isset($_REQUEST['variation_selected']) && $_REQUEST['variation_selected'] > 0) {
-			$variation_id = $_REQUEST['variation_selected'];
+			$variation_id = absint( $_REQUEST['variation_selected'] );
 			$mypost = get_post($variation_id);
 			if ($mypost != NULL && $mypost->post_type == 'product_variation') {
 				$attributes = (array) maybe_unserialize(get_post_meta($mypost->post_parent, '_product_attributes', true));
-				$my_variation = new WC_Product_Variation($variation_id, $mypost->post_parent);
+				$my_variation = new \WC_Product_Variation($variation_id, $mypost->post_parent);
 				$variation_data = $my_variation->get_variation_attributes();
 				if (is_array($attributes) && count($attributes) > 0) {
 					foreach ($attributes as $attribute) {
@@ -820,9 +823,9 @@ class WC_Compare_Hook_Filter
 	
 	public static function auto_create_compare_category($term_id) {
 		$term = get_term( $term_id, 'product_cat' );
-		$check_existed = WC_Compare_Categories_Data::get_count("category_name='".trim($term->name)."'");
+		$check_existed = Data\Categories::get_count("category_name='".trim($term->name)."'");
 		if ($check_existed < 1 ) {
-			WC_Compare_Categories_Data::insert_row(array('category_name' => trim(addslashes($term->name))));
+			Data\Categories::insert_row(array('category_name' => trim(addslashes($term->name))));
 		}
 	}
 	
@@ -830,8 +833,8 @@ class WC_Compare_Hook_Filter
 		if (isset($_POST['add_new_attribute']) && $_POST['add_new_attribute']) {
 			//check_admin_referer( 'woocommerce-add-new_attribute' );
 			$attribute_name = (string) sanitize_title($_POST['attribute_name']);
-			$attribute_type = (string) $_POST['attribute_type'];
-			$attribute_label = (string) $_POST['attribute_label'];
+			$attribute_type = (string) sanitize_text_field( $_POST['attribute_type'] );
+			$attribute_label = (string) sanitize_text_field( $_POST['attribute_label'] );
 			
 			if (!$attribute_label) $attribute_label = ucwords($attribute_name);
 			
@@ -839,9 +842,9 @@ class WC_Compare_Hook_Filter
 			
 			if ($attribute_name && strlen($attribute_name)<30 && $attribute_type && !taxonomy_exists( 'pa_'.$attribute_name )) {
 				
-				$check_existed = WC_Compare_Data::get_count("field_name='".$attribute_label."'");
+				$check_existed = Data::get_count("field_name='".$attribute_label."'");
 				if ($check_existed < 1 ) {
-					$feature_id = WC_Compare_Data::insert_row(array('field_name' => $attribute_label, 'field_type' => 'input-text', 'field_unit' => '', 'default_value' => '' ) );
+					$feature_id = Data::insert_row(array('field_name' => $attribute_label, 'field_type' => 'input-text', 'field_unit' => '', 'default_value' => '' ) );
 				}
 			}
 		}
@@ -922,4 +925,3 @@ class WC_Compare_Hook_Filter
 		return $actions;
 	}
 }
-?>

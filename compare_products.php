@@ -2,15 +2,15 @@
 /*
 Plugin Name: Compare Products for WooCommerce
 Description: Compare Products uses your existing WooCommerce Product Categories and Product Attributes to create Compare Product Features for all your products. A sidebar Compare basket is created that users add products to and view the Comparison in a Compare this pop-up screen.
-Version: 2.6.8
+Version: 2.7.0
 Requires at least: 4.5
-Tested up to: 5.2.2
+Tested up to: 5.3
 Author: a3rev Software
 Author URI: https://a3rev.com/
 Text Domain: woocommerce-compare-products
 Domain Path: /languages
 WC requires at least: 2.0.0
-WC tested up to: 3.6.4
+WC tested up to: 3.8.0
 License: This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 
 	WooCommerce Compare Products PRO. Plugin for the WooCommerce plugin.
@@ -35,8 +35,15 @@ define('WOOCP_IMAGES_URL', WOOCP_URL . '/assets/images');
 if (!defined("WOOCP_AUTHOR_URI")) define("WOOCP_AUTHOR_URI", "https://a3rev.com/shop/woocommerce-compare-products/");
 
 define( 'WOOCP_KEY', 'woo_compare' );
-define( 'WOOCP_VERSION',  '2.6.8' );
+define( 'WOOCP_VERSION',  '2.7.0' );
 define( 'WOOCP_G_FONTS',  true );
+
+if ( version_compare( PHP_VERSION, '5.6.0', '>=' ) ) {
+	require __DIR__ . '/vendor/autoload.php';
+
+} else {
+	return;
+}
 
 /**
  * Load Localisation files.
@@ -67,14 +74,6 @@ include ('admin/less/sass.php');
 // Old code
 include 'old/class-wc-compare-grid-view-settings.php';
 
-include 'classes/class-wc-compare-filter.php';
-include 'classes/data/class-wc-compare-data.php';
-include 'classes/data/class-wc-compare-categories-data.php';
-include 'classes/data/class-wc-compare-categories-fields-data.php';
-include 'widgets/compare_widget.php';
-
-include 'classes/class-wc-compare-functions.php';
-
 include 'admin/compare_init.php';
 
 /**
@@ -82,7 +81,7 @@ include 'admin/compare_init.php';
  */
 function woo_add_compare_button($product_id = '', $echo = false)
 {
-    $html = WC_Compare_Hook_Filter::add_compare_button($product_id);
+    $html = \A3Rev\WCCompare\Hook_Filter::add_compare_button($product_id);
     if ($echo) echo $html;
     else return $html;
 }
@@ -92,7 +91,7 @@ function woo_add_compare_button($product_id = '', $echo = false)
  */
 function woo_show_compare_fields($product_id = '', $echo = false)
 {
-    $html = WC_Compare_Hook_Filter::show_compare_fields($product_id);
+    $html = \A3Rev\WCCompare\Hook_Filter::show_compare_fields($product_id);
     if ($echo) echo $html;
     else return $html;
 }
@@ -101,5 +100,3 @@ function woo_show_compare_fields($product_id = '', $echo = false)
  * Call when the plugin is activated
  */
 register_activation_hook(__FILE__, 'woocp_install');
-
-?>
