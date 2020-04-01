@@ -1,10 +1,14 @@
 <?php
 /* "Copyright 2012 A3 Revolution Web Design" This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 */
+
+namespace A3Rev\WCCompare\FrameWork\Settings\Comparison_Page {
+
+use A3Rev\WCCompare\FrameWork;
+
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
-?>
-<?php
-class WC_Compare_Comparison_Page_Style_Settings
+
+class Page_Style
 {
 
 	/**
@@ -104,7 +108,4 @@ class WC_Compare_Comparison_Page_Style_Settings
 	
 }
 
-global $wc_compare_comparison_page_style_settings;
-$wc_compare_comparison_page_style_settings = new WC_Compare_Comparison_Page_Style_Settings();
-
-?>
+}

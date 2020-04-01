@@ -2,15 +2,15 @@
 /*
 Plugin Name: Compare Products for WooCommerce
 Description: Compare Products uses your existing WooCommerce Product Categories and Product Attributes to create Compare Product Features for all your products. A sidebar Compare basket is created that users add products to and view the Comparison in a Compare this pop-up screen.
-Version: 2.7.0
-Requires at least: 4.5
-Tested up to: 5.3
+Version: 2.7.1
+Requires at least: 5.0
+Tested up to: 5.4
 Author: a3rev Software
 Author URI: https://a3rev.com/
 Text Domain: woocommerce-compare-products
 Domain Path: /languages
-WC requires at least: 2.0.0
-WC tested up to: 3.8.0
+WC requires at least: 3.0.0
+WC tested up to: 4.0.1
 License: This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 
 	WooCommerce Compare Products PRO. Plugin for the WooCommerce plugin.
@@ -35,11 +35,28 @@ define('WOOCP_IMAGES_URL', WOOCP_URL . '/assets/images');
 if (!defined("WOOCP_AUTHOR_URI")) define("WOOCP_AUTHOR_URI", "https://a3rev.com/shop/woocommerce-compare-products/");
 
 define( 'WOOCP_KEY', 'woo_compare' );
-define( 'WOOCP_VERSION',  '2.7.0' );
+define( 'WOOCP_PREFIX', 'wc_compare_' );
+define( 'WOOCP_VERSION',  '2.7.1' );
 define( 'WOOCP_G_FONTS',  true );
+
+use \A3Rev\WCCompare\FrameWork;
 
 if ( version_compare( PHP_VERSION, '5.6.0', '>=' ) ) {
 	require __DIR__ . '/vendor/autoload.php';
+
+	/**
+	 * Plugin Framework init
+	 */
+	$GLOBALS[WOOCP_PREFIX.'admin_interface'] = new FrameWork\Admin_Interface();
+
+	global $wc_compare_settings_page;
+	$wc_compare_settings_page = new FrameWork\Pages\WC_Compare();
+
+	$GLOBALS[WOOCP_PREFIX.'admin_init'] = new FrameWork\Admin_Init();
+
+	$GLOBALS[WOOCP_PREFIX.'less'] = new FrameWork\Less_Sass();
+
+	// End - Plugin Framework init
 
 } else {
 	return;
@@ -61,15 +78,6 @@ function woocp_plugin_textdomain() {
 	load_textdomain( 'woocommerce-compare-products', WP_LANG_DIR . '/woocommerce-compare-products/woocommerce-compare-products-' . $locale . '.mo' );
 	load_plugin_textdomain( 'woocommerce-compare-products', false, WOOCP_FOLDER . '/languages/' );
 }
-
-
-include ('admin/admin-ui.php');
-include ('admin/admin-interface.php');
-
-include ('admin/admin-pages/admin-product-comparison-page.php');
-
-include ('admin/admin-init.php');
-include ('admin/less/sass.php');
 
 // Old code
 include 'old/class-wc-compare-grid-view-settings.php';

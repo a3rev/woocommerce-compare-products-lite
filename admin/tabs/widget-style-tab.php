@@ -1,9 +1,13 @@
 <?php
 /* "Copyright 2012 A3 Revolution Web Design" This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 */
+
+namespace A3Rev\WCCompare\FrameWork\Tabs {
+
+use A3Rev\WCCompare\FrameWork;
+
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
-?>
-<?php
+
 /*-----------------------------------------------------------------------------------
 WC Compare Widget Style Tab
 
@@ -22,7 +26,7 @@ TABLE OF CONTENTS
 
 -----------------------------------------------------------------------------------*/
 
-class WC_Compare_Widget_Style_Tab extends WC_Compare_Admin_UI
+class Widget_Style extends FrameWork\Admin_UI
 {	
 	/**
 	 * @var string
@@ -103,7 +107,8 @@ class WC_Compare_Widget_Style_Tab extends WC_Compare_Admin_UI
 	public function settings_include() {
 		
 		// Includes Settings file
-		include_once( $this->admin_plugin_dir() . '/settings/widget-style/compare-widget-settings.php' );
+		global $wc_compare_widget_global_settings;
+		$wc_compare_widget_global_settings = new FrameWork\Settings\Compare_Widget();
 	}
 	
 	/*-----------------------------------------------------------------------------------*/
@@ -112,8 +117,6 @@ class WC_Compare_Widget_Style_Tab extends WC_Compare_Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 	public function tab_manager() {
 		
-		global $wc_compare_admin_init;
-		
 		$this->plugin_extension_start();
 		wc_compare_widget_global_settings_form();
 		$this->plugin_extension_end();
@@ -121,8 +124,10 @@ class WC_Compare_Widget_Style_Tab extends WC_Compare_Admin_UI
 	}
 }
 
-global $wc_compare_widget_style_tab;
-$wc_compare_widget_style_tab = new WC_Compare_Widget_Style_Tab();
+}
+
+// global code
+namespace {
 
 /** 
  * wc_compare_widget_style_tab_manager()
@@ -133,4 +138,4 @@ function wc_compare_widget_style_tab_manager() {
 	$wc_compare_widget_style_tab->tab_manager();
 }
 
-?>
+}

@@ -72,8 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
         <?php 
 		$_upload_dir = wp_upload_dir();
 		if ( file_exists( $_upload_dir['basedir'] . '/sass/wc_product_comparison.min.css' ) ) {
-			global $wc_compare_less;
-			echo '<link media="screen" type="text/css" href="' . str_replace(array('http:','https:'), '', $_upload_dir['baseurl'] ) . '/sass/wc_product_comparison.min.css?ver='.$wc_compare_less->get_css_file_version().'" rel="stylesheet" />' . "\n";
+			echo '<link media="screen" type="text/css" href="' . str_replace(array('http:','https:'), '', $_upload_dir['baseurl'] ) . '/sass/wc_product_comparison.min.css?ver='.$GLOBALS[WOOCP_PREFIX.'less']->get_css_file_version().'" rel="stylesheet" />' . "\n";
 		} else {
 			include( WOOCP_DIR. '/templates/product_comparison_style.php' ); 
 		}

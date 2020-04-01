@@ -1,9 +1,13 @@
 <?php
 /* "Copyright 2012 A3 Revolution Web Design" This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 */
+
+namespace A3Rev\WCCompare\FrameWork\Settings {
+
+use A3Rev\WCCompare\FrameWork;
+
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
-?>
-<?php
+
 /*-----------------------------------------------------------------------------------
 WC Compare Product Page Global Settings
 
@@ -28,7 +32,7 @@ TABLE OF CONTENTS
 
 -----------------------------------------------------------------------------------*/
 
-class WC_Compare_Product_Page_Global_Settings extends WC_Compare_Admin_UI
+class Product_Page extends FrameWork\Admin_UI
 {
 	
 	/**
@@ -105,20 +109,16 @@ class WC_Compare_Product_Page_Global_Settings extends WC_Compare_Admin_UI
 	/* set_default_settings()
 	/* Set default settings with function called from Admin Interface */
 	/*-----------------------------------------------------------------------------------*/
-	public function set_default_settings() {
-		global $wc_compare_admin_interface;
-		
-		$wc_compare_admin_interface->reset_settings( $this->form_fields, $this->option_name, false );
+	public function set_default_settings() {		
+		$GLOBALS[$this->plugin_prefix.'admin_interface']->reset_settings( $this->form_fields, $this->option_name, false );
 	}
 
 	/*-----------------------------------------------------------------------------------*/
 	/* get_settings()
 	/* Get settings with function called from Admin Interface */
 	/*-----------------------------------------------------------------------------------*/
-	public function get_settings() {
-		global $wc_compare_admin_interface;
-		
-		$wc_compare_admin_interface->get_settings( $this->form_fields, $this->option_name );
+	public function get_settings() {		
+		$GLOBALS[$this->plugin_prefix.'admin_interface']->get_settings( $this->form_fields, $this->option_name );
 	}
 	
 	/**
@@ -161,11 +161,9 @@ class WC_Compare_Product_Page_Global_Settings extends WC_Compare_Admin_UI
 	/* settings_form() */
 	/* Call the form from Admin Interface
 	/*-----------------------------------------------------------------------------------*/
-	public function settings_form() {
-		global $wc_compare_admin_interface;
-		
+	public function settings_form() {		
 		$output = '';
-		$output .= $wc_compare_admin_interface->admin_forms( $this->form_fields, $this->form_key, $this->option_name, $this->form_messages );
+		$output .= $GLOBALS[$this->plugin_prefix.'admin_interface']->admin_forms( $this->form_fields, $this->form_key, $this->option_name, $this->form_messages );
 		
 		return $output;
 	}
@@ -198,8 +196,8 @@ class WC_Compare_Product_Page_Global_Settings extends WC_Compare_Admin_UI
 
         );
 
-		include_once( $this->admin_plugin_dir() . '/settings/product-page/compare-button-settings.php' );
 		global $wc_compare_product_page_compare_button_settings;
+		$wc_compare_product_page_compare_button_settings = new Product_Page\Compare_Button();
 		$this->form_fields = array_merge( $this->form_fields, $wc_compare_product_page_compare_button_settings->form_fields );
 
 		$this->form_fields =  array_merge( $this->form_fields, array(
@@ -263,12 +261,12 @@ class WC_Compare_Product_Page_Global_Settings extends WC_Compare_Admin_UI
 			),
 		));
 
-		include_once( $this->admin_plugin_dir() . '/settings/product-page/view-compare-settings.php' );
 		global $wc_compare_product_page_view_compare_button_settings;
+		$wc_compare_product_page_view_compare_button_settings = new Product_Page\View_Compare_Button();
 		$this->form_fields = array_merge( $this->form_fields, $wc_compare_product_page_view_compare_button_settings->form_fields );
 
-		include_once( $this->admin_plugin_dir() . '/settings/product-page/compare-tab-settings.php' );
 		global $wc_compare_product_page_compare_tab_settings;
+		$wc_compare_product_page_compare_tab_settings = new Product_Page\Compare_Tab();
 		$this->form_fields = array_merge( $this->form_fields, $wc_compare_product_page_compare_tab_settings->form_fields );
 
 		$this->form_fields = apply_filters( $this->form_key . '_settings_fields', $this->form_fields );
@@ -307,8 +305,10 @@ class WC_Compare_Product_Page_Global_Settings extends WC_Compare_Admin_UI
 	
 }
 
-global $wc_compare_product_page_global_settings;
-$wc_compare_product_page_global_settings = new WC_Compare_Product_Page_Global_Settings();
+}
+
+// global code
+namespace {
 
 /** 
  * wc_compare_product_page_global_settings_form()
@@ -319,4 +319,4 @@ function wc_compare_product_page_global_settings_form() {
 	$wc_compare_product_page_global_settings->settings_form();
 }
 
-?>
+}

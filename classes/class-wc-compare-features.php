@@ -98,7 +98,7 @@ class Features_Backend {
 		?>
         <div class="a3rev_panel_container">
         	<div class="a3_wc_compare_plugin_meta_upgrade_area_box">
-        	<?php global $wc_compare_admin_init; $wc_compare_admin_init->upgrade_top_message(true); ?>
+        	<?php $GLOBALS[WOOCP_PREFIX.'admin_init']->upgrade_top_message(true); ?>
             <h3><?php _e( 'Attribute Comparison Data', 'woocommerce-compare-products' ); ?></h3>
             <input type="hidden" name="have_compare_feature_field" value="yes"  />
             <div class="form-field">
@@ -159,7 +159,7 @@ class Features_Backend {
 		?>
         <div class="a3rev_panel_container">
         	<div class="a3_wc_compare_plugin_meta_upgrade_area_box">
-        	<?php global $wc_compare_admin_init; $wc_compare_admin_init->upgrade_top_message(true); ?>
+        	<?php $GLOBALS[WOOCP_PREFIX.'admin_init']->upgrade_top_message(true); ?>
             <h3><?php _e( 'Attribute Comparison Data', 'woocommerce-compare-products' ); ?></h3>
             <input type="hidden" name="have_compare_feature_field" value="yes"  />
             <table class="form-table">

@@ -109,7 +109,6 @@ class Hook_Filter
 	}
 	
 	public static function add_google_fonts() {
-		global $wc_compare_fonts_face;
 		global $woo_compare_product_page_settings;
 		$google_fonts = array( 
 							$woo_compare_product_page_settings['product_compare_link_font']['face'], 
@@ -120,11 +119,10 @@ class Hook_Filter
 						
 		$google_fonts = apply_filters( 'wc_compare_google_fonts', $google_fonts );
 		
-		$wc_compare_fonts_face->generate_google_webfonts( $google_fonts );
+		$GLOBALS[WOOCP_PREFIX.'fonts_face']->generate_google_webfonts( $google_fonts );
 	}
 	
 	public static function add_google_fonts_comparison_page() {
-		global $wc_compare_fonts_face;
 		global $woo_compare_comparison_page_global_settings;
 		$google_fonts = array( 
 							$woo_compare_comparison_page_global_settings['no_product_message_font']['face'],
@@ -132,7 +130,7 @@ class Hook_Filter
 						
 		$google_fonts = apply_filters( 'wc_comparison_page_google_fonts', $google_fonts );
 		
-		$wc_compare_fonts_face->generate_google_webfonts( $google_fonts );
+		$GLOBALS[WOOCP_PREFIX.'fonts_face']->generate_google_webfonts( $google_fonts );
 	}
 	
 	public static function include_customized_style() {
@@ -859,9 +857,8 @@ class Hook_Filter
 	}
 
 	public static function plugin_extension_box( $boxes = array() ) {
-		global $wc_compare_admin_init;
 
-		$support_box = '<a href="'.$wc_compare_admin_init->support_url.'" target="_blank" alt="'.__('Go to Support Forum', 'woocommerce-compare-products' ).'"><img src="'.WOOCP_IMAGES_URL.'/go-to-support-forum.png" /></a>';
+		$support_box = '<a href="'.$GLOBALS[WOOCP_PREFIX.'admin_init']->support_url.'" target="_blank" alt="'.__('Go to Support Forum', 'woocommerce-compare-products' ).'"><img src="'.WOOCP_IMAGES_URL.'/go-to-support-forum.png" /></a>';
 
 		$boxes[] = array(
 			'content' => $support_box,
@@ -876,7 +873,7 @@ class Hook_Filter
             'css' => 'border: none; padding: 0; background: none;'
         );
 
-		$pro_box = '<a href="'.$wc_compare_admin_init->pro_plugin_page_url.'" target="_blank" alt="'.__('WooCommerce Compare Product', 'woocommerce-compare-products' ).'"><img src="'.WOOCP_IMAGES_URL.'/pro-version.jpg" /></a>';
+		$pro_box = '<a href="'.$GLOBALS[WOOCP_PREFIX.'admin_init']->pro_plugin_page_url.'" target="_blank" alt="'.__('WooCommerce Compare Product', 'woocommerce-compare-products' ).'"><img src="'.WOOCP_IMAGES_URL.'/pro-version.jpg" /></a>';
 
 		$boxes[] = array(
 			'content' => $pro_box,
@@ -914,8 +911,7 @@ class Hook_Filter
 			return $links;
 		}
 
-		global $wc_compare_admin_init;
-		$links[] = '<a href="'.$wc_compare_admin_init->support_url.'" target="_blank">'.__('Support', 'woocommerce-compare-products' ).'</a>';
+		$links[] = '<a href="'.$GLOBALS[WOOCP_PREFIX.'admin_init']->support_url.'" target="_blank">'.__('Support', 'woocommerce-compare-products' ).'</a>';
 		return $links;
 	}
 

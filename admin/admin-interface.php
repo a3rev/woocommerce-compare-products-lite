@@ -1,9 +1,11 @@
 <?php
 /* "Copyright 2012 A3 Revolution Web Design" This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 */
+
+namespace A3Rev\WCCompare\FrameWork {
+
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
-?>
-<?php
+
 /*-----------------------------------------------------------------------------------
 A3rev Plugin Admin Interface
 
@@ -32,7 +34,7 @@ TABLE OF CONTENTS
 
 -----------------------------------------------------------------------------------*/
 
-class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
+class Admin_Interface extends Admin_UI
 {
 
 	/*-----------------------------------------------------------------------------------*/
@@ -214,7 +216,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 							$current_update_plugins = get_site_transient( 'update_plugins' );
 							if ( isset( $current_update_plugins->response ) ) {
 								if ( empty( $current_update_plugins->response[$this->plugin_path] ) ) {
-									$current_update_plugins->response[$this->plugin_path] = new stdClass();
+									$current_update_plugins->response[$this->plugin_path] = new \stdClass();
 								}
 								$current_update_plugins->response[$this->plugin_path]->url = "http://www.a3rev.com";
 								$current_update_plugins->response[$this->plugin_path]->slug = $this->plugin_name;
@@ -296,10 +298,10 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 	public function admin_includes() {
 		// Includes Font Face Lib
-		include_once( 'includes/fonts_face.php' );
+		$GLOBALS[$this->plugin_prefix.'fonts_face'] = new Fonts_Face();
 		
 		// Includes Uploader Lib
-		include_once( 'includes/uploader/class-uploader.php' );
+		$GLOBALS[$this->plugin_prefix.'uploader'] = new Uploader();
 	}
 	
 	/*-----------------------------------------------------------------------------------*/
@@ -421,9 +423,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 		$new_settings = array(); $new_single_setting = ''; // :)
 		
 		// Get settings for option values is an array and it's in single option name for all settings
-		if ( trim( $option_name ) != '' ) {
-			global ${$option_name};
-			
+		if ( trim( $option_name ) != '' ) {			
 			$default_settings = $this->get_settings_default( $options, $option_name );
 			
 			$current_settings = get_option( $option_name );
@@ -433,7 +433,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 			$current_settings = array_map( array( $this, 'admin_stripslashes' ), $current_settings );
 			$current_settings = apply_filters( $this->plugin_name . '_' . $option_name . '_get_settings' , $current_settings );
 			
-			$$option_name = $current_settings;
+			$GLOBALS[$option_name] = $current_settings;
 			
 		}
 		
@@ -461,7 +461,6 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 			}
 			
 			if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
-				global ${$id_attribute};
 				
 				$current_setting = get_option( $id_attribute, $value['default'] );
 				
@@ -492,7 +491,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 				
 				$current_setting = apply_filters( $this->plugin_name . '_' . $id_attribute . '_get_setting' , $current_setting );
 				
-				$$id_attribute = $current_setting;
+				$GLOBALS[$id_attribute] = $current_setting;
 			}
 		}
 		
@@ -511,7 +510,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 
 				if ( trim( $option_name ) != '' ) {
 					update_option( $option_name, $new_settings );
-					$$option_name = $new_settings;
+					$GLOBALS[$option_name] = $new_settings;
 				}
 				
 				foreach ( $options as $value ) {
@@ -539,7 +538,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 					
 					if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
 						update_option( $id_attribute,  $new_single_setting );
-						$$id_attribute = $new_single_setting;
+						$GLOBALS[$id_attribute] = $new_single_setting;
 					}
 				}
 			}
@@ -745,6 +744,12 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 								} else {
 									$option_value = sanitize_hex_color( $_POST[ $id_attribute ][ $key ] );
 								}
+							} elseif ( 'textarea' === $value['type'] ) {
+								if ( is_array( $_POST[ $id_attribute ][ $key ] ) ) {
+									$option_value = array_map( 'sanitize_textarea_field', $_POST[ $id_attribute ][ $key ] );
+								} else {
+									$option_value = sanitize_textarea_field( $_POST[ $id_attribute ][ $key ] );
+								}
 							} else {
 								if ( is_array( $_POST[ $id_attribute ][ $key ] ) ) {
 									$option_value = array_map( 'sanitize_text_field', $_POST[ $id_attribute ][ $key ] );
@@ -773,6 +778,12 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 									$option_value = array_map( 'sanitize_hex_color', $_POST[ $id_attribute ] );
 								} else {
 									$option_value = sanitize_hex_color( $_POST[ $id_attribute ] );
+								}
+							} elseif ( 'textarea' === $value['type'] ) {
+								if ( is_array( $_POST[ $id_attribute ] ) ) {
+									$option_value = array_map( 'sanitize_textarea_field', $_POST[ $id_attribute ] );
+								} else {
+									$option_value = sanitize_textarea_field( $_POST[ $id_attribute ] );
 								}
 							} else {
 								if ( is_array( $_POST[ $id_attribute ] ) ) {
@@ -806,6 +817,12 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 								} else {
 									$option_value = sanitize_hex_color( $_POST[ $option_name ][ $id_attribute ][ $key ] );
 								}
+							} elseif ( 'textarea' === $value['type'] ) {
+								if ( is_array( $_POST[ $option_name ][ $id_attribute ][ $key ] ) ) {
+									$option_value = array_map( 'sanitize_textarea_field', $_POST[ $option_name ][ $id_attribute ][ $key ] );
+								} else {
+									$option_value = sanitize_textarea_field( $_POST[ $option_name ][ $id_attribute ][ $key ] );
+								}
 							} else {
 								if ( is_array( $_POST[ $option_name ][ $id_attribute ][ $key ] ) ) {
 									$option_value = array_map( 'sanitize_text_field', $_POST[ $option_name ][ $id_attribute ][ $key ] );
@@ -834,6 +851,12 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 									$option_value = array_map( 'sanitize_hex_color', $_POST[ $option_name ][ $id_attribute ] );
 								} else {
 									$option_value = sanitize_hex_color( $_POST[ $option_name ][ $id_attribute ] );
+								}
+							} elseif ( 'textarea' === $value['type'] ) {
+								if ( is_array( $_POST[ $option_name ][ $id_attribute ] ) ) {
+									$option_value = array_map( 'sanitize_textarea_field', $_POST[ $option_name ][ $id_attribute ] );
+								} else {
+									$option_value = sanitize_textarea_field( $_POST[ $option_name ][ $id_attribute ] );
 								}
 							} else {
 								if ( is_array( $_POST[ $option_name ][ $id_attribute ] ) ) {
@@ -1332,7 +1355,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 	 */
 	 
 	public function admin_forms( $options, $form_key, $option_name = '', $form_messages = array() ) {
-		global $wc_compare_fonts_face, $wc_compare_uploader, $current_subtab;
+		global $current_subtab;
 		
 		$new_settings = array(); $new_single_setting = ''; // :)
 		$admin_message = '';
@@ -1862,7 +1885,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 								<div class="a3rev-ui-google-api-key-description"><?php echo sprintf( __( "Enter your existing Google Fonts API Key below. Don't have a key? Visit <a href='%s' target='_blank'>Google Developer API</a> to create a key", 'woocommerce-compare-products' ), 'https://developers.google.com/fonts/docs/developer_api#APIKey' ); ?></div>
 								<div class="a3rev-ui-google-api-key-inside 
 									<?php
-									if ( $wc_compare_fonts_face->is_valid_google_api_key() ) {
+									if ( $GLOBALS[$this->plugin_prefix.'fonts_face']->is_valid_google_api_key() ) {
 										echo 'a3rev-ui-google-valid-key';
 									} elseif ( '' != $google_api_key ) {
 										echo 'a3rev-ui-google-unvalid-key';
@@ -2684,7 +2707,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 								>
 								<optgroup label="<?php _e( '-- Default Fonts --', 'woocommerce-compare-products' ); ?>">
                                 <?php
-									foreach ( $wc_compare_fonts_face->get_default_fonts() as $val => $text ) {
+									foreach ( $GLOBALS[$this->plugin_prefix.'fonts_face']->get_default_fonts() as $val => $text ) {
 										?>
                                         <option value="<?php echo esc_attr( $val ); ?>" <?php
 												selected( esc_attr( $val ), esc_attr( $face ) );
@@ -2695,7 +2718,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
                                 </optgroup>
                                 <optgroup label="<?php _e( '-- Google Fonts --', 'woocommerce-compare-products' ); ?>">
                                 <?php
-									foreach ( $wc_compare_fonts_face->get_google_fonts() as $font ) {
+									foreach ( $GLOBALS[$this->plugin_prefix.'fonts_face']->get_google_fonts() as $font ) {
 										?>
                                         <option value="<?php echo esc_attr( $font['name'] ); ?>" <?php
 												selected( esc_attr( $font['name'] ), esc_attr( $face ) );
@@ -3368,7 +3391,7 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
                         	<?php echo $description; ?>
-                        	<?php echo $wc_compare_uploader->upload_input( $name_attribute, $id_attribute, $option_value, $attachment_id, $value['default'], $value['name'], $class, esc_attr( $value['css'] ) , '', $strip_methods );?>
+                        	<?php echo $GLOBALS[$this->plugin_prefix.'uploader']->upload_input( $name_attribute, $id_attribute, $option_value, $attachment_id, $value['default'], $value['name'], $class, esc_attr( $value['css'] ) , '', $strip_methods );?>
 						</td>
 					</tr><?php
 									
@@ -3903,7 +3926,4 @@ class WC_Compare_Admin_Interface extends WC_Compare_Admin_UI
 
 }
 
-global $wc_compare_admin_interface;
-$wc_compare_admin_interface = new WC_Compare_Admin_Interface();
-
-?>
+}

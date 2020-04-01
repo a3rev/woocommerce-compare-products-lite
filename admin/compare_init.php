@@ -24,8 +24,7 @@ function woocp_install() {
 	WCCompare\Data\Categories::install_database();
 	WCCompare\Data\Categories_Fields::install_database();
 
-	global $wc_compare_admin_init;
-	delete_metadata( 'user', 0, $wc_compare_admin_init->plugin_name . '-' . 'plugin_framework_global_box' . '-' . 'opened', '', true );
+	delete_metadata( 'user', 0, $GLOBALS[WOOCP_PREFIX.'admin_init']->plugin_name . '-' . 'plugin_framework_global_box' . '-' . 'opened', '', true );
 
 
 	update_option('a3rev_woocp_just_installed', true);
@@ -46,12 +45,10 @@ function woocp_init() {
 		delete_option( 'a3rev_woocp_just_installed' );
 
 		// Set Settings Default from Admin Init
-		global $wc_compare_admin_init;
-		$wc_compare_admin_init->set_default_settings();
+		$GLOBALS[WOOCP_PREFIX.'admin_init']->set_default_settings();
 
 		// Build sass
-		global $wc_compare_less;
-		$wc_compare_less->plugin_build_sass();
+		$GLOBALS[WOOCP_PREFIX.'less']->plugin_build_sass();
 
 		update_option( 'a3rev_woocp_install_default_data_start', true );
 	}
@@ -85,8 +82,7 @@ add_filter( 'plugin_row_meta', array('\A3Rev\WCCompare\Hook_Filter', 'plugin_ext
 add_action( 'widgets_init', function() { register_widget( '\A3Rev\WCCompare\Widget' ); } );
 
 // Need to call Admin Init to show Admin UI
-global $wc_compare_admin_init;
-$wc_compare_admin_init->init();
+$GLOBALS[WOOCP_PREFIX.'admin_init']->init();
 
 // Set nocache constants to comparision page
 add_action('init', array( '\A3Rev\WCCompare\Hook_Filter', 'nocache_ours_page' ), 0 );
@@ -94,7 +90,7 @@ add_action('init', array( '\A3Rev\WCCompare\Hook_Filter', 'nocache_ours_page' ),
 $current_db_version = get_option( 'woocommerce_db_version', null );
 
 // Add upgrade notice to Dashboard pages
-add_filter( $wc_compare_admin_init->plugin_name . '_plugin_extension_boxes', array( '\A3Rev\WCCompare\Hook_Filter', 'plugin_extension_box') );
+add_filter( $GLOBALS[WOOCP_PREFIX.'admin_init']->plugin_name . '_plugin_extension_boxes', array( '\A3Rev\WCCompare\Hook_Filter', 'plugin_extension_box') );
 
 // Add extra link on left of Deactivate link on Plugin manager page
 add_action('plugin_action_links_' . WOOCP_NAME, array( '\A3Rev\WCCompare\Hook_Filter', 'settings_plugin_links' ) );
@@ -261,7 +257,6 @@ add_shortcode('woocommerce_compare_attributes_table', function( $attributes ) {
 // Check upgrade functions
 add_action( 'init', 'woo_cp_lite_upgrade_plugin' );
 function woo_cp_lite_upgrade_plugin () {
-	global $wc_compare_less;
 
 	// Upgrade to 2.0.0
 	if(version_compare(get_option('a3rev_woocp_pro_version'), '2.0.0') === -1){
@@ -304,7 +299,7 @@ function woo_cp_lite_upgrade_plugin () {
 		update_option('a3rev_woocp_lite_version', '2.3.0');
 
 		// Build sass
-		$wc_compare_less->plugin_build_sass();
+		$GLOBALS[WOOCP_PREFIX.'less']->plugin_build_sass();
 	}
 
 	// Upgrade to 2.4.0
@@ -319,7 +314,7 @@ function woo_cp_lite_upgrade_plugin () {
 		include( WOOCP_DIR. '/includes/updates/compare-update-2.5.0.php' );
 
 		// Build sass
-		$wc_compare_less->plugin_build_sass();
+		$GLOBALS[WOOCP_PREFIX.'less']->plugin_build_sass();
 	}
 
 	update_option('a3rev_woocp_pro_version', '2.4.6');

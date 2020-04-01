@@ -1,7 +1,5 @@
 <style>
 <?php
-global $wc_compare_admin_interface, $wc_compare_fonts_face;
-
 // Grid View Button Style
 global $woo_compare_comparison_page_global_settings;
 extract($woo_compare_comparison_page_global_settings);
@@ -11,7 +9,7 @@ extract($woo_compare_comparison_page_global_settings);
 
 /* Comparison Page Body Style */
 body {
-	<?php echo $wc_compare_admin_interface->generate_background_color_css( $body_bg_colour ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'admin_interface']->generate_background_color_css( $body_bg_colour ); ?>
 }
 
 .compare_print_container {
@@ -20,7 +18,7 @@ body {
 /* Comparison Page Header Style */
 .compare_heading {
 	/*Background*/
-	<?php echo $wc_compare_admin_interface->generate_background_color_css( $header_bg_colour ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'admin_interface']->generate_background_color_css( $header_bg_colour ); ?>
 	/*Border*/
 	border-bottom: <?php echo esc_attr( $header_bottom_border['width'] ); ?> <?php echo esc_attr( $header_bottom_border['style'] ); ?> <?php echo esc_attr( $header_bottom_border['color'] ); ?> !important;
 }
@@ -29,7 +27,7 @@ body {
 .no_compare_list {
 	text-align: <?php echo $no_product_message_align; ?>;
 	/* Font */
-	<?php echo $wc_compare_fonts_face->generate_font_css( $woo_compare_comparison_page_global_settings['no_product_message_font'] ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'fonts_face']->generate_font_css( $woo_compare_comparison_page_global_settings['no_product_message_font'] ); ?>
 }
 
 
@@ -162,7 +160,7 @@ body {
 
 /* Table Style */
 #bg-labels {
-	<?php echo $wc_compare_admin_interface->generate_background_color_css( $body_bg_colour ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'admin_interface']->generate_background_color_css( $body_bg_colour ); ?>
 }
 #nameTableHldr {
 	background-color: #FFF !important;

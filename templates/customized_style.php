@@ -1,7 +1,5 @@
 <style>
 <?php
-global $wc_compare_admin_interface, $wc_compare_fonts_face;
-
 // Grid View Button Style
 global $woo_compare_grid_view_settings;
 extract($woo_compare_grid_view_settings);
@@ -142,13 +140,13 @@ extract($woo_compare_product_page_settings);
 				) !important;;
 	
 	/*Border*/
-	<?php echo $wc_compare_admin_interface->generate_border_css( $woo_compare_product_page_settings['product_compare_button_border'] ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'admin_interface']->generate_border_css( $woo_compare_product_page_settings['product_compare_button_border'] ); ?>
 	
 	/* Shadow */
-	<?php echo $wc_compare_admin_interface->generate_shadow_css( $woo_compare_product_page_settings['product_compare_button_shadow'] ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'admin_interface']->generate_shadow_css( $woo_compare_product_page_settings['product_compare_button_shadow'] ); ?>
 	
 	/* Font */
-	<?php echo $wc_compare_fonts_face->generate_font_css( $woo_compare_product_page_settings['product_compare_button_font'] ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'fonts_face']->generate_font_css( $woo_compare_product_page_settings['product_compare_button_font'] ); ?>
 	
 	text-align: center !important;
 	text-shadow: 0 -1px 0 hsla(0,0%,0%,.3);
@@ -157,7 +155,7 @@ extract($woo_compare_product_page_settings);
 
 .woo_compare_button_container .woo_bt_compare_this_link {
 	/* Font */
-	<?php echo $wc_compare_fonts_face->generate_font_css( $product_compare_link_font ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'fonts_face']->generate_font_css( $product_compare_link_font ); ?>
 }
 .woo_compare_button_container .woo_bt_compare_this_link:hover {
 	color: <?php echo $product_compare_link_font_hover_colour; ?> !important;
@@ -220,13 +218,13 @@ if ( $woo_compare_product_success_icon != '') {
 				) !important;;
 	
 	/*Border*/
-	<?php echo $wc_compare_admin_interface->generate_border_css( $woo_compare_product_page_settings['product_view_button_border'] ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'admin_interface']->generate_border_css( $woo_compare_product_page_settings['product_view_button_border'] ); ?>
 	
 	/* Shadow */
-	<?php echo $wc_compare_admin_interface->generate_shadow_css( $woo_compare_product_page_settings['product_view_button_shadow'] ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'admin_interface']->generate_shadow_css( $woo_compare_product_page_settings['product_view_button_shadow'] ); ?>
 	
 	/* Font */
-	<?php echo $wc_compare_fonts_face->generate_font_css( $woo_compare_product_page_settings['product_view_button_font'] ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'fonts_face']->generate_font_css( $woo_compare_product_page_settings['product_view_button_font'] ); ?>
 	
 	text-align: center !important;
 	text-shadow: 0 -1px 0 hsla(0,0%,0%,.3);
@@ -235,7 +233,7 @@ if ( $woo_compare_product_success_icon != '') {
 
 .woo_compare_button_container .woo_bt_view_compare_link {
 	/* Font */
-	<?php echo $wc_compare_fonts_face->generate_font_css( $product_view_compare_link_font ); ?>
+	<?php echo $GLOBALS[WOOCP_PREFIX.'fonts_face']->generate_font_css( $product_view_compare_link_font ); ?>
 }
 .woo_compare_button_container .woo_bt_view_compare_link:hover {
 	color: <?php echo $product_view_compare_link_font_hover_colour; ?> !important;

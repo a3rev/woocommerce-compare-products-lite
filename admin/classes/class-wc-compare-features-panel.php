@@ -16,7 +16,6 @@ class Features_Panel
 {
 	
 	public static function admin_screen () {
-		global $wc_compare_admin_init;
 		?>
 	<style>
 		.chzn-container{margin-right:2px;}
@@ -112,7 +111,7 @@ class Features_Panel
 			<div class="wrap">
 				<h1></h1>
 				<div id="a3_plugin_panel_container">
-					<div id="a3_plugin_panel_upgrade_area"><div id="a3_plugin_panel_extensions"><?php echo $wc_compare_admin_init->plugin_extension_boxes(); ?></div></div>
+					<div id="a3_plugin_panel_upgrade_area"><div id="a3_plugin_panel_extensions"><?php echo $GLOBALS[WOOCP_PREFIX.'admin_init']->plugin_extension_boxes(); ?></div></div>
 					<div id="a3_plugin_panel_fields">
 						<div class="a3rev_panel_container a3rev_manager_panel_container">
 							<?php 

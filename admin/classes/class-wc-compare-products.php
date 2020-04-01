@@ -17,7 +17,6 @@ class Products
 {
 
 	public static function woocp_products_manager() {
-		global $wc_compare_admin_init;
 		add_action('admin_footer', array( __CLASS__, 'woocp_compare_products_script') );
 ?>
 <div id="htmlForm">
@@ -25,7 +24,7 @@ class Products
 	<div class="wrap">
 		<h1><?php _e('WooCommerce Compare Products Manager', 'woocommerce-compare-products' ); ?></h1>
 		<div id="a3_plugin_panel_container">
-			<div id="a3_plugin_panel_upgrade_area"><div id="a3_plugin_panel_extensions"><?php echo $wc_compare_admin_init->plugin_extension_boxes(); ?></div></div>
+			<div id="a3_plugin_panel_upgrade_area"><div id="a3_plugin_panel_extensions"><?php echo $GLOBALS[WOOCP_PREFIX.'admin_init']->plugin_extension_boxes(); ?></div></div>
 			<div id="a3_plugin_panel_fields">
 				<div class="a3rev_panel_container" style="visibility: visible; height: auto; overflow: inherit;">
 					<div style="" class="a3rev_panel_box " id="product_cards_welcome_steve_box">
@@ -38,7 +37,7 @@ class Products
 									<p>
 										<img class="rwd_image_maps" src="<?php echo WOOCP_IMAGES_URL; ?>/woo_product.png" usemap="#Map" style="width: auto; max-width: 100%;" border="0" />
 										<map name="Map" id="Map">
-											<area shape="rect" coords="357,185,850,242" href="<?php echo $wc_compare_admin_init->pro_plugin_page_url; ?>" target="_blank" />
+											<area shape="rect" coords="357,185,850,242" href="<?php echo $GLOBALS[WOOCP_PREFIX.'admin_init']->pro_plugin_page_url; ?>" target="_blank" />
 										</map>
 									</p>
 								</div>

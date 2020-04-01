@@ -1,9 +1,13 @@
 <?php
 /* "Copyright 2012 A3 Revolution Web Design" This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 */
+
+namespace A3Rev\WCCompare\FrameWork\Pages {
+
+use A3Rev\WCCompare\FrameWork;
+
 // File Security Check
-if ( ! defined( 'ABSPATH' ) ) exit;
-?>
-<?php
+if ( ! defined( 'ABSPATH' ) ) exit; 
+
 /*-----------------------------------------------------------------------------------
 WC Compare Settings Page
 
@@ -21,7 +25,7 @@ TABLE OF CONTENTS
 
 -----------------------------------------------------------------------------------*/
 
-class WC_Compare_Settings_Page extends WC_Compare_Admin_UI
+class WC_Compare extends FrameWork\Admin_UI
 {	
 	/**
 	 * @var string
@@ -93,12 +97,21 @@ class WC_Compare_Settings_Page extends WC_Compare_Admin_UI
 	/* Include all tabs into this page
 	/*-----------------------------------------------------------------------------------*/
 	public function tabs_include() {
-		
-		include_once( $this->admin_plugin_dir() . '/tabs/global-tab.php' );
-		include_once( $this->admin_plugin_dir() . '/tabs/product-page-tab.php' );
-		include_once( $this->admin_plugin_dir() . '/tabs/widget-style-tab.php' );
-		include_once( $this->admin_plugin_dir() . '/tabs/gridview-style-tab.php' );
-		include_once( $this->admin_plugin_dir() . '/tabs/comparison-page-tab.php' );
+
+		global $wc_compare_global_tab;
+		$wc_compare_global_tab = new FrameWork\Tabs\Global_Settings();
+
+		global $wc_compare_product_page_tab;
+		$wc_compare_product_page_tab = new FrameWork\Tabs\Product_Page();
+
+		global $wc_compare_widget_style_tab;
+		$wc_compare_widget_style_tab = new FrameWork\Tabs\Widget_Style();
+
+		global $wc_compare_gridview_style_tab;
+		$wc_compare_gridview_style_tab = new FrameWork\Tabs\GridView_Style();
+
+		global $wc_comparison_page_tab;
+		$wc_comparison_page_tab = new FrameWork\Tabs\Comparison_Page();
 		
 	}
 	
@@ -106,16 +119,16 @@ class WC_Compare_Settings_Page extends WC_Compare_Admin_UI
 	/* admin_settings_page() */
 	/* Show Settings Page */
 	/*-----------------------------------------------------------------------------------*/
-	public function admin_settings_page() {
-		global $wc_compare_admin_init;
-		
-		$wc_compare_admin_init->admin_settings_page( $this->page_data() );
+	public function admin_settings_page() {		
+		$GLOBALS[$this->plugin_prefix.'admin_init']->admin_settings_page( $this->page_data() );
 	}
 	
 }
 
-global $wc_compare_settings_page;
-$wc_compare_settings_page = new WC_Compare_Settings_Page();
+}
+
+// global code
+namespace {
 
 /** 
  * wc_compare_settings_page_show()
@@ -126,4 +139,4 @@ function wc_compare_settings_page_show() {
 	$wc_compare_settings_page->admin_settings_page();
 }
 
-?>
+}
