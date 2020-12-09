@@ -400,7 +400,7 @@ class Functions
 				
 				if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
 					$current_product = new \WC_Product($product_id);
-				} elseif ( version_compare( WC()->version, '2.2.0', '<' ) ) {
+				} elseif ( version_compare( \WC()->version, '2.2.0', '<' ) ) {
 					$current_product = get_product($product_id);
 				} else {
 					$current_product = wc_get_product($product_id);

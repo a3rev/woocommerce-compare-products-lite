@@ -400,7 +400,7 @@ class Hook_Filter
 		// Add to cart validation
 		$passed_validation  = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
 
-		if ($passed_validation && WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variation_data)) {
+		if ($passed_validation && \WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variation_data)) {
 			// Return html fragments
 
 			if ( version_compare( WC_VERSION, '2.3.0', '<' ) ) {
@@ -645,7 +645,7 @@ class Hook_Filter
 										}
 
 										// Block widgets and fragments
-										$(".widget_shopping_cart, .shop_table.cart, .updating, .cart_totals").fadeTo("400", "0.6").block({message: null, overlayCSS: {background: "transparent url('.str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ).'/assets/images/ajax-loader.gif) no-repeat center", opacity: 0.6}});
+										$(".widget_shopping_cart, .shop_table.cart, .updating, .cart_totals").fadeTo("400", "0.6").block({message: null, overlayCSS: {background: "transparent url('.str_replace( array( 'http:', 'https:' ), '', \WC()->plugin_url() ).'/assets/images/ajax-loader.gif) no-repeat center", opacity: 0.6}});
 
 										// Changes button classes
 										$thisbutton.addClass("added");
