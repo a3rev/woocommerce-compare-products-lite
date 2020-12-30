@@ -105,13 +105,13 @@ function wccp_getScreenWidth() {
             $('#product_comparison td,#product_comparison th').width((opts.tdWidth));
             $('#product_comparison').width((opts.tdWidth * totalNumber) + opts.bgLabelWidth);
             $('.compare-products').width($(window).width() + (opts.tdWidth * (totalNumber - 1)));
-            $(window).bind("resize", resizeWindow);
+            $(window).on("resize", resizeWindow);
 
             function resizeWindow(e) {
                 var newWindowWidth = $(window).width();
                 $('.compare-products').width($(window).width() + (opts.tdWidth * (totalNumber - 1)));
             }
-            $(window).bind("scroll", resizeScroll);
+            $(window).on("scroll", resizeScroll);
 
             function resizeScroll(e) {}
             stripFirstColumn();
@@ -122,16 +122,16 @@ function wccp_getScreenWidth() {
 			if ( $('#nameTable').length < 1 ) { 
             	var nameTable = $('<table id="nameTable" cellpadding="0" border="1" bordercolor="' + bordercolor + '" cellspacing="0"></table>');
 				$('#product_comparison tr').each(function (i) {
-					nameTable.append('<tr class="' + $(this).attr('class') + '"><td style="color:' + $(this).children('th:first').css('color') + '"><span class=" bold a-right">' + $(this).children('th:first').html() + '</span></td></tr>');
+					nameTable.append('<tr class="' + $(this).attr('class') + '"><td style="color:' + $(this).children('th').first().css('color') + '"><span class=" bold a-right">' + $(this).children('th').first().html() + '</span></td></tr>');
 				});
 				nameTable.appendTo('#nameTableHldr');
 			}
             $('#product_comparison tr').each(function (i) {
-                $(this).children('th:first').css({
+                $(this).children('th').first().css({
                     'width': opts.bgLabelWidth + 'px',
                     'display': 'table-cell'
                 });
-                $(this).children('th:first').find('div').css({
+                $(this).children('th').first().find('div').css({
                     'width': opts.bgLabelWidth + 'px',
                     'display': 'block'
                 });
@@ -156,8 +156,8 @@ function wccp_getScreenWidth() {
         function setHeight() {
             var currrentRow = 1;
             for (i = 0; i < heightArray.length; i++) {
-                $('#product_comparison tr:nth-child(' + currrentRow + ')').children('td:nth-child(2)').height(heightArray[i]);
-                $('#nameTable tr:nth-child(' + currrentRow + ')').children('td:nth-child(1)').height(heightArray[i]);
+                $('#product_comparison tr:nth-child(' + currrentRow + ')').children('td:nth-child(2)').height(heightArray[i] - 1);
+                $('#nameTable tr:nth-child(' + currrentRow + ')').children('td:nth-child(1)').height(heightArray[i] - 1);
                 currrentRow++;
             }
         }
@@ -232,7 +232,4 @@ function wccp_getScreenWidth() {
         e.preventDefault();
     });
 	
-	$(document).ready(function () {
-		$('#product_comparison').scrollCompare();
-	});
 })(jQuery);

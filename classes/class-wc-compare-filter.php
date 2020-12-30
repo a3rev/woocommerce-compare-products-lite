@@ -511,7 +511,7 @@ class Hook_Filter
 									security: 		"'.$woocp_compare_events.'"
 								};
 								$.post( ajax_url, data, function(response) {
-									result = $.parseJSON( response );
+									result = JSON.parse( response );
 									$(".woo_compare_widget_loader").hide();
 									$(".woo_compare_widget_container").html(result);
 								});
@@ -534,7 +534,7 @@ class Hook_Filter
 									security: 		"'.$woocp_compare_events.'"
 								};
 								$.post( ajax_url, data, function(response) {
-									result = $.parseJSON( response );
+									result = JSON.parse( response );
 									$(".woo_compare_widget_loader").hide();
 									$(".woo_compare_widget_container").html(result);
 								});
@@ -554,7 +554,7 @@ class Hook_Filter
 									security: 		"'.$woocp_compare_events.'"
 								};
 								$.post( ajax_url, data, function(response) {
-									result = $.parseJSON( response );
+									result = JSON.parse( response );
 									$(".woo_compare_widget_loader").hide();
 									$(".woo_compare_widget_container").html(result);
 								});
@@ -568,7 +568,7 @@ class Hook_Filter
 								security: 		"'.$woocp_compare_events.'"
 							};
 							$.post( ajax_url, data, function(response) {
-								total_compare = $.parseJSON( response );
+								total_compare = JSON.parse( response );
 								$("#total_compare_product").html(total_compare);
 							});
 						}
@@ -581,7 +581,7 @@ class Hook_Filter
 								security: 		"'.$woocp_compare_events.'"
 							};
 							$.post( ajax_url, data, function(response) {
-								result = $.parseJSON( response );
+								result = JSON.parse( response );
 								$(".woo_compare_widget_loader").hide();
 								$(".woo_compare_widget_container").html(result);
 							});
@@ -628,7 +628,7 @@ class Hook_Filter
 										$thisbutton.removeClass("loading");
 
 										// Get response
-										data = $.parseJSON( response );
+										data = JSON.parse( response );
 
 										if (data.error && data.product_url) {
 											window.location = data.product_url;
@@ -651,8 +651,8 @@ class Hook_Filter
 										$thisbutton.addClass("added");
 
 										// Cart widget load
-										if ($(".widget_shopping_cart").size()>0) {
-											$(".widget_shopping_cart:eq(0)").load( window.location + " .widget_shopping_cart:eq(0) > *", function() {
+										if ($(".widget_shopping_cart").length>0) {
+											$(".widget_shopping_cart").eq(0).on( "load", window.location + " .widget_shopping_cart:eq(0) > *", function() {
 
 												// Replace fragments
 												if (fragments) {
@@ -679,7 +679,7 @@ class Hook_Filter
 										}
 
 										// Cart page elements
-										$(".shop_table.cart").load( window.location + " .shop_table.cart:eq(0) > *", function() {
+										$(".shop_table.cart").on( "load", window.location + " .shop_table.cart:eq(0) > *", function() {
 
 											$("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").addClass("buttons_added").append("<input type=\"button\" value=\"+\" id=\"add1\" class=\"plus\" />").prepend("<input type=\"button\" value=\"-\" id=\"minus1\" class=\"minus\" />");
 
@@ -688,7 +688,7 @@ class Hook_Filter
 											$("body").trigger("cart_page_refreshed");
 										});
 
-										$(".cart_totals").load( window.location + " .cart_totals:eq(0) > *", function() {
+										$(".cart_totals").on( "load", window.location + " .cart_totals:eq(0) > *", function() {
 											$(".cart_totals").css("opacity", "1").unblock();
 										});
 

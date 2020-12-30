@@ -129,7 +129,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 									security: 		"<?php echo $woocp_compare_events; ?>"
 								};
 								$.post( ajax_url, data, function(response) {
-									result = $.parseJSON( response );
+									result = JSON.parse( response );
 									$(".popup_woo_compare_widget_loader").hide();
 									$(".compare_popup_wrap").html(result);
 								});
@@ -139,7 +139,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 									security: 		"<?php echo $woocp_compare_events; ?>"
 								};
 								$.post( ajax_url, data, function(response) {
-									new_widget = $.parseJSON( response );
+									new_widget = JSON.parse( response );
 									$(".woo_compare_widget_container").html(new_widget);
 								});
 							});

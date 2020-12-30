@@ -61,7 +61,7 @@
     
     if(typeof $.fn.disableSelection != 'function') {
         $.fn.disableSelection = function() {
-            return this.bind( ( $.support.selectstart ? "selectstart" : "mousedown" ) +
+            return this.on( ( $.support.selectstart ? "selectstart" : "mousedown" ) +
                 ".ui-disableSelection", function( event ) {
                 event.preventDefault();
             });
@@ -418,7 +418,7 @@
 					p.total = data.total;
 				}
 				if (p.total === 0) {
-					$('tr, a, td, div', t).unbind();
+					$('tr, a, td, div', t).off();
 					$(t).empty();
 					p.pages = 1;
 					p.page = 1;
@@ -538,7 +538,7 @@
 						robj = null;
 					});
 				}
-				$('tr', t).unbind();
+				$('tr', t).off();
 				$(t).empty();
 				$(t).append(tbody);
 				this.addCellProp();
@@ -1535,22 +1535,22 @@
 		var prevent = (p === null) ? true : p;
 		if (prevent) {
 			return this.each(function () {
-				if (browser.msie || browser.safari) $(this).bind('selectstart', function () {
+				if (browser.msie || browser.safari) $(this).on('selectstart', function () {
 					return false;
 				});
 				else if (browser.mozilla) {
 					$(this).css('MozUserSelect', 'none');
 					$('body').trigger('focus');
-				} else if (browser.opera) $(this).bind('mousedown', function () {
+				} else if (browser.opera) $(this).on('mousedown', function () {
 					return false;
 				});
 				else $(this).attr('unselectable', 'on');
 			});
 		} else {
 			return this.each(function () {
-				if (browser.msie || browser.safari) $(this).unbind('selectstart');
+				if (browser.msie || browser.safari) $(this).off('selectstart');
 				else if (browser.mozilla) $(this).css('MozUserSelect', 'inherit');
-				else if (browser.opera) $(this).unbind('mousedown');
+				else if (browser.opera) $(this).off('mousedown');
 				else $(this).removeAttr('unselectable', 'on');
 			});
 		}
