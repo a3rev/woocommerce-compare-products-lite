@@ -431,9 +431,9 @@ class Functions
 					 }
 				}
 				$products_prices[$product_id] = $product_price;
-				$image_src = self::get_post_thumbnail($product_id, 220, 180);
+				$image_src = self::get_post_thumbnail($product_id, 220, 180, 'compare_product_image');
 				if (trim($image_src) == '') {
-					$image_src = '<img alt="'.$product_name.'" src="'. ( ( version_compare( $current_db_version, '2.1.0', '<' ) && null !== $current_db_version ) ? woocommerce_placeholder_img_src() : wc_placeholder_img_src() ) .'" />';
+					$image_src = '<img class="compare_product_image" alt="'.$product_name.'" src="'. ( ( version_compare( $current_db_version, '2.1.0', '<' ) && null !== $current_db_version ) ? woocommerce_placeholder_img_src() : wc_placeholder_img_src() ) .'" />';
 				}
 				$html .= '<td class="first_row column_'.$i.'"><div class="td-spacer"><div class="woo_compare_popup_remove_product_container"><a class="woo_compare_popup_remove_product" rel="'.$product_id.'" style="cursor:pointer;">Remove <img src="'.$woo_compare_basket_icon.'" border=0 /></a></div>';
 				$html .= '<div class="compare_image_container">'.$image_src.'</div>';

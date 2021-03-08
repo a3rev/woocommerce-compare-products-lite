@@ -2,8 +2,8 @@
 Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 5.0
-Tested up to: 5.6
-Stable tag: 2.7.6
+Tested up to: 5.7
+Stable tag: 2.7.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,12 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.7.7 - 2021/03/08 =
+* This maintenance release has tweaks for WordPress 5.7 and WooCommerce 5.1 plus it adds a classname to compare product image classname for excluding images from lazy load if there is a conflict with image load.
+* Tweak - Test for compatibility with WordPress 5.7
+* Tweak - Test for compatibility with WooCommerce 5.1.0
+* Tweak - Support classname ‘compare_product_image’ for image loaded on Comparison page, so other plugin if have apply lazy load but not work, they can add that classname to exclude from lazy load list
 
 = 2.7.6 - 2021/01/13 =
 * This maintenance release is for compatibility with WooCommerce major version 4.9.0.
@@ -624,6 +630,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.7.7 =
+This maintenance release has tweaks for WordPress 5.7 and WooCommerce 5.1 plus it adds a classname to compare product image classname for excluding images from lazy load if there is a conflict with image load.
 
 = 2.7.6 =
 This maintenance release is for compatibility with WooCommerce major version 4.9.0
