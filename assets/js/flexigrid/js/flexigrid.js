@@ -1005,7 +1005,7 @@
 						btnDiv.id = btn.id;
 					}
 					if (btn.onpress) {
-						$(btnDiv).click(function () {
+						$(btnDiv).on('click', function () {
 							this.onpress(this.id || this.name, g.gDiv);
 						});
 					}
@@ -1034,8 +1034,8 @@
 			btnDiv.className = 'fbutton';
 
 			var tSelect = document.createElement('select');
-			$(tSelect).change( function () { g.combo_doSelectAction( tSelect ) } );
-			$(tSelect).click( function () { g.combo_resetIndex( tSelect) } );
+			$(tSelect).on('change', function () { g.combo_doSelectAction( tSelect ) } );
+			$(tSelect).on('click', function () { g.combo_resetIndex( tSelect) } );
 			tSelect.className = 'cselect';
 			$(btnDiv).append(tSelect);
 
@@ -1082,7 +1082,7 @@
 		$('thead tr:first th', g.hDiv).each(function () {
 			var thdiv = document.createElement('div');
 			if ($(this).attr('abbr')) {
-				$(this).click(function (e) {
+				$(this).on('click', function (e) {
 					if (!$(this).hasClass('thOver')) return false;
 					var obj = (e.target || e.srcElement);
 					if (obj.href || obj.type) return true;
@@ -1111,7 +1111,7 @@
 				width: this.width + 'px'
 			});
 			thdiv.innerHTML = this.innerHTML;
-			$(this).empty().append(thdiv).removeAttr('width').mousedown(function (e) {
+			$(this).empty().append(thdiv).removeAttr('width').on('mousedown', function (e) {
 				g.dragStart('colMove', e, this);
 			}).hover(function () {
 				if (!g.colresize && !$(this).hasClass('thMove') && !g.colCopy) {
@@ -1180,7 +1180,7 @@
 		$(t).before(g.bDiv);
 		$(g.bDiv).css({
 			height: (p.height == 'auto') ? 'auto' : p.height + "px"
-		}).scroll(function (e) {
+		}).on('scroll', function (e) {
 			g.scroll()
 		}).append(t);
 		if (p.height == 'auto') {
@@ -1217,9 +1217,9 @@
                     }
                     $(cgDiv).css({
                         height: cdheight + hdheight
-                    }).mousedown(function(e) {
+                    }).on('mousedown', function(e) {
                         g.dragStart('colresize', e, this);
-                    }).dblclick(function(e) {
+                    }).on('dblclick', function(e) {
                         g.autoResizeColumn(this);
                     });
                     if (browser.msie && browser.version < 7.0) {
@@ -1242,14 +1242,14 @@
 		}
 		if (p.resizable && p.height != 'auto') {
 			g.vDiv.className = 'vGrip';
-			$(g.vDiv).mousedown(function (e) {
+			$(g.vDiv).on('mousedown', function (e) {
 				g.dragStart('vresize', e);
 			}).html('<span></span>');
 			$(g.bDiv).after(g.vDiv);
 		}
 		if (p.resizable && p.width != 'auto' && !p.nohresize) {
 			g.rDiv.className = 'hGrip';
-			$(g.rDiv).mousedown(function (e) {
+			$(g.rDiv).on('mousedown', function (e) {
 				g.dragStart('vresize', e, true);
 			}).html('<span></span>').css('height', $(g.gDiv).height());
 			if (browser.msie && browser.version < 7.0) {
@@ -1268,22 +1268,22 @@
 			$(g.bDiv).after(g.pDiv);
 			var html = ' <div class="pGroup"> <div class="pFirst pButton"><span></span></div><div class="pPrev pButton"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"><span class="pcontrol">' + p.pagetext + ' <input type="text" size="4" value="1" /> ' + p.outof + ' <span> 1 </span></span></div> <div class="btnseparator"></div> <div class="pGroup"> <div class="pNext pButton"><span></span></div><div class="pLast pButton"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"> <div class="pReload pButton"><span></span></div> </div> <div class="btnseparator"></div> <div class="pGroup"><span class="pPageStat"></span></div>';
 			$('div', g.pDiv).html(html);
-			$('.pReload', g.pDiv).click(function () {
+			$('.pReload', g.pDiv).on('click', function () {
 				g.populate();
 			});
-			$('.pFirst', g.pDiv).click(function () {
+			$('.pFirst', g.pDiv).on('click', function () {
 				g.changePage('first');
 			});
-			$('.pPrev', g.pDiv).click(function () {
+			$('.pPrev', g.pDiv).on('click', function () {
 				g.changePage('prev');
 			});
-			$('.pNext', g.pDiv).click(function () {
+			$('.pNext', g.pDiv).on('click', function () {
 				g.changePage('next');
 			});
-			$('.pLast', g.pDiv).click(function () {
+			$('.pLast', g.pDiv).on('click', function () {
 				g.changePage('last');
 			});
-			$('.pcontrol input', g.pDiv).keydown(function (e) {
+			$('.pcontrol input', g.pDiv).on('keydown', function (e) {
 				if (e.keyCode == 13) { 
                     g.changePage('input');
 				}
@@ -1302,7 +1302,7 @@
 					opt += "<option value='" + p.rpOptions[nx] + "' " + sel + " >" + p.rpOptions[nx] + "&nbsp;&nbsp;</option>";
 				}
 				$('.pDiv2', g.pDiv).prepend("<div class='pGroup'><select name='rp'>" + opt + "</select></div> <div class='btnseparator'></div>");
-				$('select', g.pDiv).change(function () {
+				$('select', g.pDiv).on('change', function () {
 					if (p.onRpChange) {
 						p.onRpChange(+this.value);
 					} else {
@@ -1315,7 +1315,7 @@
 			//add search button
 			if (p.searchitems) {
 				$('.pDiv2', g.pDiv).prepend("<div class='pGroup'> <div class='pSearch pButton'><span></span></div> </div>  <div class='btnseparator'></div>");
-				$('.pSearch', g.pDiv).click(function () {
+				$('.pSearch', g.pDiv).on('click', function () {
 					$(g.sDiv).slideToggle('fast', function () {
 						$('.sDiv:visible input:first', g.gDiv).trigger('focus');
 					});
@@ -1346,17 +1346,17 @@
 				$(document).on("click", "input[name=cp_show_variations]", function(){
 					g.populate();
 				});
-				$('input[name=q]', g.sDiv).keydown(function (e) {
+				$('input[name=q]', g.sDiv).on('keydown', function (e) {
 					if (e.keyCode == 13) {
 						g.doSearch();
 					}
 				});
-				$('select[name=qtype]', g.sDiv).keydown(function (e) {
+				$('select[name=qtype]', g.sDiv).on('keydown', function (e) {
 					if (e.keyCode == 13) {
 						g.doSearch();
 					}
 				});
-				$('input[value=Clear]', g.sDiv).click(function () {
+				$('input[value=Clear]', g.sDiv).on('click', function () {
 					$('input[name=q]', g.sDiv).val('');
 					p.query = '';
 					g.doSearch();
@@ -1376,7 +1376,7 @@
 			$(g.gDiv).prepend(g.mDiv);
 			if (p.showTableToggleBtn) {
 				$(g.mDiv).append('<div class="ptogtitle" title="Minimize/Maximize Table"><span></span></div>');
-				$('div.ptogtitle', g.mDiv).click(function () {
+				$('div.ptogtitle', g.mDiv).on('click', function () {
 					$(g.gDiv).toggleClass('hideBody');
 					$(this).toggleClass('vsble');
 				});
@@ -1426,11 +1426,11 @@
 			}, function () {
 				$(this).removeClass('ndcolover');
 			});
-			$('td.ndcol2', g.nDiv).click(function () {
+			$('td.ndcol2', g.nDiv).on('click', function () {
 				if ($('input:checked', g.nDiv).length <= p.minColToggle && $(this).prev().find('input')[0].checked) return false;
 				return g.toggleCol($(this).prev().find('input').val());
 			});
-			$('input.togCol', g.nDiv).click(function () {
+			$('input.togCol', g.nDiv).on('click', function () {
 				if ($('input:checked', g.nDiv).length < p.minColToggle && this.checked === false) return false;
 				$(this).parent().next().trigger('click');
 			});
@@ -1438,7 +1438,7 @@
 			$(g.nBtn).addClass('nBtn')
 				.html('<div></div>')
 				.attr('title', 'Hide/Show Columns')
-				.click(function () {
+				.on('click', function () {
 					$(g.nDiv).toggle();
 					return true;
 				}
@@ -1466,9 +1466,9 @@
 			$(g.nBtn).hide();
 		});
 		//add document events
-		$(document).mousemove(function (e) {
+		$(document).on('mousemove', function (e) {
 			g.dragMove(e);
-		}).mouseup(function (e) {
+		}).on('mouseup', function (e) {
 			g.dragEnd();
 		}).hover(function () {}, function () {
 			g.dragEnd();

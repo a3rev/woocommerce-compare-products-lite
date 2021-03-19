@@ -3,7 +3,7 @@ Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 5.0
 Tested up to: 5.7
-Stable tag: 2.7.7
+Stable tag: 2.7.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,33 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.7.8 - 2021/03/19 =
+* This maintenance release updates 23 deprecated jQuery functions for compatibility with the latest version of jQuery in WordPress 5.7
+* Tweak - Update JavaScript on plugin framework for compatibility with latest version of jQuery and resolve PHP warning event shorthand is deprecated.
+* Tweak - Replace deprecated .change( handler ) with .on( 'change', handler )
+* Tweak - Replace deprecated .change() with .trigger('change')
+* Tweak - Replace deprecated .focus( handler ) with .on( 'focus', handler )
+* Tweak - Replace deprecated .focus() with .trigger('focus')
+* Tweak - Replace deprecated .click( handler ) with .on( 'click', handler )
+* Tweak - Replace deprecated .click() with .trigger('click')
+* Tweak - Replace deprecated .select( handler ) with .on( 'select', handler )
+* Tweak - Replace deprecated .select() with .trigger('select')
+* Tweak - Replace deprecated .blur( handler ) with .on( 'blur', handler )
+* Tweak - Replace deprecated .blur() with .trigger('blur')
+* Tweak - Replace deprecated .resize( handler ) with .on( 'resize', handler )
+* Tweak - Replace deprecated .submit( handler ) with .on( 'submit', handler )
+* Tweak - Replace deprecated .scroll( handler ) with .on( 'scroll', handler )
+* Tweak - Replace deprecated .mousedown( handler ) with .on( 'mousedown', handler )
+* Tweak - Replace deprecated .mouseover( handler ) with .on( 'mouseover', handler )
+* Tweak - Replace deprecated .mouseout( handler ) with .on( 'mouseout', handler )
+* Tweak - Replace deprecated .keydown( handler ) with .on( 'keydown', handler )
+* Tweak - Replace deprecated .attr('disabled', 'disabled') with .prop('disabled', true)
+* Tweak - Replace deprecated .removeAttr('disabled') with .prop('disabled', false)
+* Tweak - Replace deprecated .attr('selected', 'selected') with .prop('selected', true)
+* Tweak - Replace deprecated .removeAttr('selected') with .prop('selected', false)
+* Tweak - Replace deprecated .attr('checked', 'checked') with .prop('checked', true)
+* Tweak - Replace deprecated .removeAttr('checked') with .prop('checked', false)
 
 = 2.7.7 - 2021/03/08 =
 * This maintenance release has tweaks for WordPress 5.7 and WooCommerce 5.1 plus it adds a classname to compare product image classname for excluding images from lazy load if there is a conflict with image load.
@@ -630,6 +657,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.7.8 =
+This maintenance release updates 23 deprecated jQuery functions for compatibility with the latest version of jQuery in WordPress 5.7
 
 = 2.7.7 =
 This maintenance release has tweaks for WordPress 5.7 and WooCommerce 5.1 plus it adds a classname to compare product image classname for excluding images from lazy load if there is a conflict with image load.

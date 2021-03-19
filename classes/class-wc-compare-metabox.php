@@ -57,7 +57,7 @@ class MetaBox
 						$(this).siblings(".compare_feature_activate_form").hide();
 					}
 				});
-				$("#compare_category").change(function(){
+				$("#compare_category").on('change', function(){
 					var cat_id = $(this).val();
 					var post_id = <?php echo $post_id; ?>;
 					$(".compare_widget_loader").show();

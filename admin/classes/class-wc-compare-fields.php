@@ -317,7 +317,7 @@ class Fields
                 <script type="text/javascript">
 					(function($){
 						$(function(){
-							$(".c_openclose_table").click( function() {
+							$(".c_openclose_table").on('click', function() {
 								if ( $(this).hasClass('c_close_table') ) {
 									$(this).removeClass("c_close_table");
 									$(this).addClass("c_open_table");

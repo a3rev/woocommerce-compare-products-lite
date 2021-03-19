@@ -164,7 +164,7 @@ function wccp_getScreenWidth() {
 
         function lockPosition(id, pixles) {
             var name = id;
-            $(window).scroll(function () {
+            $(window).on('scroll', function () {
                 var offset = (-$(document).scrollTop() + pixles) + "px";
                 $(name).css({
                     top: offset
@@ -179,7 +179,7 @@ function wccp_getScreenWidth() {
             var name = id;
             var menuYloc = null;
             menuYloc = parseInt($(name).css("top").substring(0, $(name).css("top").indexOf("px")));
-            $(window).scroll(function () {
+            $(window).on('scroll', function () {
                 var offset = menuYloc + $(document).scrollTop() + "px";
                 var xoffset = ($(document).scrollLeft()) + "px";
                 $(name).animate({
@@ -216,7 +216,7 @@ function wccp_getScreenWidth() {
         tdWidth: 240,
         bgLabelWidth: 225
     };
-    $('.name, .icn-wishlist, .link-cart, .btn-cart').click(function (e) {
+    $('.name, .icn-wishlist, .link-cart, .btn-cart').on('click', function (e) {
         setPLocation($(this).attr('href'), true);
         e.preventDefault();
         return false
@@ -227,7 +227,7 @@ function wccp_getScreenWidth() {
     }, function () {
         $(this).parent('tr').find('td').removeClass("row-hover")
     });
-    $('#print-compare').click(function (e) {
+    $('#print-compare').on('click', function (e) {
         window.print();
         e.preventDefault();
     });

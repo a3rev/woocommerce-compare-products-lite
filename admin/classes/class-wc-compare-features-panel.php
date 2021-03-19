@@ -69,7 +69,7 @@ class Features_Panel
 	<script>
 		(function($){
 			$(function(){
-				$("#field_type").change( function() {
+				$("#field_type").on('change', function() {
 					var field_type = $(this).val();
 					if(field_type == 'checkbox' || field_type == 'radio' || field_type == 'drop-down' || field_type == 'multi-select'){
 						$("#field_value").slideDown();
@@ -77,22 +77,22 @@ class Features_Panel
 						$("#field_value").slideUp();
 					}
 				});
-				$('#toggle1').click(function(){
+				$('#toggle1').on('click', function(){
 					if($('#toggle1').is(':checked')){
-						$(".list_fields").attr("checked", "checked");
-						$(".toggle2").attr("checked", "checked");
+						$(".list_fields").prop("checked", true);
+						$(".toggle2").prop("checked", true);
 					}else{
-						$(".list_fields").removeAttr("checked");
-						$(".toggle2").removeAttr("checked");
+						$(".list_fields").prop("checked",false);
+						$(".toggle2").prop("checked",false);
 					}
 				});
-				$('#toggle2').click(function(){
+				$('#toggle2').on('click', function(){
 					if($('#toggle2').is(':checked')){
-						$(".list_fields").attr("checked", "checked");
-						$(".toggle1").attr("checked", "checked");
+						$(".list_fields").prop("checked", true);
+						$(".toggle1").prop("checked", true);
 					}else{
-						$(".list_fields").removeAttr("checked");
-						$(".toggle1").removeAttr("checked");
+						$(".list_fields").prop("checked",false);
+						$(".toggle1").prop("checked",false);
 					}
 				});
 			});
