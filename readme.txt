@@ -3,7 +3,7 @@ Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 5.0
 Tested up to: 5.8
-Stable tag: 2.7.9
+Stable tag: 2.7.10
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,11 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.7.10 - 2021/11/20 =
+* This maintenance release has check for compatibility with PHP version 8.x and WooCommerce 5.9
+* Tweak - Test for compatibility with PHP 8.x
+* Tweak - Test for compatibility with WooCommerce 5.9
 
 = 2.7.9 - 2021/07/20 =
 * This maintenance release has code tweaks for compatibility with WordPress Major version 5.8, WooCommerce version 5.5.1 and some Security Hardening.
@@ -663,6 +668,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.7.10 =
+This maintenance release has check for compatibility with PHP version 8.x and WooCommerce 5.9
 
 = 2.7.9 =
 This maintenance release has code tweaks for compatibility with WordPress Major version 5.8, WooCommerce version 5.5.1 and some Security Hardening.
