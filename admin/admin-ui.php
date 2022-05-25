@@ -87,8 +87,6 @@ class Admin_UI
 		}
 
 		$this->support_url = 'https://wordpress.org/support/plugin/woocommerce-compare-products/';
-
-		$this->update_google_map_api_key();
 	}
 	
 	
