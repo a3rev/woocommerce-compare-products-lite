@@ -105,7 +105,7 @@ You can use this plugin when you have installed the WooCommerce plugin.
 * Tweak - Test for compatibility with WordPress 6.1
 * Tweak - Test for compatibility with WooCommerce 7.0
 * Tweak - Optimize mobile style for comparison table display
-* Security – This release has a patch for a security vulnerability
+* Security - This release has a patch for a security vulnerability
 
 = 2.8.2 - 2022/05/25 =
 * This release fixes a bug with the just released version 2.8.1

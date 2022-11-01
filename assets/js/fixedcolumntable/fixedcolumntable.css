@@ -190,6 +190,9 @@ div.brand-logo {
 td.first_row, th.first_row {
 	vertical-align:top;
 }
+#nameTableHldr tr.row_1 td, tr.row_1 th.column_first {
+	background:#ffffff !important;
+}
 tr.row_2 td, tr.row_2 th {
 	background:#f6f6f6 !important;
 }
@@ -300,4 +303,29 @@ body {
 }
 .compare_popup_print .bg-labels {
 	display:none;
+}
+
+@media screen and ( max-width: 768px ) {
+	.compare_logo {
+		float: none;
+		display: block;
+		margin: auto !important;
+	}
+	.print_control {
+		float: none;
+	    margin: auto;
+	    text-align: center;
+	}
+	.compare_close_button_type, .compare_print_button_type {
+		float: none !important;
+	}
+	.woo_compare_print_msg {
+		text-align: center !important;
+	}
+	.compare_popup_wrap {
+		margin-top: 200px;
+	}
+	#bg-labels {
+		top: 200px;
+	}
 }
