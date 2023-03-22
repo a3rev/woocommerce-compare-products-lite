@@ -4,13 +4,13 @@ Plugin Name: Compare Products for WooCommerce
 Description: Compare Products uses your existing WooCommerce Product Categories and Product Attributes to create Compare Product Features for all your products. A sidebar Compare basket is created that users add products to and view the Comparison in a Compare this pop-up screen.
 Version: 2.9.0
 Requires at least: 5.6
-Tested up to: 6.1
+Tested up to: 6.2
 Author: a3rev Software
 Author URI: https://a3rev.com/
 Text Domain: woocommerce-compare-products
 Domain Path: /languages
 WC requires at least: 3.0.0
-WC tested up to: 7.2
+WC tested up to: 7.5
 License: This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 
 	WooCommerce Compare Products PRO. Plugin for the WooCommerce plugin.
