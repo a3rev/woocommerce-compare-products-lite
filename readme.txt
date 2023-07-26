@@ -3,7 +3,7 @@ Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 6.0
 Tested up to: 6.2
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -99,6 +99,11 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 3.0.1 - 2023/07/26 =
+* This maintenance release has a bug fix for compatibility with WooCommerce 7.9.0
+* Tweak - Test for compatibility with WooCommerce 7.9.0
+* Fix - Put second argument when call woocommerce_add_to_cart_redirect from Comparison Page. For work compatibility with WC 7.9.0
 
 = 3.0.0 - 2023/04/25 =
 * This release has compatibility with WordPress 6.2.0, WooCommerce 7.6.0 plus declared compatibility with WooCommerce HPOS.
@@ -713,6 +718,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 3.0.1 =
+This maintenance release has a bug fix for compatibility with WooCommerce 7.9.0
 
 = 3.0.0 =
 This release has compatibility with WordPress 6.2.0, WooCommerce 7.6.0 plus declared compatibility with WooCommerce HPOS.
