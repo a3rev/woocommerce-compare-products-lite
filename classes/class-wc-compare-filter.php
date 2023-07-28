@@ -269,12 +269,43 @@ class Hook_Filter
 		}
 	}
 
+	public static function get_current_product_id( $product_id = 0 ) {
+
+		if ( empty( $product_id ) ) {
+	    	global $product;
+
+	    	if ( $product && is_a( $product, 'WC_Product' ) ) {
+	    		$product_id = $product->get_id();
+	    	}
+	    }
+
+	    // Get current product ID from Query Loop block of WP Predictive Search
+		if ( empty( $product_id ) ) {
+			global $psobject;
+			if ( $psobject ) {
+				$product_id = $psobject->id;
+			}
+		}
+
+	    if ( empty( $product_id ) ) {
+			global $post;
+			if ( $post ) {
+				$product_id = $post->ID;
+			}
+		}
+
+		return $product_id;
+	}
+
 	public static function add_compare_button($product_id='') {
-		global $post;
 		global $woo_compare_product_page_settings;
 		global $woo_compare_comparison_page_global_settings;
 		global $product_compare_id;
-		if (trim($product_id) == '') $product_id = $post->ID;
+
+		$product_id = self::get_current_product_id( $product_id );
+
+		if ( empty( $product_id ) ) return '';
+
 		$post_type = get_post_type($product_id);
 		$html = '';
 		if (($post_type == 'product' || $post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
@@ -315,8 +346,12 @@ class Hook_Filter
 	}
 
 	public static function show_compare_fields($product_id='', $use_wootheme_style=true) {
-		global $post, $woo_compare_comparison_page_global_settings;
-		if (trim($product_id) == '') $product_id = $post->ID;
+		$product_id = self::get_current_product_id( $product_id );
+
+		if ( empty( $product_id ) ) return '';
+
+		global $woo_compare_comparison_page_global_settings;
+
 		$html = '';
 		$variations_list = Functions::get_variations($product_id);
 		if (is_array($variations_list) && count($variations_list) > 0) {

@@ -220,7 +220,6 @@ if (in_array(basename($_SERVER['PHP_SELF']), array('post.php', 'page.php', 'page
 
 // Add shortcode [woocommerce_compare_attributes_table]
 add_shortcode('woocommerce_compare_attributes_table', function( $attributes ) {
-
 	if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) return;
 
 	if ( ! is_array( $attributes ) ) {
@@ -231,16 +230,6 @@ add_shortcode('woocommerce_compare_attributes_table', function( $attributes ) {
 		'product_id'         => 0,
 		'use_wootheme_style' => 'true',
     ), $attributes ) );
-
-    if ( empty( $product_id ) ) {
-    	global $product;
-
-    	if ( $product ) {
-    		$product_id = $product->get_id();
-    	} else {
-    		return '';
-    	}
-    }
 
     if ( 'false' === $use_wootheme_style ) {
     	$use_wootheme_style = false;
