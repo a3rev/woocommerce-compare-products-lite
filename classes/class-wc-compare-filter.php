@@ -297,7 +297,7 @@ class Hook_Filter
 		return $product_id;
 	}
 
-	public static function add_compare_button($product_id='') {
+	public static function add_compare_button( $product_id='', $custom_button = '' ) {
 		global $woo_compare_product_page_settings;
 		global $woo_compare_comparison_page_global_settings;
 		global $product_compare_id;
@@ -338,8 +338,13 @@ class Hook_Filter
 				}
 				$view_compare_html = '<div style="clear:both;"></div><a class="woo_bt_view_compare '.$widget_compare_popup_view_button.' '.$product_view_compare_class.' '.$product_view_compare_custom_class.'" href="'.$product_compare_page.'" target="_blank" alt="" title="" style="display:none;">'.$product_view_compare_text.'</a>';
 			}
-			
-			$html .= '<div class="woo_compare_button_container"><a href="#" onclick="event.preventDefault();" class="woo_bt_compare_this '.$product_compare_class.' '.$product_compare_custom_class.'" id="woo_bt_compare_this_'.$product_id.'" rel="nofollow">'.$product_compare_text.'</a>' . $view_compare_html . '<input type="hidden" id="input_woo_bt_compare_this_'.$product_id.'" name="product_compare_'.$product_id.'" value="'.$product_id.'" /></div>';
+
+			$input_hidden = '<input type="hidden" id="input_woo_bt_compare_this_'.$product_id.'" name="product_compare_'.$product_id.'" value="'.$product_id.'" />';
+			if ( empty( $custom_button ) ) {
+				$html .= '<div class="woo_compare_button_container"><a href="#" onclick="event.preventDefault();" class="woo_bt_compare_this '.$product_compare_class.' '.$product_compare_custom_class.'" id="woo_bt_compare_this_'.$product_id.'" rel="nofollow">'.$product_compare_text.'</a>' . $view_compare_html . $input_hidden . '</div>';
+			} else {
+				$html = sprintf( $custom_button, $view_compare_html . $input_hidden );
+			}
 		}
 
 		return $html;

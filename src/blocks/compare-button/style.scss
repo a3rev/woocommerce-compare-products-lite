@@ -1,0 +1,12 @@
+.wp-block-a3blocks-product-compare-button {
+    display: block;
+    width: fit-content;
+    &:not([style*="text-decoration"]) {
+        text-decoration: none;
+
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+}

@@ -306,7 +306,15 @@ function woo_cp_lite_upgrade_plugin () {
 		$GLOBALS[WOOCP_PREFIX.'less']->plugin_build_sass();
 	}
 
-	update_option('a3rev_woocp_pro_version', '2.4.6');
+	// Upgrade to 3.1.0
+	if(version_compare(get_option('a3rev_woocp_lite_version'), '3.1.0') === -1){
+		update_option('a3rev_woocp_lite_version', '3.1.0');
+
+		// Build sass
+		$GLOBALS[WOOCP_PREFIX.'less']->plugin_build_sass();
+	}
+
+	update_option('a3rev_woocp_pro_version', '4.1.0');
 	update_option('a3rev_woocp_lite_version', WOOCP_VERSION );
 
 }

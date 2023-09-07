@@ -40,4 +40,5 @@ return array(
     'A3Rev\\WCCompare\\Install' => $baseDir . '/includes/class-wc-compare-install.php',
     'A3Rev\\WCCompare\\MetaBox' => $baseDir . '/classes/class-wc-compare-metabox.php',
     'A3Rev\\WCCompare\\Widget' => $baseDir . '/widgets/compare_widget.php',
+    'A3Rev\\WCCompare\\Blocks' => $baseDir . '/src/blocks.php',
 );

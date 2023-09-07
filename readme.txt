@@ -3,7 +3,7 @@ Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 6.0
 Tested up to: 6.3
-Stable tag: 3.0.2
+Stable tag: 3.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -99,6 +99,13 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 3.1.0 - 2023/09/06 =
+* This feature release adds a "Product Compare" Button Block for use with Gutenberg templates. Also compatibility with WooCommerce 8.0.3 and WordPress 6.3
+* Feature - Define new "Product Compare" Button block to show Compare Button on Gutenberg Block templates.
+* Tweak - Test for compatibility with WooCommerce 8.0.3
+* Tweak - Test for compatibility with WordPress 6.3.0
+* Fix - New Product Compare Button Block resolves issues that the Compare shortcode has with Gutenberg templates.
 
 = 3.0.2 - 2023/07/28 =
 * This maintenance release has a bug fix for compatibility with WooCommerce 7.9 and WordPress 6.2.2 or higher.
@@ -723,6 +730,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 3.1.0 =
+This feature release adds a "Product Compare" Button Block for use with Gutenberg templates. Also compatibility with WooCommerce 8.0.3 and WordPress 6.3
 
 = 3.0.2 =
 This maintenance release has a bug fix for compatibility with WooCommerce 7.9 and WordPress 6.2.2 or higher.

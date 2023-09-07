@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "a3blocks/product-compare-button",
+	"title": "Product Compare Button",
+	"category": "a3rev-blocks",
+	"description": "Displays the Compare Button of current product.",
+	"keywords": [ "compare", "button" ],
+	"version": "1.0",
+	"textdomain": "woocommerce-compare-products",
+	"attributes":{
+		"textAlign": {
+			"type": "string",
+			"default": ""
+		},
+		"width": {
+			"type": "number"
+		},
+		"content": {
+			"type": "string"
+		}
+	},
+	"selectors": {
+        "root": ".wp-block-a3blocks-product-compare-button"
+    },
+    "usesContext": [ "postId" ],
+	"supports": {
+		"html": false,
+		"color": {
+			"gradients": true,
+			"text": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true,
+				"textDecoration": true
+			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"padding": true
+			}
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"width": true,
+			"__experimentalDefaultControls": {
+				"width": true
+			}
+		}
+	},
+	"editorScript": "wc-cp-block-editor",
+	"editorStyle": [ "wc-cp-block-editor", "wp-block-button-editor" ],
+	"style": [ "wp-block-button" ]
+}
