@@ -27,9 +27,7 @@
  * woocp_clear_compare()
  * woocp_footer_script()
  * woocp_variable_add_to_cart_script()
- * woocp_product_featured_tab()
  * woocp_product_featured_tab_woo_2_0()
- * woocp_product_featured_panel()
  * woocp_product_featured_panel_woo_2_0()
  * woocp_set_selected_attributes()
  * auto_create_compare_category()
@@ -56,15 +54,10 @@ class Hook_Filter
 	public static function template_loader( $template ) {
 		global $product_compare_id;
 		global $post;
-		$current_db_version = get_option( 'woocommerce_db_version', null );
 
 		if ( is_object( $post ) && $product_compare_id == $post->ID ) {
 			
-			if ( version_compare( $current_db_version, '2.1.0', '<' ) && null !== $current_db_version ) {
-				$file 	= 'product-compare-old.php';
-			} else {
-				$file 	= 'product-compare.php';
-			}
+			$file 	= 'product-compare.php';
 			$find[] = $file;
 			$find[] = apply_filters( 'woocommerce_template_url', 'woocommerce/' ) . $file;
 			
@@ -442,13 +435,7 @@ class Hook_Filter
 
 		if ($passed_validation && \WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variation_data)) {
 			// Return html fragments
-
-			if ( version_compare( WC_VERSION, '2.3.0', '<' ) ) {
-				$data = apply_filters('add_to_cart_fragments', array());
-			} else {
-				// For WC 2.3
-				$data = apply_filters('woocommerce_add_to_cart_fragments', $data);
-			}
+			$data = apply_filters('woocommerce_add_to_cart_fragments', $data);
 
 		} else {
 			$data = array(
@@ -750,37 +737,6 @@ class Hook_Filter
 				</script>';
 		echo $script_add_on;
 	}
-
-	public static function woocp_product_featured_tab() {
-		global $post;
-		global $woo_compare_product_page_settings;
-		$compare_featured_tab = trim($woo_compare_product_page_settings['compare_featured_tab']);
-		if ($compare_featured_tab == '') $compare_featured_tab = __('Technical Details', 'woocommerce-compare-products' );
-
-		$show_compare_featured_tab = false;
-		$product_id = $post->ID;
-		$variations_list = Functions::get_variations($product_id);
-		if (is_array($variations_list) && count($variations_list) > 0) {
-			foreach ($variations_list as $variation_id) {
-				if (Functions::check_product_activate_compare($variation_id) && Functions::check_product_have_cat($variation_id)) {
-					$compare_category = get_post_meta( $variation_id, '_woo_compare_category', true );
-					$compare_fields = Data\Categories_Fields::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
-					if (is_array($compare_fields) && count($compare_fields)>0) {
-						$show_compare_featured_tab = true;
-						break;
-					}
-				}
-			}
-		}elseif (Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
-			$compare_category = get_post_meta( $product_id, '_woo_compare_category', true );
-			$compare_fields = Data\Categories_Fields::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
-			if (is_array($compare_fields) && count($compare_fields)>0) {
-				$show_compare_featured_tab = true;
-			}
-		}
-
-		if ($show_compare_featured_tab) echo '<li><a href="#tab-compare-featured">'.esc_attr( stripslashes( $compare_featured_tab ) ).'</a></li>';
-	}
 	
 	public static function woocp_product_featured_tab_woo_2_0( $tabs = array() ) {
 		global $product, $post;
@@ -821,15 +777,6 @@ class Hook_Filter
 		}
 		
 		return $tabs;
-	}
-
-	public static function woocp_product_featured_panel() {
-		global $post;
-?>
-		<div class="panel entry-content" id="tab-compare-featured">
-			<?php echo self::show_compare_fields($post->ID); ?>
-		</div>
-        <?php
 	}
 	
 	public static function woocp_product_featured_panel_woo_2_0() {

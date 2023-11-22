@@ -394,11 +394,7 @@ class MetaBox
 	}
 
 	public static function admin_include_variation_compare_scripts() {
-		if ( version_compare( WC_VERSION, '2.4.0', '<' ) ) {
-			self::variable_compare_meta_boxes_scripts_old();
-		} else {
-			self::variable_compare_meta_boxes_scripts();
-		}
+		self::variable_compare_meta_boxes_scripts();
 	}
 
 	public static function variable_compare_meta_boxes_scripts() {
@@ -433,127 +429,6 @@ class MetaBox
 			$javascript = ob_get_clean();
 
 			wc_enqueue_js( $javascript );
-		}
-	}
-
-	public static function variable_compare_meta_boxes_scripts_old() {
-		global $post;
-		$current_db_version = get_option( 'woocommerce_db_version', null );
-		$post_status = get_post_status($post->ID);
-		$post_type = get_post_type($post->ID);
-		if ($post_type == 'product' && $post_status != false) {
-			$woocp_variable_compare = wp_create_nonce("woocp-variable-compare");
-			$attributes = (array) maybe_unserialize( get_post_meta($post->ID, '_product_attributes', true) );
-
-			// See if any are set
-			$variation_attribute_found = false;
-			if ($attributes) foreach ($attributes as $attribute) {
-					if (isset($attribute['is_variation'])) :
-						$variation_attribute_found = true;
-					break;
-					endif;
-				}
-			if ($variation_attribute_found) {
-				if ( version_compare( $current_db_version, '2.1.0', '<' ) && null !== $current_db_version ) {
-					$colspan = 7;
-				} else {
-					$colspan = 3;
-				}
-				$args = array(
-					'post_type' => 'product_variation',
-					'post_status' => array('private', 'publish'),
-					'numberposts' => -1,
-					'orderby' => 'id',
-					'order' => 'asc',
-					'post_parent' => $post->ID
-				);
-				$variations = get_posts($args);
-				$loop = 0;
-				ob_start();
-?>
-			jQuery(function(){
-			<?php
-				if ($variations && count($variations) > 0) {?>
-				jQuery('#variable_product_options .woocommerce_variation').each(function(){
-					var current_variation = jQuery(this);
-					if(current_variation.hasClass('have_compare_feature') == false){
-						var variation_id = jQuery(this).find('.remove_variation').attr('rel');
-						var data = {
-							action: 'woocp_get_variation_compare',
-							variation_id: variation_id,
-							security: '<?php echo $woocp_variable_compare; ?>'
-						};
-						jQuery.post('<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>', data, function(response) {
-							current_variation.find('table.woocommerce_variable_attributes').append('<tr><td colspan="<?php echo $colspan; ?>">'+response+'</td></tr>');
-						});
-						current_variation.addClass('have_compare_feature');
-					}
-				});
-			<?php } ?>
-				jQuery('#variable_product_options').on('click', 'button.add_variation', function(){
-					setTimeout(function(){
-						jQuery('#variable_product_options .woocommerce_variation').each(function(){
-							var current_variation = jQuery(this);
-							if(current_variation.hasClass('have_compare_feature') == false){
-								var variation_id = jQuery(this).find('.remove_variation').attr('rel');
-								var data = {
-									action: 'woocp_get_variation_compare',
-									variation_id: variation_id,
-									security: '<?php echo $woocp_variable_compare; ?>'
-								};
-								jQuery.post('<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>', data, function(response) {
-									current_variation.find('table.woocommerce_variable_attributes').append('<tr><td colspan="<?php echo $colspan; ?>">'+response+'</td></tr>');
-								});
-								current_variation.addClass('have_compare_feature');
-							}
-						});
-					}, 3000);
-				});
-				jQuery('#variable_product_options').on('click', 'button.link_all_variations', function(){
-					setTimeout(function(){
-						jQuery('#variable_product_options .woocommerce_variation').each(function(){
-							var current_variation = jQuery(this);
-							if(current_variation.hasClass('have_compare_feature') == false){
-								var variation_id = jQuery(this).find('.remove_variation').attr('rel');
-								var data = {
-									action: 'woocp_get_variation_compare',
-									variation_id: variation_id,
-									security: '<?php echo $woocp_variable_compare; ?>'
-								};
-								jQuery.post('<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>', data, function(response) {
-									current_variation.find('table.woocommerce_variable_attributes').append('<tr><td colspan="<?php echo $colspan; ?>">'+response+'</td></tr>');
-								});
-								current_variation.addClass('have_compare_feature');
-							}
-						});
-					}, 5000);
-				});
-				jQuery(document).on("change", ".variable_compare_category", function(){
-						var cat_id = jQuery(this).val();
-						var post_id = jQuery(this).attr("rel");
-						jQuery("#variable_compare_widget_loader_"+post_id).show();
-						var data = {
-							action: 'woocp_variation_get_fields',
-							cat_id: cat_id,
-							post_id: post_id,
-							security: '<?php echo $woocp_variable_compare; ?>'
-						};
-						jQuery.post('<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>', data, function(response) {
-							jQuery("#variable_compare_widget_loader_"+post_id).hide();
-							jQuery("#variable_compare_cat_fields_"+post_id).html(response);
-						});
-				});
-			});
-
-	<?php
-				$javascript = ob_get_clean();
-				if ( version_compare( $current_db_version, '2.1.0', '<' ) && null !== $current_db_version ) {
-					global $woocommerce;
-					$woocommerce->add_inline_js( $javascript );
-				} else {
-					wc_enqueue_js( $javascript );
-				}
-			}
 		}
 	}
 

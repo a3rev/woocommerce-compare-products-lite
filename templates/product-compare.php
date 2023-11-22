@@ -14,28 +14,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		
 		$wc_frontend_script_path = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/js/frontend/';
 		
-		if ( version_compare( WC()->version, '2.4.0', '<' ) ) {
-			// Variables for JS scripts
-			$add_to_cart_params = array(
-				'ajax_url'                         => WC()->ajax_url(),
-				'ajax_loader_url'                  => apply_filters( 'woocommerce_ajax_loader_url', str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/images/ajax-loader@2x.gif' ),
-				'i18n_view_cart'                   => __('View Cart &rarr;', 'woocommerce-compare-products' ),
-				'cart_url'                         => get_permalink( wc_get_page_id( 'cart' ) ),
-				'is_cart'						   => false,
-				'cart_redirect_after_add'          => get_option( 'woocommerce_cart_redirect_after_add' )
-			);
-		} else {
-			// Variables for JS scripts
-			$add_to_cart_params = array(
-				'ajax_url'                => WC()->ajax_url(),
-				'wc_ajax_url'             => WC_AJAX::get_endpoint( "%%endpoint%%" ),
-				'i18n_view_cart'          => __('View Cart &rarr;', 'woocommerce-compare-products' ),
-				'cart_url'                => apply_filters( 'woocommerce_add_to_cart_redirect', wc_get_cart_url(), null ),
-				'is_cart'                 => false,
-				'cart_redirect_after_add' => get_option( 'woocommerce_cart_redirect_after_add' )
-			);
-		}
-
+		// Variables for JS scripts
+		$add_to_cart_params = array(
+			'ajax_url'                => WC()->ajax_url(),
+			'wc_ajax_url'             => WC_AJAX::get_endpoint( "%%endpoint%%" ),
+			'i18n_view_cart'          => __('View Cart &rarr;', 'woocommerce-compare-products' ),
+			'cart_url'                => apply_filters( 'woocommerce_add_to_cart_redirect', wc_get_cart_url(), null ),
+			'is_cart'                 => false,
+			'cart_redirect_after_add' => get_option( 'woocommerce_cart_redirect_after_add' )
+		);
 ?>
 <!doctype html>
 <html>

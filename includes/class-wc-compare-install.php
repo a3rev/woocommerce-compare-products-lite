@@ -41,18 +41,12 @@ class Install
 	 *
 	 */
 	public function automatic_add_features() {
-		$current_db_version = get_option( 'woocommerce_db_version', null );
-		if ( version_compare( $current_db_version, '2.1.0', '<' ) && null !== $current_db_version ) {
-			global $woocommerce;
-			$top_variations = $woocommerce->get_attribute_taxonomies();
-		} else {
-			$top_variations = wc_get_attribute_taxonomies();
-		}
+		$top_variations = wc_get_attribute_taxonomies();
 		if ( $top_variations ) {
 			foreach ($top_variations as $top_variation) {
 				$check_existed = Data::get_count("field_name='".trim(addslashes($top_variation->attribute_label))."'");
 				if ($check_existed < 1 ) {
-					$child_variations = get_terms( ( ( version_compare( $current_db_version, '2.1.0', '<' ) && null !== $current_db_version ) ? $woocommerce->attribute_taxonomy_name($top_variation->attribute_name) : wc_attribute_taxonomy_name($top_variation->attribute_name) ) , array('parent' => 0, 'hide_empty' => 0, 'hierarchical' => 0) );
+					$child_variations = get_terms( wc_attribute_taxonomy_name($top_variation->attribute_name), array('parent' => 0, 'hide_empty' => 0, 'hierarchical' => 0) );
 					$default_value = '';
 					if ( count($child_variations) > 0 ) {
 						$line = '';

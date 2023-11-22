@@ -321,7 +321,6 @@ class Functions
 	public static function get_compare_list_html_widget() {
 		global $product_compare_id;
 		global $woo_compare_comparison_page_global_settings;
-		$current_db_version = get_option( 'woocommerce_db_version', null );
 		$woo_compare_basket_icon = WOOCP_IMAGES_URL.'/compare_remove.png';
 		$compare_list = self::get_compare_list();
 		$html = '';
@@ -331,7 +330,7 @@ class Functions
 				$thumbnail_html = '';
 					$thumbnail_html = self::get_post_thumbnail($product_id, 64, 9999, 'woo_compare_widget_thumbnail');
 					if (trim($thumbnail_html) == '') {
-						$thumbnail_html = '<img class="woo_compare_widget_thumbnail" alt="" src="'. ( ( version_compare( $current_db_version, '2.1.0', '<' ) && null !== $current_db_version ) ? woocommerce_placeholder_img_src() : wc_placeholder_img_src() ).'" />';
+						$thumbnail_html = '<img class="woo_compare_widget_thumbnail" alt="" src="'. wc_placeholder_img_src() .'" />';
 					}
 				$html .= '<li class="compare_widget_item">';
 				$html .= '<div class="compare_remove_column"><a class="woo_compare_remove_product" rel="'.$product_id.'"><img class="woo_compare_remove_icon" src="'.$woo_compare_basket_icon.'" /></a></div>';
@@ -398,13 +397,7 @@ class Functions
 				}
 				$i++;
 				
-				if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
-					$current_product = new \WC_Product($product_id);
-				} elseif ( version_compare( \WC()->version, '2.2.0', '<' ) ) {
-					$current_product = get_product($product_id);
-				} else {
-					$current_product = wc_get_product($product_id);
-				}
+				$current_product = wc_get_product($product_id);
 				
 				$product_name = self::get_variation_name($product_id);
 				
@@ -433,7 +426,7 @@ class Functions
 				$products_prices[$product_id] = $product_price;
 				$image_src = self::get_post_thumbnail($product_id, 220, 180, 'compare_product_image');
 				if (trim($image_src) == '') {
-					$image_src = '<img class="compare_product_image" alt="'.$product_name.'" src="'. ( ( version_compare( $current_db_version, '2.1.0', '<' ) && null !== $current_db_version ) ? woocommerce_placeholder_img_src() : wc_placeholder_img_src() ) .'" />';
+					$image_src = '<img class="compare_product_image" alt="'.$product_name.'" src="'. wc_placeholder_img_src() .'" />';
 				}
 				$html .= '<td class="first_row column_'.$i.'"><div class="td-spacer"><div class="woo_compare_popup_remove_product_container"><a class="woo_compare_popup_remove_product" rel="'.$product_id.'" style="cursor:pointer;">Remove <img src="'.$woo_compare_basket_icon.'" border=0 /></a></div>';
 				$html .= '<div class="compare_image_container">'.$image_src.'</div>';
@@ -443,14 +436,8 @@ class Functions
 						if ( ! $current_product->is_type( 'external' ) ) {
 							$cart_url = add_query_arg( array( 'post_type' => 'product', 'add-to-cart' => $product_id ), get_permalink( $product_id ) );
 						} else if ( $current_product->is_type( 'external' ) ) {
-							if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
-								$cart_url = get_post_meta( $product_id, '_product_url', true  );
-								$add_to_cart_text_external = get_post_meta( $product_id, '_button_text', true  );
-								( $add_to_cart_text_external ) ? $add_to_cart_text_external : __( 'Buy product', 'woocommerce-compare-products' );
-							} else {
-								$cart_url = $current_product->get_product_url();
-								$add_to_cart_text_external = $current_product->get_button_text();
-							}
+							$cart_url = $current_product->get_product_url();
+							$add_to_cart_text_external = $current_product->get_button_text();
 						}
 						switch (get_post_type($product_id)) :
 							case "product_variation" :

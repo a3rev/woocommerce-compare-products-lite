@@ -180,23 +180,13 @@ if ( ! isset( $woo_compare_product_page_settings['disable_product_page_compare']
 	if (!isset($woo_compare_product_page_settings['product_page_button_position']) || $woo_compare_product_page_settings['product_page_button_position'] == 'above' ) {
 		add_action('woocommerce_before_add_to_cart_button', array('\A3Rev\WCCompare\Hook_Filter', 'woocp_details_add_compare_button') );
 	} else {
-		if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
-			add_action('woocommerce_after_template_part', array('\A3Rev\WCCompare\Hook_Filter', 'woocp_details_add_compare_button_below_cart'), 1, 3);
-		} else {
-			add_action('woocommerce_after_add_to_cart_button', array('\A3Rev\WCCompare\Hook_Filter', 'woocp_details_add_compare_button'), 1);
-		}
+		add_action('woocommerce_after_add_to_cart_button', array('\A3Rev\WCCompare\Hook_Filter', 'woocp_details_add_compare_button'), 1);
 	}
 }
 
 // Add Compare Featured Field tab into Product Details page
 if ( ( ! isset( $woo_compare_product_page_settings['disable_product_page_compare'] ) || $woo_compare_product_page_settings['disable_product_page_compare'] != 1 ) && ( ! isset( $woo_compare_product_page_settings['disable_compare_featured_tab'] ) || $woo_compare_product_page_settings['disable_compare_featured_tab'] != 1 ) ) {
-	if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
-		add_action( 'woocommerce_product_tabs', array('\A3Rev\WCCompare\Hook_Filter', 'woocp_product_featured_tab'), $woo_compare_product_page_settings['auto_compare_featured_tab'] );
-		add_action( 'woocommerce_product_tab_panels', array('\A3Rev\WCCompare\Hook_Filter', 'woocp_product_featured_panel'), $woo_compare_product_page_settings['auto_compare_featured_tab']);
-	} else {
-		// woo 2.0
-		add_filter( 'woocommerce_product_tabs', array('\A3Rev\WCCompare\Hook_Filter', 'woocp_product_featured_tab_woo_2_0') );
-	}
+	add_filter( 'woocommerce_product_tabs', array('\A3Rev\WCCompare\Hook_Filter', 'woocp_product_featured_tab_woo_2_0') );
 }
 
 // Create Compare Category when Product Category is created
