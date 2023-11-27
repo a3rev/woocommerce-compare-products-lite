@@ -2,8 +2,8 @@
 Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 6.0
-Tested up to: 6.4
-Stable tag: 3.1.3
+Tested up to: 6.4.1
+Stable tag: 3.1.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -99,6 +99,10 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 3.1.4 - 2023/11/27 =
+* This mainetnace release has a bug fix for the Compare Feature tab on Product Page Block Template.
+* Fix - Show Compare feature tab on Product Page Single Block Template.
 
 = 3.1.3 - 2023/11/22 =
 * This maintenance release has plugin framework updates for compatibility with PHP 8.1 onwards, plus backward compatibility to WooCommerce 6.0.
@@ -747,6 +751,9 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 3.1.4 =
+This mainetnace release has a bug fix for the Compare Feature tab on Product Page Block Template
 
 = 3.1.3 =
 This maintenance release has plugin framework updates for compatibility with PHP 8.1 onwards, plus backward compatibility to WooCommerce 6.0.

@@ -185,7 +185,7 @@ if ( ! isset( $woo_compare_product_page_settings['disable_product_page_compare']
 }
 
 // Add Compare Featured Field tab into Product Details page
-if ( ( ! isset( $woo_compare_product_page_settings['disable_product_page_compare'] ) || $woo_compare_product_page_settings['disable_product_page_compare'] != 1 ) && ( ! isset( $woo_compare_product_page_settings['disable_compare_featured_tab'] ) || $woo_compare_product_page_settings['disable_compare_featured_tab'] != 1 ) ) {
+if ( ! isset( $woo_compare_product_page_settings['disable_compare_featured_tab'] ) || $woo_compare_product_page_settings['disable_compare_featured_tab'] != 1 ) {
 	add_filter( 'woocommerce_product_tabs', array('\A3Rev\WCCompare\Hook_Filter', 'woocp_product_featured_tab_woo_2_0') );
 }
 
