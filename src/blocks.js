@@ -20,3 +20,5 @@ updateCategory('a3rev-blocks', {
 });
 
 import './blocks/compare-button/block';
+
+import './blocks/compare-list/block';

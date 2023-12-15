@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "a3blocks/compare-list",
+	"title": "Compare Products List",
+	"category": "a3rev-blocks",
+	"description": "Displays the Compare Products List.",
+	"keywords": [ "compare", "list" ],
+	"version": "1.0",
+	"textdomain": "woocommerce-compare-products",
+	"attributes":{
+		"title": {
+			"type": "string",
+			"default" : "Compare Products"
+		}
+	},
+	"selectors": {
+        "root": ".wp-block-a3blocks-compare-list"
+    },
+	"supports": {
+		"align": true,
+		"html": false,
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"padding": true
+			}
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"width": true,
+			"__experimentalDefaultControls": {
+				"width": true
+			}
+		}
+	},
+	"editorScript": "wc-cp-block-editor",
+	"editorStyle": [ "wc-cp-block-editor" ],
+	"viewScript": [ "wc-compare-widget-backbone" ]
+}

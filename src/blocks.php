@@ -79,6 +79,10 @@ class Blocks {
 			)
 		);
 
+		wp_localize_script( 'wc-cp-block-editor', 'compare_list_block_editor', array( 
+			'preview'    => WOOCP_URL.  '/src/assets/preview.jpg',
+		) );
+
 		// Styles.
 		wp_register_style(
 			'wc-cp-block-editor', // Handle.

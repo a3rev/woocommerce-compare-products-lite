@@ -1,0 +1,14 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+.wp-block-a3blocks-compare-list {
+	img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
