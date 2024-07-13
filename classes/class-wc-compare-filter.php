@@ -139,7 +139,7 @@ class Hook_Filter
 		extract($woo_compare_grid_view_settings);
 		if ($template_name == 'loop/add-to-cart.php') {
 			$product_id = $product->get_id();
-			if (($post->post_type == 'product' || $post->post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
+			if ( $post && ($post->post_type == 'product' || $post->post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
 				$compare_grid_view_custom_class = '';
 				$compare_grid_view_text = __('Compare This', 'woocommerce-compare-products' );
 				$compare_grid_view_class = 'woo_bt_compare_this_button';

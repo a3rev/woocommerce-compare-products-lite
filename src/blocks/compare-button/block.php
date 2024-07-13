@@ -15,7 +15,7 @@
  * @return string Returns the filtered post title for the current post wrapped inside "h1" tags.
  */
 function render_block_a3_wc_compare_button( $attributes, $content, $block ) {
-	if ( ! isset( $block->context['postId'] ) ) {
+	if ( ! empty( $block->context['postId'] ) ) {
 		$product_id = $block->context['postId'];
 	} else {
 		$product_id = \A3Rev\WCCompare\Hook_Filter::get_current_product_id( 0 );
