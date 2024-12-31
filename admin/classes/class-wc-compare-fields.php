@@ -366,7 +366,7 @@ class Fields
 
 	public static function woocp_update_orders() {
 		check_ajax_referer( 'woocp-update-order', 'security' );
-		$updateRecordsArray  = $_REQUEST['recordsArray'];
+		$updateRecordsArray  = array_map('sanitize_text_field', $_REQUEST['recordsArray']);
 		$cat_id = absint( $_REQUEST['cat_id'] );
 		$listingCounter = 1;
 		foreach ($updateRecordsArray as $recordIDValue) {
@@ -389,12 +389,12 @@ class Fields
             <input type="hidden" name="tab" value="features"  />
         <?php
 		$s_feature = '';
-		if (isset($_REQUEST['s_feature']) && trim($_REQUEST['s_feature']) != '') $s_feature = trim(stripslashes($_REQUEST['s_feature'])); 
+		if (isset($_REQUEST['s_feature']) && trim($_REQUEST['s_feature']) != '') $s_feature = sanitize_text_field($_REQUEST['s_feature']); 
 		?>
         	<table class="form-table" style="width:535px;">
                 <tbody>
                 	<tr valign="top">
-                    	<th class="titledesc" scope="rpw" style="padding-left:0;"><input type="text" name="s_feature" id="s_feature" value="<?php echo $s_feature; ?>" style="min-width:300px" /></th>
+                    	<th class="titledesc" scope="rpw" style="padding-left:0;"><input type="text" name="s_feature" id="s_feature" value="<?php echo esc_attr($s_feature); ?>" style="min-width:300px" /></th>
                         <td class="forminp search_features_td" style="padding-right:0; text-align:right;"><input type="submit" id="search_features" name="" value="<?php _e('Search Features', 'woocommerce-compare-products' ); ?>" class="button"></td>
                     </tr>
                 </tbody>
@@ -408,7 +408,7 @@ class Fields
 			$start = ($p - 1 ) * $rows;
 			$end = $start+$rows;
 			$div = 5;
-			$keyword = trim(stripslashes($_REQUEST['s_feature']));
+			$keyword = sanitize_text_field($_REQUEST['s_feature']);
 			
 			// fixed for 4.1.2
 			$link = esc_url( add_query_arg(array('pp' => '', 'rows' => $rows, 's_feature' => $keyword ) ) );

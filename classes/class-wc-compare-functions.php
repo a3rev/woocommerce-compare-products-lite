@@ -213,19 +213,34 @@ class Functions
 	 */
 	public static function add_product_to_compare_list($product_id) {
 		$product_list = self::get_variations($product_id);
-		if (count($product_list) < 1 && self::check_product_activate_compare($product_id) && self::check_product_have_cat($product_id)) $product_list = array($product_id);
+		if (count($product_list) < 1 && self::check_product_activate_compare($product_id) && self::check_product_have_cat($product_id)) {
+			$product_list = array($product_id);
+		}
+		
 		if (is_array($product_list) && count($product_list) > 0) {
-			if (isset($_COOKIE['woo_compare_list']))
-				$current_compare_list = (array) unserialize($_COOKIE['woo_compare_list']);
-			else
+			$current_compare_list = isset($_COOKIE['woo_compare_list']) 
+				? json_decode($_COOKIE['woo_compare_list'], true) 
+				: array();
+				
+			if (!is_array($current_compare_list)) {
 				$current_compare_list = array();
+			}
+			
 			foreach ($product_list as $product_add) {
 				if (!in_array($product_add, $current_compare_list)) {
 					$current_compare_list[] = (int)$product_add;
 				}
 			}
 			
-			setcookie( "woo_compare_list", serialize($current_compare_list), 0, COOKIEPATH, COOKIE_DOMAIN, false, true );
+			setcookie(
+				"woo_compare_list", 
+				json_encode($current_compare_list), 
+				0, 
+				COOKIEPATH, 
+				COOKIE_DOMAIN, 
+				false, 
+				true
+			);
 		}
 	}
 
@@ -233,10 +248,10 @@ class Functions
 	 * Get list product ids , variation ids
 	 */
 	public static function get_compare_list() {
-		if (isset($_COOKIE['woo_compare_list']))
-			$current_compare_list = (array) unserialize($_COOKIE['woo_compare_list']);
-		else
-			$current_compare_list = array();
+		$current_compare_list = isset($_COOKIE['woo_compare_list'])
+			? json_decode($_COOKIE['woo_compare_list'], true)
+			: array();
+		
 		$return_compare_list = array();
 		if (is_array($current_compare_list) && count($current_compare_list) > 0) {
 			foreach ($current_compare_list as $product_id) {
@@ -252,10 +267,10 @@ class Functions
 	 * Get total products in complare list
 	 */
 	public static function get_total_compare_list() {
-		if (isset($_COOKIE['woo_compare_list']))
-			$current_compare_list = (array) unserialize($_COOKIE['woo_compare_list']);
-		else
-			$current_compare_list = array();
+		$current_compare_list = isset($_COOKIE['woo_compare_list'])
+			? json_decode($_COOKIE['woo_compare_list'], true)
+			: array();
+			
 		$return_compare_list = array();
 		if (is_array($current_compare_list) && count($current_compare_list) > 0) {
 			foreach ($current_compare_list as $product_id) {
@@ -271,20 +286,41 @@ class Functions
 	 * Remove a product out compare list
 	 */
 	public static function delete_product_on_compare_list($product_id) {
-		if (isset($_COOKIE['woo_compare_list']))
-			$current_compare_list = (array) unserialize($_COOKIE['woo_compare_list']);
-		else
-			$current_compare_list = array();
+		$current_compare_list = isset($_COOKIE['woo_compare_list'])
+			? json_decode($_COOKIE['woo_compare_list'], true)
+			: array();
+			
+		if (!is_array($current_compare_list)) {
+			return;
+		}
+		
 		$key = array_search($product_id, $current_compare_list);
 		unset($current_compare_list[$key]);
-		setcookie( "woo_compare_list", serialize($current_compare_list), 0, COOKIEPATH, COOKIE_DOMAIN, false, true );
+		
+		setcookie(
+			"woo_compare_list", 
+			json_encode(array_values($current_compare_list)), 
+			0, 
+			COOKIEPATH, 
+			COOKIE_DOMAIN, 
+			false, 
+			true
+		);
 	}
 
 	/**
 	 * Clear compare list
 	 */
 	public static function clear_compare_list() {
-		setcookie( "woo_compare_list", serialize(array()), 0, COOKIEPATH, COOKIE_DOMAIN, false, true );
+		setcookie(
+			"woo_compare_list", 
+			json_encode(array()), 
+			0, 
+			COOKIEPATH, 
+			COOKIE_DOMAIN, 
+			false, 
+			true
+		);
 	}
 
 	/**

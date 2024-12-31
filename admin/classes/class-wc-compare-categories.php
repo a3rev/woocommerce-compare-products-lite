@@ -21,7 +21,7 @@ class Categories
 		global $wpdb;
 		$cat_msg = '';
 		if(isset($_REQUEST['bt_save_cat'])){
-			$category_name = trim(strip_tags(addslashes($_REQUEST['category_name'])));
+			$category_name = sanitize_text_field($_REQUEST['category_name']);
 			if(isset($_REQUEST['category_id']) && $_REQUEST['category_id'] > 0){
 				$old_data = WCCompare\Data\Categories::get_row( absint( $_REQUEST['category_id'] ) );
 				$count_category_name = WCCompare\Data\Categories::get_count("category_name = '".$category_name."' AND id != '". absint( $_REQUEST['category_id'] )."'");
@@ -89,7 +89,7 @@ class Categories
 
 	public static function woocp_update_cat_orders() {
 		check_ajax_referer( 'woocp-update-cat-order', 'security' );
-		$updateRecordsArray  = $_REQUEST['recordsArray'];
+		$updateRecordsArray  = array_map('sanitize_text_field', $_REQUEST['recordsArray']);
 
 		$listingCounter = 1;
 		foreach ($updateRecordsArray as $recordIDValue) {
