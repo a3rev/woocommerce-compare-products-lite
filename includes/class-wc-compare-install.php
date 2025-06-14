@@ -125,6 +125,10 @@ class Install
 		$sidebar_options = get_option('sidebars_widgets');
 		$compare_widget = get_option('widget_'.$widget_name);
 		$have_widget = false;
+		if ( ! is_array( $sidebar_options ) ) {
+			return;
+		}
+
 		foreach ($sidebar_options as $siderbar_name => $sidebar_widgets) {
 			if ($siderbar_name == 'wp_inactive_widgets') continue;
 			if (is_array($sidebar_widgets) && count($sidebar_widgets) > 0) {
@@ -144,7 +148,11 @@ class Install
 			$new_sidebar_options = $sidebar_options;
 			foreach ($add_to_sidebars as $sidebar_name) {
 				if (isset($sidebar_options[$sidebar_name])) {
-					$sidebar_options[$sidebar_name][] = $widget_name.'-'.$count;
+					if (is_array($sidebar_options[$sidebar_name])) {
+						$sidebar_options[$sidebar_name][] = $widget_name . '-' . $count;
+					} else {
+						$sidebar_options[$sidebar_name] = array($widget_name . '-' . $count);
+					}
 					$added_widget = true;
 					break;
 				}
@@ -152,7 +160,11 @@ class Install
 			if (!$added_widget) {
 				foreach ($new_sidebar_options as $siderbar_name => $sidebar_widgets) {
 					if ($siderbar_name == 'wp_inactive_widgets') continue;
-					$sidebar_options[$siderbar_name][] = $widget_name.'-'.$count;
+					if (is_array($sidebar_options[$siderbar_name])) {
+						$sidebar_options[$siderbar_name][] = $widget_name . '-' . $count;
+					} else {
+						$sidebar_options[$siderbar_name] = array($widget_name . '-' . $count);
+					}
 					break;
 				}
 			}

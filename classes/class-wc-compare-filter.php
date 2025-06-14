@@ -138,6 +138,10 @@ class Hook_Filter
 		global $product_compare_id;
 		extract($woo_compare_grid_view_settings);
 		if ($template_name == 'loop/add-to-cart.php') {
+			if ( ! ( $product instanceof WC_Product ) ) {
+				return;
+			}
+
 			$product_id = $product->get_id();
 			if ( $post && ($post->post_type == 'product' || $post->post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
 				$compare_grid_view_custom_class = '';
@@ -162,6 +166,10 @@ class Hook_Filter
 		if ( $woo_compare_grid_view_settings['disable_grid_view_compare'] == 1 || $woo_compare_grid_view_settings['grid_view_button_position'] == 'above' ) return;
 
 		extract($woo_compare_grid_view_settings);
+		if ( ! ( $product instanceof WC_Product ) ) {
+			return;
+		}
+
 			$product_id = $product->get_id();
 			if (($post->post_type == 'product' || $post->post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && Functions::check_product_have_cat($product_id)) {
 				$compare_grid_view_custom_class = '';
@@ -181,6 +189,10 @@ class Hook_Filter
 		global $woo_compare_product_page_settings;
 		global $woo_compare_comparison_page_global_settings;
 		global $product_compare_id;
+		if ( ! ( $product instanceof WC_Product ) ) {
+			return;
+		}
+
 		$product_id = $product->get_id();
 		if (($post->post_type == 'product' || $post->post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && $woo_compare_product_page_settings['auto_add'] == 'yes' && Functions::check_product_have_cat($product_id)) {
 			
@@ -224,6 +236,10 @@ class Hook_Filter
 		global $woo_compare_comparison_page_global_settings;
 		global $product_compare_id;
 		if (in_array($template_name, array('single-product/add-to-cart/simple.php', 'single-product/add-to-cart/grouped.php', 'single-product/add-to-cart/external.php', 'single-product/add-to-cart/variable.php'))) {
+			if ( ! ( $product instanceof WC_Product ) ) {
+				return;
+			}
+
 			$product_id = $product->get_id();
 			if (($post->post_type == 'product' || $post->post_type == 'product_variation') && Functions::check_product_activate_compare($product_id) && $woo_compare_product_page_settings['auto_add'] == 'yes' && Functions::check_product_have_cat($product_id)) {
 				
