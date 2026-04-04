@@ -10,9 +10,8 @@ const { __ } = wp.i18n;
 
 const {
 	PanelBody,
-	TextControl,
-	Button,
-	ButtonGroup,
+	__experimentalToggleGroupControl: ToggleGroupControl,
+	__experimentalToggleGroupControlOption: ToggleGroupControlOption,
 } = wp.components;
 
 const {
@@ -23,33 +22,28 @@ const { Component, Fragment } = wp.element;
 
 function WidthPanel( { selectedWidth, setAttributes } ) {
 	function handleChange( newWidth ) {
-		// Check if we are toggling the width off
 		const width = selectedWidth === newWidth ? undefined : newWidth;
-
-		// Update attributes.
 		setAttributes( { width } );
 	}
 
 	return (
 		<PanelBody title={ __( 'Width settings' ) }>
-			<ButtonGroup aria-label={ __( 'Button width' ) }>
-				{ [ 25, 50, 75, 100 ].map( ( widthValue ) => {
-					return (
-						<Button
-							key={ widthValue }
-							size="small"
-							variant={
-								widthValue === selectedWidth
-									? 'primary'
-									: undefined
-							}
-							onClick={ () => handleChange( widthValue ) }
-						>
-							{ widthValue }%
-						</Button>
-					);
-				} ) }
-			</ButtonGroup>
+			<ToggleGroupControl
+				__next40pxDefaultSize
+				__nextHasNoMarginBottom
+				label={ __( 'Button width' ) }
+				value={ selectedWidth }
+				onChange={ ( value ) => handleChange( value ) }
+				isBlock
+			>
+				{ [ 25, 50, 75, 100 ].map( ( widthValue ) => (
+					<ToggleGroupControlOption
+						key={ widthValue }
+						value={ widthValue }
+						label={ `${ widthValue }%` }
+					/>
+				) ) }
+			</ToggleGroupControl>
 		</PanelBody>
 	);
 }

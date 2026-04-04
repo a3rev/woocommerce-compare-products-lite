@@ -31,14 +31,15 @@ export default class Inspector extends Component {
 		return (
 			<InspectorControls>
 				<PanelBody title={ __( 'Settings' ) }>
-					<TextControl
-						label={ __( 'Title' ) }
-						help={ __( 'The Title will be included the total products on Compare List. Leave empty for disable the Title' ) }
-						value={ title }
-						onChange={ ( newTitle ) =>
-							setAttributes( { title: newTitle } )
-						}
-					/>
+				<TextControl
+					__next40pxDefaultSize
+					label={ __( 'Title' ) }
+					help={ __( 'The Title will be included the total products on Compare List. Leave empty for disable the Title' ) }
+					value={ title }
+					onChange={ ( newTitle ) =>
+						setAttributes( { title: newTitle } )
+					}
+				/>
 				</PanelBody>
 			</InspectorControls>
 	 	);

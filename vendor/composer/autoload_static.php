@@ -56,6 +56,7 @@ class ComposerStaticInit19fa51539b965672ee778d7bc1a858b1
         'A3Rev\\WCCompare\\Functions' => __DIR__ . '/../..' . '/classes/class-wc-compare-functions.php',
         'A3Rev\\WCCompare\\Hook_Filter' => __DIR__ . '/../..' . '/classes/class-wc-compare-filter.php',
         'A3Rev\\WCCompare\\Install' => __DIR__ . '/../..' . '/includes/class-wc-compare-install.php',
+        'A3Rev\\WCCompare\\EditorSidebar' => __DIR__ . '/../..' . '/classes/class-wc-compare-editor-sidebar.php',
         'A3Rev\\WCCompare\\MetaBox' => __DIR__ . '/../..' . '/classes/class-wc-compare-metabox.php',
         'A3Rev\\WCCompare\\Widget' => __DIR__ . '/../..' . '/widgets/compare_widget.php',
         'A3Rev\\WCCompare\\Blocks' => __DIR__ . '/../..' . '/src/blocks.php',

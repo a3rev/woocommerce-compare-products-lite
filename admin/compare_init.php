@@ -57,11 +57,9 @@ function woocp_init() {
 		delete_option( 'a3rev_woocp_install_default_data_start' );
 		new WCCompare\Install();
 	}
-
-	woocp_plugin_textdomain();
 }
 
-// Add language
+add_action( 'after_setup_theme', 'woocp_plugin_textdomain' );
 add_action('init', 'woocp_init');
 
 // Add custom style to dashboard
@@ -194,6 +192,9 @@ add_action( 'create_product_cat',  array('\A3Rev\WCCompare\Hook_Filter', 'auto_c
 
 // Create Compare Feature when Product Variation is created
 add_action( 'admin_init', array('\A3Rev\WCCompare\Hook_Filter', 'auto_create_compare_feature'), 1);
+
+// Block Editor: Plugin Document Setting Panel (replaces toggle in legacy meta box)
+\A3Rev\WCCompare\EditorSidebar::init();
 
 // Add compare feature fields box into Edit product page
 add_action( 'admin_menu', array('\A3Rev\WCCompare\MetaBox', 'compare_meta_boxes'), 1 );

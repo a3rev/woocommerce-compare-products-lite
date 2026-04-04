@@ -27,8 +27,8 @@ class MetaBox
 		$pagename = 'product';
 		add_meta_box( 'woo_compare_feature_box', __('Compare Feature Fields', 'woocommerce-compare-products' ), array(__CLASS__, 'woo_compare_feature_box'), $pagename, 'side', 'high'
 			, array( 
-				'__block_editor_compatible_meta_box' => true,
-				'__back_compat_meta_box' => false,
+				'__block_editor_compatible_meta_box' => false,
+				'__back_compat_meta_box' => true,
 			) );
 	}
 
@@ -46,6 +46,9 @@ class MetaBox
 		$post_id = $post->ID;
 		$deactivate_compare_feature = get_post_meta( $post_id, '_woo_deactivate_compare_feature', true );
 		$compare_category = get_post_meta( $post_id, '_woo_compare_category', true );
+
+		$current_screen = get_current_screen();
+		$is_block_editor = ( $current_screen && method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor() );
 ?>
         <script type="text/javascript">
 		(function($){
@@ -75,9 +78,13 @@ class MetaBox
 			});
 		})(jQuery);
 		</script>
+		<?php if ( ! $is_block_editor ) : ?>
+		<input type="hidden" name="_woo_compare_has_metabox_toggle" value="1" />
         <input id='deactivate_compare_feature' type='checkbox' value='no' <?php if ( $deactivate_compare_feature == 'no' ) echo 'checked="checked"'; else echo ''; ?> name='_woo_deactivate_compare_feature' class="deactivate_compare_feature" style="float:none; width:auto; display:inline-block;" />
 		<label style="display:inline-block" for='deactivate_compare_feature' class='small'><?php _e( "Activate Compare Feature for this Product", 'woocommerce-compare-products' ); ?></label>
-        <div class="compare_feature_activate_form" style=" <?php if ( $deactivate_compare_feature == 'yes') { echo 'display:none;';} ?>">
+		<?php endif; ?>
+        <div class="compare_feature_activate_form" style=" <?php if ( ! $is_block_editor && $deactivate_compare_feature == 'yes') { echo 'display:none;';} ?>">
+            <?php if ( ! $is_block_editor ) : ?>
             <p><label style="display:inline-block" for='compare_category' class='small'><?php _e( "Select a  Compare Category for this Product", 'woocommerce-compare-products' ); ?></label> :
                 <select name="_woo_compare_category" id="compare_category" style="width:200px;">
                     <option value="0"><?php _e('Select...', 'woocommerce-compare-products' ); ?></option>
@@ -95,6 +102,7 @@ class MetaBox
     ?>
                 </select> <img class="compare_widget_loader" style="display:none;" src="<?php echo WOOCP_IMAGES_URL; ?>/ajax-loader.gif" border=0 />
             </p>
+            <?php endif; ?>
             <div id="compare_cat_fields"><?php self::woo_show_field_of_cat($post_id, $compare_category); ?></div>
 		</div>                
 	<?php
@@ -436,20 +444,27 @@ class MetaBox
 		$post_status = get_post_status($post_id);
 		$post_type = get_post_type($post_id);
 		if ($post_type == 'product' && $post_status != false) {
-			if (isset($_REQUEST['_woo_deactivate_compare_feature']) && $_REQUEST['_woo_deactivate_compare_feature'] == 'no') {
-				update_post_meta($post_id, '_woo_deactivate_compare_feature', 'no');
-			}else {
-				update_post_meta($post_id, '_woo_deactivate_compare_feature', 'yes');
+			if ( isset( $_REQUEST['_woo_compare_has_metabox_toggle'] ) ) {
+				if (isset($_REQUEST['_woo_deactivate_compare_feature']) && $_REQUEST['_woo_deactivate_compare_feature'] == 'no') {
+					update_post_meta($post_id, '_woo_deactivate_compare_feature', 'no');
+				}else {
+					update_post_meta($post_id, '_woo_deactivate_compare_feature', 'yes');
+				}
 			}
 			
 			$compare_category = 0;
 			if ( isset($_REQUEST['_woo_compare_category']) ) {
 				$compare_category = sanitize_text_field( $_REQUEST['_woo_compare_category'] );
 				update_post_meta( $post_id, '_woo_compare_category', $compare_category );
-			}
 
-			$category_data = Data\Categories::get_row($compare_category);
-			if ( $category_data != NULL ) update_post_meta($post_id, '_woo_compare_category_name', stripslashes($category_data->category_name));
+				$category_data = Data\Categories::get_row($compare_category);
+				if ( $category_data != NULL ) update_post_meta($post_id, '_woo_compare_category_name', stripslashes($category_data->category_name));
+			} else {
+				$compare_category = get_post_meta( $post_id, '_woo_compare_category', true );
+				if ( empty( $compare_category ) ) {
+					$compare_category = 0;
+				}
+			}
 
 			$compare_fields = Data\Categories_Fields::get_results("cat_id='".$compare_category."'", 'cf.field_order ASC');
 			if (is_array($compare_fields) && count($compare_fields)>0) {
