@@ -100,12 +100,13 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
-= 3.3.0 - 2026/03/31 =
+= 3.3.0 - 2026/04/09 =
 * This maintenance release has bug fixes and compatibility with WordPress 7.0, WooCommerce 10.6
 * Tweak - Tested for compatibility with WordPress 7.0
 * Tweak - Tested for compatibility with WooCommerce 10.6
 * Tweak - Update Blocks for compatibility with WordPress 7.0 Block Editor
 * Tweak - Improved plugin initialization sequence for better reliability
+* Tweak - Update meta box for compatibility with WordPress 7.0 Block Editor
 * Fix - Resolved PHP warnings on image size registration when settings are not yet saved
 * Fix - Resolved admin interface loading issue on taxonomy edit pages
 * Framework - Updated LESS compiler for compatibility with PHP 8.2 onwards
