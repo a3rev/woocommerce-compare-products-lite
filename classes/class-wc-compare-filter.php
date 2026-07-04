@@ -136,7 +136,6 @@ class Hook_Filter
 		global $woo_compare_grid_view_settings;
 		global $woo_compare_comparison_page_global_settings;
 		global $product_compare_id;
-		extract($woo_compare_grid_view_settings);
 		if ($template_name == 'loop/add-to-cart.php') {
 			if ( ! is_a( $product, 'WC_Product' ) ) {
 				return;
@@ -165,7 +164,6 @@ class Hook_Filter
 
 		if ( $woo_compare_grid_view_settings['disable_grid_view_compare'] == 1 || $woo_compare_grid_view_settings['grid_view_button_position'] == 'above' ) return;
 
-		extract($woo_compare_grid_view_settings);
 		if ( ! is_a( $product, 'WC_Product' ) ) {
 			return;
 		}
@@ -434,6 +432,7 @@ class Hook_Filter
 	}
 
 	public static function woocp_variable_ajax_add_to_cart() {
+		check_ajax_referer( 'woocp-add-to-cart', 'security' );
 
 		// Get product ID to add and quantity
 		$variation_id   = absint( $_REQUEST['product_id'] );
@@ -465,6 +464,7 @@ class Hook_Filter
 	}
 
 	public static function woocp_add_to_compare() {
+		check_ajax_referer( 'woocp-compare-events', 'security' );
 
 		$product_id  = absint( $_REQUEST['product_id'] );
 		Functions::add_product_to_compare_list($product_id);
@@ -473,14 +473,16 @@ class Hook_Filter
 	}
 
 	public static function woocp_remove_from_popup_compare() {
+		check_ajax_referer( 'woocp-compare-events', 'security' );
 
 		$product_id  = absint( $_REQUEST['product_id'] );
 		Functions::delete_product_on_compare_list($product_id);
 
 		die();
 	}
-	
+
 	public static function woocp_update_compare_popup() {
+		check_ajax_referer( 'woocp-compare-events', 'security' );
 		$result = Functions::get_compare_list_html_popup();
 		$result .= '<script src="'. WOOCP_JS_URL.'/fixedcolumntable/fixedcolumntable.js"></script>';
 		echo json_encode( $result );
@@ -488,24 +490,28 @@ class Hook_Filter
 	}
 
 	public static function woocp_update_compare_widget() {
+		check_ajax_referer( 'woocp-compare-events', 'security' );
 		$result = Functions::get_compare_list_html_widget();
 		echo json_encode( $result );
 		die();
 	}
 
 	public static function woocp_update_total_compare() {
+		check_ajax_referer( 'woocp-compare-events', 'security' );
 		$result = Functions::get_total_compare_list();
 		echo json_encode( $result );
 		die();
 	}
 
 	public static function woocp_remove_from_compare() {
+		check_ajax_referer( 'woocp-compare-events', 'security' );
 		$product_id  = absint( $_REQUEST['product_id'] );
 		Functions::delete_product_on_compare_list($product_id);
 		die();
 	}
 
 	public static function woocp_clear_compare() {
+		check_ajax_referer( 'woocp-compare-events', 'security' );
 		Functions::clear_compare_list();
 		die();
 	}

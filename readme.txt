@@ -3,7 +3,7 @@ Contributors: a3rev, nguyencongtuan
 Tags: WooCommerce, WooCommerce Plugins, WooCommerce compare products, compare products plugin, compare products
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 3.3.0
+Stable tag: 3.3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -99,6 +99,13 @@ You can use this plugin when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 3.3.1 - 2026/07/04 =
+* This maintenance release has security hardening improvements
+* Security - Added capability checks to admin AJAX and CSRF protection to admin form actions
+* Security - Improved database query preparation and output escaping throughout the admin interface
+* Security - Removed insecure TLS handling on outbound API requests
+* Tweak - Removed dead code
 
 = 3.3.0 - 2026/04/09 =
 * This maintenance release has bug fixes and compatibility with WordPress 7.0, WooCommerce 10.6

@@ -45,6 +45,7 @@ class Categories
 	public static function get_row($id, $where='', $output_type='OBJECT') {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_categories";
+		$id = absint( $id );
 		if (trim($where) != '')
 			$where = ' AND '.$where;
 		$result = $wpdb->get_row("SELECT * FROM {$table_name} WHERE id='$id' {$where}", $output_type);
@@ -88,11 +89,14 @@ class Categories
 		global $wpdb;
 		extract($args);
 		$table_name = $wpdb->prefix. "woo_compare_categories";
-		$category_name = strip_tags(addslashes($category_name));
+		$category_name = strip_tags( wp_unslash( $category_name ) );
 		$category_order = self::get_maximum_order();
 		$category_order++;
-		$query = $wpdb->query("INSERT INTO {$table_name}(category_name, category_order) VALUES('$category_name', '$category_order')");
-		if ($query) {
+		$inserted = $wpdb->insert( $table_name, array(
+			'category_name'  => $category_name,
+			'category_order' => $category_order,
+		), array( '%s', '%d' ) );
+		if ($inserted) {
 			$category_id = $wpdb->insert_id;
 			return $category_id;
 		}else {
@@ -104,9 +108,15 @@ class Categories
 		global $wpdb;
 		extract($args);
 		$table_name = $wpdb->prefix. "woo_compare_categories";
-		$category_name = strip_tags(addslashes($category_name));
+		$category_name = strip_tags( wp_unslash( $category_name ) );
 
-		$query = $wpdb->query("UPDATE {$table_name} SET category_name='$category_name' WHERE id='" . absint( $category_id ) ."'");
+		$query = $wpdb->update(
+			$table_name,
+			array( 'category_name' => $category_name ),
+			array( 'id' => absint( $category_id ) ),
+			array( '%s' ),
+			array( '%d' )
+		);
 		return $query;
 
 	}
@@ -122,7 +132,7 @@ class Categories
 	public static function update_order($category_id, $category_order=0) {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_categories";
-		$query = $wpdb->query("UPDATE {$table_name} SET category_order='$category_order' WHERE id='$category_id'");
+		$query = $wpdb->update( $table_name, array( 'category_order' => absint( $category_order ) ), array( 'id' => absint( $category_id ) ), array( '%d' ), array( '%d' ) );
 		return $query;
 	}
 
@@ -137,7 +147,7 @@ class Categories
 	public static function delete_row($category_id) {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_categories";
-		$result = $wpdb->query("DELETE FROM {$table_name} WHERE id='{$category_id}'");
+		$result = $wpdb->delete( $table_name, array( 'id' => absint( $category_id ) ), array( '%d' ) );
 		return $result;
 	}
 }

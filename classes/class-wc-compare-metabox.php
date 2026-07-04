@@ -454,7 +454,7 @@ class MetaBox
 			
 			$compare_category = 0;
 			if ( isset($_REQUEST['_woo_compare_category']) ) {
-				$compare_category = sanitize_text_field( $_REQUEST['_woo_compare_category'] );
+				$compare_category = absint( $_REQUEST['_woo_compare_category'] );
 				update_post_meta( $post_id, '_woo_compare_category', $compare_category );
 
 				$category_data = Data\Categories::get_row($compare_category);
@@ -496,7 +496,7 @@ class MetaBox
 						
 						$variation_compare_category = 0;
 						if ( isset($_REQUEST['variable_woo_compare_category'][$variation_id]) ) {
-							$variation_compare_category = sanitize_text_field( $_REQUEST['variable_woo_compare_category'][$variation_id] );
+							$variation_compare_category = absint( $_REQUEST['variable_woo_compare_category'][$variation_id] );
 							update_post_meta( $variation_id, '_woo_compare_category', $variation_compare_category );
 						}
 

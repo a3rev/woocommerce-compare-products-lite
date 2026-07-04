@@ -2,7 +2,7 @@
 /*
 Plugin Name: Compare Products for WooCommerce
 Description: Compare Products uses your existing WooCommerce Product Categories and Product Attributes to create Compare Product Features for all your products. A sidebar Compare basket is created that users add products to and view the Comparison in a Compare this pop-up screen.
-Version: 3.3.0
+Version: 3.3.1
 Requires at least: 6.0
 Tested up to: 7.0
 Author: a3rev Software
@@ -36,7 +36,7 @@ if (!defined("WOOCP_AUTHOR_URI")) define("WOOCP_AUTHOR_URI", "https://a3rev.com/
 
 define( 'WOOCP_KEY', 'woo_compare' );
 define( 'WOOCP_PREFIX', 'wc_compare_' );
-define( 'WOOCP_VERSION',  '3.3.0' );
+define( 'WOOCP_VERSION',  '3.3.1' );
 define( 'WOOCP_G_FONTS',  true );
 
 // declare compatibility with new HPOS of WooCommerce
@@ -95,9 +95,6 @@ function woocp_plugin_textdomain() {
 	load_textdomain( 'woocommerce-compare-products', WP_LANG_DIR . '/woocommerce-compare-products/woocommerce-compare-products-' . $locale . '.mo' );
 	load_plugin_textdomain( 'woocommerce-compare-products', false, WOOCP_FOLDER . '/languages/' );
 }
-
-// Old code
-include 'old/class-wc-compare-grid-view-settings.php';
 
 include 'admin/compare_init.php';
 
