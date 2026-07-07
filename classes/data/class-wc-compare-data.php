@@ -55,6 +55,7 @@ class Data
 	public static function get_row($id, $where='', $output_type='OBJECT') {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_fields";
+		$id = absint( $id );
 		if (trim($where) != '')
 			$where = ' AND '.$where;
 		$result = $wpdb->get_row("SELECT * FROM {$table_name} WHERE id='$id' {$where}", $output_type);
@@ -96,19 +97,28 @@ class Data
 
 	public static function insert_row($args) {
 		global $wpdb;
-		extract($args);
 		$table_name = $wpdb->prefix. "woo_compare_fields";
-		$field_name = strip_tags(addslashes($field_name));
-		$field_type = strip_tags(addslashes($field_type));
-		$default_value = strip_tags(addslashes($default_value));
-		$field_unit = strip_tags(addslashes($field_unit), '<sup>');
+		$field_name = strip_tags( wp_unslash( $args['field_name'] ) );
+		$field_type = strip_tags( wp_unslash( $args['field_type'] ) );
+		$default_value = strip_tags( wp_unslash( $args['default_value'] ) );
+		$field_unit = strip_tags( wp_unslash( $args['field_unit'] ), '<sup>' );
 		$field_description = '';
 		$field_order = self::get_maximum_order();
 		$field_order++;
 		$field_key = '';
+		$data = array(
+			'field_name'        => $field_name,
+			'field_key'         => $field_key,
+			'field_type'        => $field_type,
+			'default_value'     => $default_value,
+			'field_unit'        => $field_unit,
+			'field_description' => $field_description,
+			'field_order'       => $field_order,
+		);
+		$formats = array( '%s', '%s', '%s', '%s', '%s', '%s', '%d' );
 		if (trim($field_key) == '') {
-			$query = $wpdb->query("INSERT INTO {$table_name}(field_name, field_key, field_type, default_value, field_unit, field_description, field_order) VALUES('$field_name', '', '$field_type', '$default_value', '$field_unit', '$field_description', '$field_order')");
-			if ($query) {
+			$inserted = $wpdb->insert( $table_name, $data, $formats );
+			if ($inserted) {
 				$field_id = $wpdb->insert_id;
 				$field_key = 'field-'.$field_id;
 				self::update_field_key($field_id, $field_key);
@@ -118,8 +128,9 @@ class Data
 			}
 		}else {
 			if (self::check_field_key($field_key)) {
-				$query = $wpdb->query("INSERT INTO {$table_name}(field_name, field_key, field_type, default_value, field_unit, field_description, field_order) VALUES('$field_name', '$field_key', '$field_type', '$default_value', '$field_unit', '$field_description', '$field_order')");
-				if ($query) {
+				$data['field_key'] = $field_key;
+				$inserted = $wpdb->insert( $table_name, $data, $formats );
+				if ($inserted) {
 					$field_id = $wpdb->insert_id;
 					return $field_id;
 				}else {
@@ -133,14 +144,25 @@ class Data
 
 	public static function update_row($args) {
 		global $wpdb;
-		extract($args);
 		$table_name = $wpdb->prefix. "woo_compare_fields";
-		$field_name = strip_tags(addslashes($field_name));
-		$field_type = strip_tags(addslashes($field_type));
-		$default_value = strip_tags(addslashes($default_value));
-		$field_unit = strip_tags(addslashes($field_unit), '<sup>');
+		$field_name = strip_tags( wp_unslash( $args['field_name'] ) );
+		$field_type = strip_tags( wp_unslash( $args['field_type'] ) );
+		$default_value = strip_tags( wp_unslash( $args['default_value'] ) );
+		$field_unit = strip_tags( wp_unslash( $args['field_unit'] ), '<sup>' );
 		$field_description = '';
-		$query = $wpdb->query("UPDATE {$table_name} SET field_name='$field_name', field_type='$field_type', default_value='$default_value', field_unit='$field_unit', field_description='$field_description' WHERE id='" . absint( $field_id ). "'");
+		$query = $wpdb->update(
+			$table_name,
+			array(
+				'field_name'        => $field_name,
+				'field_type'        => $field_type,
+				'default_value'     => $default_value,
+				'field_unit'        => $field_unit,
+				'field_description' => $field_description,
+			),
+			array( 'id' => absint( $args['field_id'] ) ),
+			array( '%s', '%s', '%s', '%s', '%s' ),
+			array( '%d' )
+		);
 		return $query;
 
 	}
@@ -148,7 +170,7 @@ class Data
 	public static function update_field_key($field_id, $field_key) {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_fields";
-		$query = $wpdb->query("UPDATE {$table_name} SET field_key='$field_key' WHERE id='$field_id'");
+		$query = $wpdb->update( $table_name, array( 'field_key' => $field_key ), array( 'id' => absint( $field_id ) ), array( '%s' ), array( '%d' ) );
 		return $query;
 	}
 
@@ -163,7 +185,7 @@ class Data
 	public static function update_order($field_id, $field_order=0) {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_fields";
-		$query = $wpdb->query("UPDATE {$table_name} SET field_order='$field_order' WHERE id='$field_id'");
+		$query = $wpdb->update( $table_name, array( 'field_order' => absint( $field_order ) ), array( 'id' => absint( $field_id ) ), array( '%d' ), array( '%d' ) );
 		return $query;
 	}
 
@@ -178,18 +200,20 @@ class Data
 	public static function delete_row($field_id) {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_fields";
-		$result = $wpdb->query("DELETE FROM {$table_name} WHERE id='{$field_id}'");
+		$result = $wpdb->delete( $table_name, array( 'id' => absint( $field_id ) ), array( '%d' ) );
 		return $result;
 	}
 
 	public static function check_field_key($field_key) {
-		$count = self::get_count("field_key='$field_key'");
+		global $wpdb;
+		$count = self::get_count( $wpdb->prepare( "field_key=%s", $field_key ) );
 		if ($count > 0) return false;
 		else return true;
 	}
 
 	public static function check_field_key_for_update($field_id, $field_key) {
-		$count = self::get_count("id!='$field_id' AND field_key='$field_key'");
+		global $wpdb;
+		$count = self::get_count( $wpdb->prepare( "id!=%d AND field_key=%s", absint( $field_id ), $field_key ) );
 		if ($count > 0) return false;
 		else return true;
 	}

@@ -45,7 +45,7 @@ class Categories_Fields
 	public static function get_row($cat_id, $field_id, $output_type='OBJECT') {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_cat_fields";
-		$result = $wpdb->get_row("SELECT * FROM {$table_name} WHERE cat_id='$cat_id' AND field_id='$field_id' ", $output_type);
+		$result = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$table_name} WHERE cat_id=%d AND field_id=%d ", absint( $cat_id ), absint( $field_id ) ), $output_type);
 		return $result;
 	}
 
@@ -108,7 +108,13 @@ class Categories_Fields
 	public static function update_order($cat_id, $field_id, $field_order=0) {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_cat_fields";
-		$query = $wpdb->query("UPDATE {$table_name} SET field_order='$field_order' WHERE field_id='$field_id' AND cat_id='$cat_id'");
+		$query = $wpdb->update(
+			$table_name,
+			array( 'field_order' => absint( $field_order ) ),
+			array( 'field_id' => absint( $field_id ), 'cat_id' => absint( $cat_id ) ),
+			array( '%d' ),
+			array( '%d', '%d' )
+		);
 		return $query;
 	}
 
@@ -143,10 +149,16 @@ class Categories_Fields
 	public static function insert_row($cat_id, $field_id) {
 		global $wpdb;
 		$table_name = $wpdb->prefix. "woo_compare_cat_fields";
-		$field_order = self::get_maximum_order("cat_id='".$cat_id."'");
+		$cat_id = absint( $cat_id );
+		$field_id = absint( $field_id );
+		$field_order = self::get_maximum_order( $wpdb->prepare( "cat_id=%d", $cat_id ) );
 		$field_order++;
-		$query = $wpdb->query("INSERT INTO {$table_name}(cat_id, field_id, field_order) VALUES('$cat_id', '$field_id', '$field_order')");
-		if ($query) {
+		$inserted = $wpdb->insert( $table_name, array(
+			'cat_id'      => $cat_id,
+			'field_id'    => $field_id,
+			'field_order' => $field_order,
+		), array( '%d', '%d', '%d' ) );
+		if ($inserted) {
 			return true;
 		}else {
 			return false;

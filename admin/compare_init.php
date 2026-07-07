@@ -145,11 +145,9 @@ add_action('wp_ajax_nopriv_woocp_product_get_fields', array('\A3Rev\WCCompare\Me
 
 // AJAX update orders for compare fields in dashboard
 add_action('wp_ajax_woocp_update_orders', array('\A3Rev\WCCompare\Admin\Fields', 'woocp_update_orders') );
-add_action('wp_ajax_nopriv_woocp_update_orders', array('\A3Rev\WCCompare\Admin\Fields', 'woocp_update_orders') );
 
 // AJAX update orders for compare categories in dashboard
 add_action('wp_ajax_woocp_update_cat_orders', array('\A3Rev\WCCompare\Admin\Categories', 'woocp_update_cat_orders') );
-add_action('wp_ajax_nopriv_woocp_update_cat_orders', array('\A3Rev\WCCompare\Admin\Categories', 'woocp_update_cat_orders') );
 
 // Include google fonts into header
 add_action( 'wp_enqueue_scripts', array( '\A3Rev\WCCompare\Hook_Filter', 'add_google_fonts'), 9 );

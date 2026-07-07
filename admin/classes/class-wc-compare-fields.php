@@ -33,6 +33,10 @@ class Fields
 		$result_msg = '';
 
 		if (isset($_REQUEST['bt_save_field'])) {
+			check_admin_referer( 'woocp-manage-features' );
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_die( -1, 403 );
+			}
 			$field_name = trim(strip_tags(addslashes($_REQUEST['field_name'])));
 			if (isset($_REQUEST['field_id']) && $_REQUEST['field_id'] > 0) {
 				$field_id = absint( $_REQUEST['field_id'] );
@@ -76,6 +80,10 @@ class Fields
 				}
 			}
 		}elseif (isset($_REQUEST['bt_delete'])) {
+			check_admin_referer( 'woocp-manage-features' );
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_die( -1, 403 );
+			}
 			$list_fields_delete = $_REQUEST['un_fields'];
 			if (is_array($list_fields_delete) && count($list_fields_delete) > 0) {
 				foreach ($list_fields_delete as $field_id) {
@@ -90,6 +98,10 @@ class Fields
 		}
 
 		if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'field-delete') {
+			check_admin_referer( 'woocp-manage-features' );
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_die( -1, 403 );
+			}
 			$field_id = absint( $_REQUEST['field_id'] );
 			if (isset($_REQUEST['cat_id']) && $_REQUEST['cat_id'] > 0) {
 				WCCompare\Data\Categories_Fields::delete_row("field_id='".$field_id."' AND cat_id='". absint( $_REQUEST['cat_id'] ) ."'");
@@ -109,6 +121,7 @@ class Fields
 ?>
         <h3 id="add_feature"><?php if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'field-edit') { _e('Edit Compare Product Features', 'woocommerce-compare-products' ); }else { _e('Add Compare Product Features', 'woocommerce-compare-products' ); }?></h3>
         <form action="admin.php?page=woo-compare-features" method="post" name="form_add_compare" id="form_add_compare">
+        <?php wp_nonce_field( 'woocp-manage-features' ); ?>
         <?php
 		if (isset($_REQUEST['act']) && $_REQUEST['act'] == 'field-edit') {
 			$field_id = absint( $_REQUEST['field_id'] );
@@ -131,7 +144,7 @@ class Fields
                         	<table cellspacing="0" class="form-table">
                             	<tr>
                                 	<th><div class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-tip="<?php _e('This is the Feature Name that users see in the Compare Fly-Out Window, for example-  System Height', 'woocommerce-compare-products' ) ?>"></div> <label for="field_name"><?php _e('Feature Name', 'woocommerce-compare-products' ); ?></label></th>
-                                    <td><input type="text" name="field_name" id="field_name" value="<?php if (!empty($field)) echo stripslashes($field->field_name); ?>" style="width:300px" /></td>
+                                    <td><input type="text" name="field_name" id="field_name" value="<?php if (!empty($field)) echo esc_attr( stripslashes($field->field_name) ); ?>" style="width:300px" /></td>
                                 </tr>
                                 <tr>
                                 	<th><div class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-tip="<?php _e("e.g kgs, mm, lbs, cm, inches - the unit of measurement shows after the Feature name in (brackets). If you leave this blank you will just see the Feature name.", 'woocommerce-compare-products' ) ?>"></div> <label for="field_unit"><?php _e('Feature Unit of Measurement', 'woocommerce-compare-products' ); ?></label></th>
@@ -232,6 +245,7 @@ class Fields
 
         <h3 id="#un_assigned"><?php _e('Un-Assigned Features (Assign to a Category to activate)', 'woocommerce-compare-products' ); ?></h3>
         <form action="admin.php?page=woo-compare-features" method="post" name="form_delete_fields" id="form_delete_fields" style="margin-bottom:30px;">
+        <?php wp_nonce_field( 'woocp-manage-features' ); ?>
         	<table cellspacing="0" class="widefat post fixed" style="width:535px;">
             	<thead>
                 	<tr>
@@ -252,7 +266,7 @@ class Fields
                         <td><?php echo $un_i; ?></td>
                         <td><?php echo stripslashes($field_data->field_name); ?></td>
                         <td align="right"><?php echo self::$default_types[$field_data->field_type]['name']; ?></td>
-                        <td align="right"><a href="admin.php?page=woo-compare-features&act=field-edit&field_id=<?php echo $field_data->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>" ><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="admin.php?page=woo-compare-features&act=field-delete&field_id=<?php echo $field_data->id; ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to delete', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($field_data->field_name); ?>');" title="<?php _e('Delete', 'woocommerce-compare-products' ) ?>" ><?php _e('Delete', 'woocommerce-compare-products' ) ?></a></td>
+                        <td align="right"><a href="admin.php?page=woo-compare-features&act=field-edit&field_id=<?php echo $field_data->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>" ><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="<?php echo esc_url( wp_nonce_url( 'admin.php?page=woo-compare-features&act=field-delete&field_id='.$field_data->id, 'woocp-manage-features' ) ); ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to delete', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($field_data->field_name); ?>');" title="<?php _e('Delete', 'woocommerce-compare-products' ) ?>" ><?php _e('Delete', 'woocommerce-compare-products' ) ?></a></td>
                 	</tr>
                  <?php } ?>
                 </tbody>
@@ -282,7 +296,7 @@ class Fields
               <th width="25" style="white-space: nowrap;"><span class="c_field_name">&nbsp;</span></th>
               <th><strong><?php echo stripslashes($cat->category_name) ;?></strong> :</th>
               <th width="90"></th>
-              <th width="100" style="text-align:right; font-size:12px;white-space: nowrap;"><a href="admin.php?page=woo-compare-features&act=cat-edit&category_id=<?php echo $cat->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>"><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="admin.php?page=woo-compare-features&act=cat-delete&category_id=<?php echo $cat->id; ?>" title="<?php _e('Delete', 'woocommerce-compare-products' ) ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to delete', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($cat->category_name); ?>');"><?php _e('Delete', 'woocommerce-compare-products' ) ?></a><?php if (is_array($compare_fields) && count($compare_fields)>0) { ?> | <span class="c_openclose_table c_close_table" id="expand_<?php echo $cat->id; ?>">&nbsp;</span><?php }else {?> | <span class="c_openclose_none">&nbsp;</span><?php }?></th>
+              <th width="100" style="text-align:right; font-size:12px;white-space: nowrap;"><a href="admin.php?page=woo-compare-features&act=cat-edit&category_id=<?php echo $cat->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>"><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="<?php echo esc_url( wp_nonce_url( 'admin.php?page=woo-compare-features&act=cat-delete&category_id='.$cat->id, 'woocp-manage-features' ) ); ?>" title="<?php _e('Delete', 'woocommerce-compare-products' ) ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to delete', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($cat->category_name); ?>');"><?php _e('Delete', 'woocommerce-compare-products' ) ?></a><?php if (is_array($compare_fields) && count($compare_fields)>0) { ?> | <span class="c_openclose_table c_close_table" id="expand_<?php echo $cat->id; ?>">&nbsp;</span><?php }else {?> | <span class="c_openclose_none">&nbsp;</span><?php }?></th>
             </tr>
             </thead>
             <tbody class="expand_<?php echo $cat->id; ?>">
@@ -296,7 +310,7 @@ class Fields
                 	<td><span class="compare_sort"><?php echo $i; ?></span>.</td>
                     <td><div class="c_field_name"><?php echo stripslashes($field_data->field_name); ?></div></td>
                     <td align="right"><?php echo self::$default_types[$field_data->field_type]['name']; ?></td>
-                    <td align="right"><a href="admin.php?page=woo-compare-features&act=field-edit&field_id=<?php echo $field_data->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>" ><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="admin.php?page=woo-compare-features&act=field-delete&field_id=<?php echo $field_data->id; ?>&cat_id=<?php echo $cat->id; ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to remove', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($field_data->field_name); ?> <?php _e('from', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($cat->category_name); ?>');" title="<?php _e('Remove', 'woocommerce-compare-products' ) ?>" ><?php _e('Remove', 'woocommerce-compare-products' ) ?></a></td>
+                    <td align="right"><a href="admin.php?page=woo-compare-features&act=field-edit&field_id=<?php echo $field_data->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>" ><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="<?php echo esc_url( wp_nonce_url( 'admin.php?page=woo-compare-features&act=field-delete&field_id='.$field_data->id.'&cat_id='.$cat->id, 'woocp-manage-features' ) ); ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to remove', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($field_data->field_name); ?> <?php _e('from', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($cat->category_name); ?>');" title="<?php _e('Remove', 'woocommerce-compare-products' ) ?>" ><?php _e('Remove', 'woocommerce-compare-products' ) ?></a></td>
                 </tr>
                 <?php
 					}
@@ -366,6 +380,11 @@ class Fields
 
 	public static function woocp_update_orders() {
 		check_ajax_referer( 'woocp-update-order', 'security' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( -1, 403 );
+		}
+
 		$updateRecordsArray  = array_map('sanitize_text_field', $_REQUEST['recordsArray']);
 		$cat_id = absint( $_REQUEST['cat_id'] );
 		$listingCounter = 1;
@@ -414,11 +433,13 @@ class Fields
 			$link = esc_url( add_query_arg(array('pp' => '', 'rows' => $rows, 's_feature' => $keyword ) ) );
 			
 			$character = 'latin1';
-			if ( $wpdb->has_cap( 'collation' ) ) 
+			if ( $wpdb->has_cap( 'collation' ) )
 				if( ! empty($wpdb->charset ) ) $character = "$wpdb->charset";
-			
-			$where = "LOWER( CONVERT( field_name USING ".$character.") ) LIKE '%".strtolower(trim( sanitize_text_field( $_REQUEST['s_feature'] ) ) )."%'";
-			
+
+			$character = preg_replace( '/[^a-zA-Z0-9_]/', '', $character );
+			$like = '%' . $wpdb->esc_like( strtolower( $keyword ) ) . '%';
+			$where = $wpdb->prepare( "LOWER( CONVERT( field_name USING ".$character.") ) LIKE %s", $like );
+
 			$total = WCCompare\Data::get_count($where);
 			if ($end > $total) $end = $total;
 			$items = WCCompare\Data::get_results($where, 'field_name ASC', $start.','.$rows);
@@ -445,7 +466,7 @@ class Fields
                 	<tr>
                         <td><?php echo stripslashes($field_data->field_name); ?></td>
                         <td align="right"><?php echo self::$default_types[$field_data->field_type]['name']; ?></td>
-                        <td align="right"><a href="admin.php?page=woo-compare-features&act=field-edit&field_id=<?php echo $field_data->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>" ><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="admin.php?page=woo-compare-features&act=field-delete&field_id=<?php echo $field_data->id; ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to delete', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($field_data->field_name); ?>');" title="<?php _e('Delete', 'woocommerce-compare-products' ) ?>" ><?php _e('Delete', 'woocommerce-compare-products' ) ?></a></td>
+                        <td align="right"><a href="admin.php?page=woo-compare-features&act=field-edit&field_id=<?php echo $field_data->id; ?>" class="c_field_edit" title="<?php _e('Edit', 'woocommerce-compare-products' ) ?>" ><?php _e('Edit', 'woocommerce-compare-products' ) ?></a> | <a href="<?php echo esc_url( wp_nonce_url( 'admin.php?page=woo-compare-features&act=field-delete&field_id='.$field_data->id, 'woocp-manage-features' ) ); ?>" class="c_field_delete" onclick="javascript:return confirmation('<?php _e('Are you sure you want to delete', 'woocommerce-compare-products' ) ; ?> #<?php echo htmlspecialchars($field_data->field_name); ?>');" title="<?php _e('Delete', 'woocommerce-compare-products' ) ?>" ><?php _e('Delete', 'woocommerce-compare-products' ) ?></a></td>
                 	</tr>
                  <?php } ?>
                 </tbody>

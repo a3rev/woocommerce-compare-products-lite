@@ -2,7 +2,10 @@
 <?php
 // Grid View Button Style
 global $woo_compare_grid_view_settings;
-extract($woo_compare_grid_view_settings);
+$grid_view_button_margin_top    = isset( $woo_compare_grid_view_settings['grid_view_button_margin_top'] ) ? $woo_compare_grid_view_settings['grid_view_button_margin_top'] : 0;
+$grid_view_button_margin_right  = isset( $woo_compare_grid_view_settings['grid_view_button_margin_right'] ) ? $woo_compare_grid_view_settings['grid_view_button_margin_right'] : 0;
+$grid_view_button_margin_bottom = isset( $woo_compare_grid_view_settings['grid_view_button_margin_bottom'] ) ? $woo_compare_grid_view_settings['grid_view_button_margin_bottom'] : 0;
+$grid_view_button_margin_left   = isset( $woo_compare_grid_view_settings['grid_view_button_margin_left'] ) ? $woo_compare_grid_view_settings['grid_view_button_margin_left'] : 0;
 ?>
 @charset "UTF-8";
 /* CSS Document */
